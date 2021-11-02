@@ -83,6 +83,7 @@
     safety_limits:=false
     safety_position_margin:=${10*pi/180}
     safety_k_position:=20.0
+    gazebo_ros_ft_sensor:=false
   ">
     <xacro:if value="${(type == 'fixed' and not fixed) or (type != 'fixed' and fixed)}">
       <xacro:ERROR_inconsistent_joint_type_specification/>
@@ -130,6 +131,11 @@
           <mechanicalReduction>160</mechanicalReduction>
         </actuator>
       </transmission>
+
+      <!-- Add ros_ft_sensor Gazebo plugin (torce-torque sensor), if enabled -->
+      <xacro:if value="${gazebo_ros_ft_sensor}">
+        <xacro:gazebo_ros_ft_sensor joint_name="${joint_name}"/>
+      </xacro:if>
     </xacro:unless>
   </xacro:macro>
 

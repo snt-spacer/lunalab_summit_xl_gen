@@ -26,11 +26,13 @@
   <!--       -->
   <!-- prefix                        - Prefix for all entities -->
   <!-- add_base_footprint            - Flag that enables base footprint link -->
+  <!-- gazebo_ros_planar_move_plugin - Flag to enable setup of Gazebo ros_planar_move plugin (mobile) -->
   <!-- high_quality_mesh             - Flag to select the high or low quality model -->
   <xacro:macro name="summit_xl" params="
     prefix:=summit_xl_
     add_base_footprint:=true
     high_quality_mesh:=true
+    gazebo_ros_planar_move_plugin:=false
   ">
     <!-- Radius of wheels based on the utilised wheels (only default rubber wheels are currently supported) -->
     <xacro:property name="wheel_radius" value="${rubber_wheel_radius}"/>
@@ -51,6 +53,11 @@
     <xacro:rubber_wheel prefix="${prefix}back_right_" parent="${prefix}base_link" left_wheel="false" high_quality_mesh="${high_quality_mesh}">
       <origin xyz="-${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
     </xacro:rubber_wheel>
+
+    <!-- Add ros_planar_move Gazebo plugin, if enabled -->
+    <xacro:if value="${gazebo_ros_planar_move_plugin}">
+      <xacro:gazebo_ros_planar_move prefix="${prefix}" publish_tf="true"/>
+    </xacro:if>
   </xacro:macro>
 
 </robot>

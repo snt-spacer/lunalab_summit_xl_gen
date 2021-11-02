@@ -23,6 +23,9 @@ def generate_launch_description() -> LaunchDescription:
     safety_position_margin = LaunchConfiguration("safety_position_margin")
     safety_k_position = LaunchConfiguration("safety_k_position")
     high_quality_mesh = LaunchConfiguration("high_quality_mesh")
+    gazebo_ros_planar_move_plugin = LaunchConfiguration("gazebo_ros_planar_move_plugin")
+    gazebo_ros_control_plugin = LaunchConfiguration("gazebo_ros_control_plugin")
+    gazebo_ros_ft_sensor = LaunchConfiguration("gazebo_ros_ft_sensor")
     rviz_config = LaunchConfiguration("rviz_config")
     use_sim_time = LaunchConfiguration("use_sim_time")
 
@@ -51,6 +54,15 @@ def generate_launch_description() -> LaunchDescription:
             " ",
             "high_quality_mesh:=",
             high_quality_mesh,
+            " ",
+            "gazebo_ros_planar_move_plugin:=",
+            gazebo_ros_planar_move_plugin,
+            " ",
+            "gazebo_ros_control_plugin:=",
+            gazebo_ros_control_plugin,
+            " ",
+            "gazebo_ros_ft_sensor:=",
+            gazebo_ros_ft_sensor,
         ]
     )
     robot_description = {"robot_description": robot_description_content}
@@ -66,11 +78,11 @@ def generate_launch_description() -> LaunchDescription:
             parameters=[robot_description,
                         {"use_sim_time": use_sim_time}],
         ),
-        # rviz2
+        # rviz
         Node(
-            package="rviz2",
-            executable="rviz2",
-            name="rviz2",
+            package="rviz",
+            executable="rviz",
+            name="rviz",
             output="log",
             arguments=["--display-config", rviz_config],
             parameters=[{"use_sim_time": use_sim_time}],
@@ -141,6 +153,23 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "high_quality_mesh",
             default_value="true",
             description="Flag to select the high or low quality model.",
+        ),
+
+        # Gazebo plugins
+        DeclareLaunchArgument(
+            "gazebo_ros_planar_move_plugin",
+            default_value="false",
+            description="Flag to enable setup of Gazebo ros_planar_move plugin (mobile).",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_ros_control_plugin",
+            default_value="false",
+            description="Flag to enable setup of Gazebo ros_control plugin (manipulation).",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_ros_ft_sensor",
+            default_value="false",
+            description="Flag to enable setup of Gazebo ros_ft_sensor plugin (force torque sensor on manipulator joints).",
         ),
 
         # Miscellaneous

@@ -36,6 +36,13 @@
   <!-- (unimplemented!) Flag to select the high or low quality model -->
   <xacro:arg name="high_quality_mesh" default="ignored"/>
 
+  <!-- Flag to enable setup of Gazebo ros_planar_move plugin (mobile) -->
+  <xacro:arg name="gazebo_ros_planar_move_plugin" default="false"/>
+  <!-- Flag to enable setup of Gazebo ros_control plugin (manipulation) -->
+  <xacro:arg name="gazebo_ros_control_plugin" default="false"/>
+  <!-- Flag to enable setup of Gazebo ros_ft_sensor plugin (force torque sensor on manipulator joints) -->
+  <xacro:arg name="gazebo_ros_ft_sensor" default="false"/>
+
 
   <!--            -->
   <!-- Properties -->
@@ -57,6 +64,7 @@
     prefix="$(arg prefix)summit_xl_"
     add_base_footprint="true"
     high_quality_mesh="$(arg high_quality_mesh)"
+    gazebo_ros_planar_move_plugin="$(arg gazebo_ros_planar_move_plugin)"
   />
 
   <!-- Kinova Gen2 (Jaco2, spherical wrist, 7DOF, 3-finger gripper) -->
@@ -69,6 +77,8 @@
     safety_position_margin="$(arg safety_position_margin)"
     safety_k_position="$(arg safety_k_position)"
     high_quality_mesh="$(arg high_quality_mesh)"
+    gazebo_ros_control_plugin="$(arg gazebo_ros_control_plugin)"
+    gazebo_ros_ft_sensor="$(arg gazebo_ros_ft_sensor)"
   />
 
   <!-- Sensors -->

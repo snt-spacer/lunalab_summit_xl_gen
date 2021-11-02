@@ -13,6 +13,9 @@ XACRO_ARGS="name:=lunalab_summit_xl_gen
             safety_soft_limit_margin:=0.17453293
             safety_k_position:=20
             high_quality_mesh:=true
+            gazebo_ros_planar_move_plugin:=false
+            gazebo_ros_control_plugin:=false
+            gazebo_ros_ft_sensor:=false
            "
 
 # Remove old SDF file
