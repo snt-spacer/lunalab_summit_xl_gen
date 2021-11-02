@@ -1,0 +1,1 @@
+# lunalab_summit_xl_gen_moveit_config
