@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!-- Macro that includes all required sensors -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+</robot>

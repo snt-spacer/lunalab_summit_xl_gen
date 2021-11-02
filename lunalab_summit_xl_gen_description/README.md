@@ -1,0 +1,63 @@
+# lunalab_summit_xl_gen_description
+
+URDF and SDF description of Summit XL-GEN (LunaLab variant).
+
+<!-- <p align="left" float="middle">
+  <img width="50.0%" src="lunalab_summit_xl_gen/thumbnails/1.png" alt="Visualisation of lunalab_summit_xl_gen URDF in RViz2"/>
+</p> -->
+
+## Instructions
+
+### URDF
+
+For URDF, [lunalab_summit_xl_gen.urdf.xacro](./urdf/lunalab_summit_xl_gen.urdf.xacro) is the primary descriptor that includes all other xacros and creates a model based on the passed arguments. To generate URDF out of xacro, you can use the included [xacro2urdf.bash](./scripts/xacro2urdf.bash) script and modify its arguments as needed. Once executed, [lunalab_summit_xl_gen.urdf](./urdf/lunalab_summit_xl_gen.urdf) will automatically be replaced. Alternatively, `xacro lunalab_summit_xl_gen.urdf.xacro name:="lunalab_summit_xl_gen" <arg_i>:=<val_i> ...` can be executed directly, e.g. this is preferred within any launch script.
+
+In order to visualise URDF with RViz2, included [view.launch.py](./launch/view.launch.py) script can be used.
+```bash
+ros2 launch lunalab_summit_xl_gen_description view.launch.py
+```
+
+### SDF
+
+For SDF, please use the included [xacro2sdf.bash](./scripts/xacro2sdf.bash) script with the desired arguments. This script makes sure that a correct relative path is used to locate all assets. In order to make the model discoverable within the context of Ignition Gazebo, please extend the `IGN_GAZEBO_RESOURCE_PATH` environment variable.
+```bash
+export IGN_GAZEBO_RESOURCE_PATH=/absolute/path/lunalab_summit_xl_gen_description:${IGN_GAZEBO_RESOURCE_PATH}
+```
+
+To visualise SDF with Ignition Gazebo, included [view_ign.launch.py](./launch/view_ign.launch.py) script can be used.
+```bash
+ros2 launch lunalab_summit_xl_gen_description view_ign.launch.py
+```
+
+## Disclaimer
+
+This repository is standalone and requires no additional package dependencies. However, several of the included xacros and meshes originated in other repositories. Many of these descriptors and meshes were modified in order to represent the specific LunaLab variant (TODO) and add support for Ignition Gazebo. Furthremore, additional improvements were added along the way, e.g. xacros were refactored, safety limits controllers were added, mesh geometry was remodelled to improve performance, material of models was improved for `ogre2`, ...
+
+## Directory Structure
+
+The following directory structure is utilised for this package because it provides compatibility with Ignition Gazebo, including [Ignition Fuel](https://app.ignitionrobotics.org).
+
+```bash
+.
+├── lunalab_summit_xl_gen/                   # [dir] Model directory compatible with Ignition Fuel
+    ├── meshes/                              # [dir] Meshes for both URDF and SDF
+        ├── **/*.stl                         # STL meshes for collision geometry
+        └── **/*.dae                         # COLLADA meshes for visuals
+    ├── thumbnails/                          # [dir] Thumbnails for Ignition Fuel
+    ├── model.config                         # Model meta data
+    └── model.sdf                            # SDF (generated from URDF)
+├── urdf/                                    # [dir] URDF description (xacros)
+    ├── summit_xl/                           # [dir] Xacros for Summit XL
+    ├── manipulators/                        # [dir] Xacros for manipulators (e.g. Kinova j2s7s300)
+    ├── sensors/                             # [dir] Xacros for all sensors
+    ├── misc/                                # [dir] Xacros for all miscellaneous additions to the platform
+    ├── lunalab_summit_xl_gen.urdf           # URDF generated from `lunalab_summit_xl_gen.urdf.xacro`
+    ├── lunalab_summit_xl_gen.urdf.xacro     # The primary xacro of the robot
+    ├── lunalab_summit_xl_manipulators.xacro # Xacro for utilised manipulators
+    ├── lunalab_summit_xl_sensors.xacro      # Xacro for utilised sensors
+    └── lunalab_summit_xl_misc.xacro         # Xacro for utilised miscellaneous additions
+├── launch/view.launch.py                    # Launch script for visualising URDF with RViz2
+├── rviz/view.rviz                           # RViz2 config for visualising URDF 
+├── CMakeLists.txt                           # Colcon-enabled CMake recipe
+└── package.xml                              # ROS 2 package metadata
+```

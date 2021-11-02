@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/summit.gazebo"/>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="summit_xl_base" params="
+    prefix
+    add_base_footprint
+    high_quality_mesh
+  ">
+    <xacro:if value="${add_base_footprint}">
+      <link name="${prefix}base_footprint"/>
+      <joint name="${prefix}base_footprint_joint" type="fixed">
+        <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+        <parent link="${prefix}base_footprint"/>
+        <child link="${prefix}base_link"/>
+      </joint>
+    </xacro:if>
+
+    <link name="${prefix}base_link">
+      <inertial>
+        <mass value="25.0"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="1.391" ixy="0.004" ixz="0.0" iyy="6.853" iyz="0.0" izz="6.125"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/summit_xl/visual/summit_xl_chassis.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0 "/>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/summit_xl/collision/summit_xl_chassis.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${prefix}base_docking_joint" type="fixed">
+      <origin xyz="0.284 0.012 0.068" rpy="0 0 0 "/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base_docking_contact_link"/>
+    </joint>
+
+    <link name="${prefix}base_docking_contact_link"/>
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="inertia_cylinder" params="
+    mass
+    height
+    radius
+    axis:=z
+  ">
+    <xacro:if value="${axis == 'x'}">
+      <inertia ixx="${mass*radius*radius/2}" iyy="${mass*(3*radius*radius+height*height)/12}" izz="${mass*(3*radius*radius+height*height)/12}" ixy="0" ixz="0" iyz="0"/>
+    </xacro:if>
+
+    <xacro:if value="${axis == 'y'}">
+      <inertia ixx="${mass*(3*radius*radius+height*height)/12}" iyy="${mass*radius*radius/2}" izz="${mass*(3*radius*radius+height*height)/12}" ixy="0" ixz="0" iyz="0"/>
+    </xacro:if>
+
+    <xacro:if value="${axis == 'z'}">
+      <inertia ixx="${mass*(3*radius*radius+height*height)/12}" iyy="${mass*(3*radius*radius+height*height)/12}" izz="${mass*radius*radius/2}" ixy="0" ixz="0" iyz="0"/>
+    </xacro:if>
+  </xacro:macro>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="kinova_inertial" params="link_mesh">
+    <xacro:if value="${link_mesh == 'base'}">
+      <inertial>
+        <mass value="0.46784"/>
+        <origin xyz="0 0 0.1255" rpy="0 0 0"/>
+        <xacro:inertia_cylinder height="0.14" radius = "0.04" mass="0.46784"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'shoulder'}">
+      <inertial>
+        <mass value="0.7477"/>
+        <origin xyz="0 -0.002 -0.0605"/>
+        <xacro:inertia_cylinder height="0.14" radius = "0.04" mass="0.7477"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'arm'}">
+      <inertial>
+        <mass value="0.99"/>
+        <origin xyz="0 -0.2065 -0.01"/>
+        <xacro:inertia_cylinder height="0.35" radius = "0.04" mass="0.99" axis="y"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'forearm'}">
+      <inertial>
+        <mass value="0.6763"/>
+        <origin xyz="0 0.081 -0.0086"/>
+        <xacro:inertia_cylinder height="0.15" radius = "0.03" mass="0.6763" axis="y"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'wrist'}">
+      <inertial>
+        <mass value="0.426367"/>
+        <origin xyz="0 -0.037 -0.0642"/>
+        <xacro:inertia_cylinder height="0.02" radius = "0.04" mass="0.1785"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'arm_mico'}">
+      <inertial>
+        <mass value="0.85968"/>
+        <origin xyz="0 -0.145  -0.0076"/>
+        <xacro:inertia_cylinder height="0.25" radius = "0.03" mass="0.85968" axis="y"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'arm_half_1'}">
+      <inertial>
+        <mass value="0.8447"/>
+        <origin xyz="0 -0.103563213 0"/>
+        <xacro:inertia_cylinder height="0.18" radius = "0.03" mass="0.8447" axis="y"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'arm_half_2'}">
+      <inertial>
+        <mass value="0.8447"/>
+        <origin xyz="0 0 -0.1022447445"/>
+        <xacro:inertia_cylinder height="0.18" radius = "0.03" mass="0.8447"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'wrist_spherical_1'}">
+      <inertial>
+        <mass value="0.463"/>
+        <origin xyz="0 0.0028848942 -0.0541932613"/>
+        <xacro:inertia_cylinder height="0.1" radius = "0.02" mass="0.463"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'wrist_spherical_2'}">
+      <inertial>
+        <mass value="0.463"/>
+        <origin xyz="0 0.0497208855 -0.0028562765"/>
+        <xacro:inertia_cylinder height="0.1" radius = "0.02" mass="0.463" axis="y"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'forearm_mico'}">
+      <inertial>
+        <mass value="0.606"/>
+        <origin xyz="0 0.0463 -0.0065"/>
+        <xacro:inertia_cylinder height="0.08" radius = "0.02" mass="0.606" axis="y"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'hand_3finger'}">
+      <inertial>
+        <mass value="0.99"/>
+        <origin xyz="0 0 -0.06"/>
+        <xacro:inertia_cylinder height="0.03" radius = "0.04" mass="0.727"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'hand_2finger'}">
+      <inertial>
+        <mass value="0.78"/>
+        <origin xyz="0 0 -0.06"/>
+        <xacro:inertia_cylinder height="0.03" radius = "0.04" mass="0.78"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'finger_proximal'}">
+      <inertial>
+        <mass value="0.01"/>
+        <origin xyz="0.022 0 0"/>
+        <xacro:inertia_cylinder height="0.03" radius = "0.004" mass="0.01"/>
+      </inertial>
+    </xacro:if>
+
+    <xacro:if value="${link_mesh == 'finger_distal'}">
+      <inertial>
+        <mass value="0.01"/>
+        <origin xyz="0.022 0 0"/>
+        <xacro:inertia_cylinder height="0.03" radius = "0.004" mass="0.01"/>
+      </inertial>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!--            -->
+  <!-- Properties -->
+  <!--            -->
+  <!-- Wheels -->
+  <xacro:property name="rubber_wheel_radius" value="0.11"/>
+  <xacro:property name="rubber_wheel_width" value="0.15"/>
+  <xacro:property name="rubber_wheel_mass" value="6.5"/>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="inertia_cylinder" params="
+    mass
+    height
+    radius
+    axis:=z
+  ">
+    <xacro:if value="${axis == 'x'}">
+      <inertia ixx="${mass*radius*radius/2}" iyy="${mass*(3*radius*radius+height*height)/12}" izz="${mass*(3*radius*radius+height*height)/12}" ixy="0" ixz="0" iyz="0"/>
+    </xacro:if>
+
+    <xacro:if value="${axis == 'y'}">
+      <inertia ixx="${mass*(3*radius*radius+height*height)/12}" iyy="${mass*radius*radius/2}" izz="${mass*(3*radius*radius+height*height)/12}" ixy="0" ixz="0" iyz="0"/>
+    </xacro:if>
+
+    <xacro:if value="${axis == 'z'}">
+      <inertia ixx="${mass*(3*radius*radius+height*height)/12}" iyy="${mass*(3*radius*radius+height*height)/12}" izz="${mass*radius*radius/2}" ixy="0" ixz="0" iyz="0"/>
+    </xacro:if>
+  </xacro:macro>
+
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="rubber_wheel" params="
+    prefix
+    parent
+    *origin
+    left_wheel
+    high_quality_mesh
+  ">
+    <joint name="${prefix}wheel_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child link="${prefix}wheel"/>
+      <xacro:insert_block name="origin"/>
+      <axis xyz="0 1 0" rpy="0 0 0"/>
+      <limit effort="100" velocity="100"/>
+      <joint_properties damping="0.0" friction="0.0"/>
+    </joint>
+
+    <link name="${prefix}wheel">
+      <visual>
+
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <xacro:if value="${left_wheel}">
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/summit_xl/visual/rubber_wheel_left.dae"/>
+          </xacro:if>
+          <xacro:unless value="${left_wheel}">
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/summit_xl/visual/rubber_wheel_right.dae"/>
+          </xacro:unless>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder length="${rubber_wheel_width}" radius="${rubber_wheel_radius}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="${rubber_wheel_mass}"/>
+        <origin xyz="0 0 0"/>
+        <xacro:inertia_cylinder mass="${rubber_wheel_mass}" height="${rubber_wheel_width}" radius="${rubber_wheel_radius}" axis="y"/>
+      </inertial>
+    </link>
+
+    <transmission name="${prefix}wheel_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}wheel_joint_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <motorTorqueConstant>20</motorTorqueConstant>
+      </actuator>
+    </transmission>
+
+    <gazebo reference="${prefix}wheel">
+      <mu1 value="1.9"/>
+      <mu2 value="1.7"/>
+      <fdir1 value="1 0 0"/>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

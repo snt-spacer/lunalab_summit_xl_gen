@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!-- URDF for Summit XL-GEN (LunaLab variant) -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg name)">
+
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <!-- Summit XL -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/summit_xl.xacro"/>
+
+  <!-- Manipulators -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_manipulators.xacro"/>
+
+  <!-- Sensors -->
+  <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_sensors.xacro"/> -->
+
+  <!-- Miscellaneous -->
+  <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_misc.xacro"/> -->
+
+
+  <!--            -->
+  <!-- Parameters -->
+  <!--            -->
+  <!-- Name of the robot (mandatory) -->
+  <xacro:arg name="name" default="lunalab_summit_xl_gen"/>
+  <!-- Prefix for all entities -->
+  <xacro:arg name="prefix" default="robot_"/>
+
+  <!-- Flag to enable safety limits controllers on manipulator joints -->
+  <xacro:arg name="safety_limits" default="false"/>
+  <!-- Lower and upper margin for position limits of all safety controllers -->
+  <xacro:arg name="safety_position_margin" default="0.17453293"/>
+  <!-- Parametric k-position factor of all safety controllers -->
+  <xacro:arg name="safety_k_position" default="20"/>
+
+  <!-- (unimplemented!) Flag to select the high or low quality model -->
+  <xacro:arg name="high_quality_mesh" default="ignored"/>
+
+
+  <!--            -->
+  <!-- Properties -->
+  <!--            -->
+  <!-- Manipulator offset (from base_link to the center of the manipulator's base) -->
+  <xacro:property name="manipulator_offset_x" value="0.204"/>
+  <xacro:property name="manipulator_offset_y" value="0.0"/>
+  <xacro:property name="manipulator_offset_z" value="0.11"/>
+  <xacro:property name="manipulator_offset_r" value="0.0"/>
+  <xacro:property name="manipulator_offset_p" value="0.0"/>
+  <xacro:property name="manipulator_offset_y" value="0.0"/>
+
+
+  <!--       -->
+  <!-- Robot -->
+  <!--       -->
+  <!-- Summit XL -->
+  <xacro:summit_xl
+    prefix="$(arg prefix)summit_xl_"
+    add_base_footprint="true"
+    high_quality_mesh="$(arg high_quality_mesh)"
+  />
+
+  <!-- Kinova Gen2 (Jaco2, spherical wrist, 7DOF, 3-finger gripper) -->
+  <xacro:j2s7s300
+    base_parent="$(arg prefix)summit_xl_base_link"
+    prefix="$(arg prefix)j2s7s300_"
+    joint_base_origin_xyz="${manipulator_offset_x} ${manipulator_offset_y} ${manipulator_offset_z}"
+    joint_base_origin_rpy="${manipulator_offset_r} ${manipulator_offset_p} ${manipulator_offset_y}"
+    safety_limits="$(arg safety_limits)"
+    safety_position_margin="$(arg safety_position_margin)"
+    safety_k_position="$(arg safety_k_position)"
+    high_quality_mesh="$(arg high_quality_mesh)"
+  />
+
+  <!-- Sensors -->
+  <!-- <xacro:lunalab_summit_xl_sensors prefix="$(arg prefix)"/> -->
+
+  <!-- Miscellaneous -->
+  <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
+
+</robot>
