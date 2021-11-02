@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova_inertial.xacro"/>
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova.gazebo"/>
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <!-- link_name     - Name of the link to create -->
+  <!-- link_mesh     - Name of the mesh to load (filename must be identical for visual and collision geometry, while located in their specific directories) -->
+  <!-- use_ring_mesh - Flag to enable ring mesh (visual only) -->
+  <!-- ring_mesh     - Selector of ring mesh type, which must correspond to mesh name, e.g. `ring_small` -->
+  <xacro:macro name="kinova_armlink" params="
+    link_name
+    link_mesh
+    use_ring_mesh:=false
+    ring_mesh:=ring_big
+    mu:=1.0
+  ">
+    <link name="${link_name}">
+      <visual>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/${link_mesh}.dae"/>
+        </geometry>
+      </visual>
+
+      <!-- Add ring to the link, if enabled -->
+      <xacro:if value="${use_ring_mesh}">
+        <visual>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/${ring_mesh}.dae"/>
+          </geometry>
+        </visual>
+      </xacro:if>
+
+      <collision>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/collision/${link_mesh}.stl"/>
+        </geometry>
+      </collision>
+
+      <xacro:kinova_inertial link_mesh="${link_mesh}"/>
+    </link>
+
+    <gazebo reference="${link_name}">
+      <mu1 value="${mu}"/>
+      <mu2 value="${mu}"/>
+    </gazebo>
+  </xacro:macro>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <!--
+    We use dummy default values for values only required when type=='revolute':
+    joint_lower_limit and joint_upper_limit (set to 1234567890)
+    We check during macro execution that these values have been set properly if
+    the joint type requires it (revolute).
+    Similarly, we check that velocity and torque limits are set unless the joint
+    type is fixed, and that the fixed parameter is set consistently.
+  -->
+  <xacro:property name="dummy_default_value" value="1234567890"/>
+  <xacro:macro name="kinova_armjoint" params="
+    joint_name
+    type
+    parent
+    child
+    joint_axis_xyz
+    joint_origin_xyz
+    joint_origin_rpy
+    joint_damping:=0.0
+    joint_friction:=0.0
+    joint_lower_limit:=${dummy_default_value}
+    joint_upper_limit:=${dummy_default_value}
+    joint_velocity_limit:=${dummy_default_value}
+    joint_torque_limit:=${dummy_default_value}
+    fixed:=false
+    safety_limits:=false
+    safety_position_margin:=${10*pi/180}
+    safety_k_position:=20.0
+  ">
+    <xacro:if value="${(type == 'fixed' and not fixed) or (type != 'fixed' and fixed)}">
+      <xacro:ERROR_inconsistent_joint_type_specification/>
+    </xacro:if>
+    <xacro:if value="${type == 'revolute'}">
+      <xacro:if value="${joint_lower_limit == dummy_default_value}">
+        <xacro:ERROR_joint_lower_limit_needs_to_be_set_for_a_revolute_joint/>
+      </xacro:if>
+      <xacro:if value="${joint_upper_limit == dummy_default_value}">
+        <xacro:ERROR_joint_upper_limit_needs_to_be_set_for_a_revolute_joint/>
+      </xacro:if>
+    </xacro:if>
+    <xacro:unless value="${type =='fixed'}">
+      <xacro:if value="${joint_velocity_limit == dummy_default_value}">
+        <xacro:ERROR_joint_velocity_limit_needs_to_be_set_for_a_non_fixed_joint/>
+      </xacro:if>
+      <xacro:if value="${joint_torque_limit == dummy_default_value}">
+        <xacro:ERROR_joint_torque_limit_needs_to_be_set_for_a_non_fixed_joint/>
+      </xacro:if>
+    </xacro:unless>
+    <joint name="${joint_name}" type="${type}">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <axis xyz="${joint_axis_xyz}"/>
+      <xacro:if value="${type == 'revolute'}">
+        <limit effort="${joint_torque_limit}" velocity="${joint_velocity_limit}" lower="${joint_lower_limit}" upper="${joint_upper_limit}"/>
+      </xacro:if>
+      <xacro:if value="${type == 'continuous'}">
+        <limit effort="${joint_torque_limit}" velocity="${joint_velocity_limit}"/>
+      </xacro:if>
+      <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}"/>
+      <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
+      <xacro:if value="${safety_limits}">
+        <safety_controller soft_lower_limit="${joint_lower_limit+safety_position_margin}" soft_upper_limit="${joint_upper_limit-safety_position_margin}" k_position="${safety_k_position}" k_velocity="0.0"/>
+      </xacro:if>
+    </joint>
+    <xacro:unless value="${fixed}">
+      <transmission name="${joint_name}_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${joint_name}">
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="${joint_name}_actuator">
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+          <mechanicalReduction>160</mechanicalReduction>
+        </actuator>
+      </transmission>
+    </xacro:unless>
+  </xacro:macro>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="kinova_virtual_fixed_link" params="
+    joint_name
+    parent
+    child
+    joint_origin_xyz
+    joint_origin_rpy
+  ">
+    <link name="${child}"/>
+    <joint name="${joint_name}" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}"/>
+    </joint>
+  </xacro:macro>
+
+</robot>

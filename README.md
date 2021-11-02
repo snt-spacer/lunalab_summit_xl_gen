@@ -7,6 +7,7 @@ This branch targets packages that are built around ROS 2. Furthermore, Ignition 
 ## Overview
 
 Below is an overview of the included packages, with a small description of their purpose. For more information, please see README.md of each individual package.
+- [**lunalab_summit_xl_gen_description**](./lunalab_summit_xl_gen_description) &ndash; URDF and SDF description of the robot
 
 ## Instructions
 
@@ -22,6 +23,8 @@ These are the primary dependencies required to use this project.
 - ROS 2 [Foxy](https://docs.ros.org/en/foxy/Installation.html) OR [Rolling (recommended)](https://docs.ros.org/en/rolling/Installation.html)
   - Support for [Galactic](https://docs.ros.org/en/galactic/Installation.html) will be added once it is released and binary packages are available. It will then become the recommended distribution to use.
 - Ignition [Fortress](https://ignitionrobotics.org/docs/fortress)
+- [ros_ign](https://github.com/ignitionrobotics/ros_ign/tree/ros2)
+  - Install/build a version based on the selected combination of ROS 2 release and Ignition version
 
 Additional dependencies are pulled from git and built together with this repository, see [lunalab_summit_xl_gen.repos](lunalab_summit_xl_gen.repos) for more details.
 

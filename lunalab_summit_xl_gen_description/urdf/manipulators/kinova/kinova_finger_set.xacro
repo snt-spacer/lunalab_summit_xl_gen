@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova_common.xacro"/>
+
+
+  <!--            -->
+  <!-- Properties -->
+  <!--            -->
+  <!-- Finger origin for 3-finger hand -->
+  <xacro:property name="finger_1_of_3_origin_xyz" value="0.00279 0.03126 -0.11467"/>
+  <xacro:property name="finger_1_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${77.9*pi/180}"/>
+  <xacro:property name="finger_2_of_3_origin_xyz" value="0.02226 -0.02707 -0.11482"/>
+  <xacro:property name="finger_2_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-79.42*pi/180}"/>
+  <xacro:property name="finger_3_of_3_origin_xyz" value="-0.02226 -0.02707 -0.11482"/>
+  <xacro:property name="finger_3_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-100.58*pi/180}"/>
+
+  <!-- Finger origin for 2-finger hand -->
+  <xacro:property name="finger_1_of_2_origin_xyz" value="-0.0025 0.03095 -0.11482"/>
+  <xacro:property name="finger_1_of_2_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${pi/2}"/>
+  <xacro:property name="finger_2_of_2_origin_xyz" value="-0.0025 -0.03095 -0.11482"/>
+  <xacro:property name="finger_2_of_2_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-pi/2}"/>
+
+  <xacro:property name="finger_proximal_mesh" value="finger_proximal"/>
+  <xacro:property name="finger_proximal_axis_xyz" value="0 0 1"/>
+  <xacro:property name="finger_proximal_lower_limit" value="0.0"/>
+  <xacro:property name="finger_proximal_upper_limit" value="1.51"/>
+  <xacro:property name="finger_proximal_velocity_limit" value="1.0"/>
+  <xacro:property name="finger_proximal_torque_limit" value="2.0"/>
+  <xacro:property name="finger_proximal_damping" value="0.5"/>
+  <xacro:property name="finger_proximal_friction" value="0.05"/>
+  <xacro:property name="finger_link_proximal_mu" value="1.6"/>
+
+  <xacro:property name="finger_distal_origin_xyz" value="0.044 -0.003 0"/>
+  <xacro:property name="finger_distal_origin_rpy" value="0 0 0"/>
+  <xacro:property name="finger_distal_mesh" value="finger_distal"/>
+  <xacro:property name="finger_distal_axis_xyz" value="0 0 1"/>
+  <xacro:property name="finger_distal_lower_limit" value="0.0"/>
+  <xacro:property name="finger_distal_upper_limit" value="2.0"/>
+  <xacro:property name="finger_distal_velocity_limit" value="1.0"/>
+  <xacro:property name="finger_distal_torque_limit" value="2.0"/>
+  <xacro:property name="finger_distal_damping" value="0.5"/>
+  <xacro:property name="finger_distal_friction" value="0.05"/>
+  <xacro:property name="finger_link_distal_mu" value="1.6"/>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="kinova_3fingers" params="
+    link_hand
+    prefix
+  ">
+    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_3_origin_xyz}" finger_origin_rpy="${finger_1_of_3_origin_rpy}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_3_origin_xyz}" finger_origin_rpy="${finger_2_of_3_origin_rpy}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="3" hand="${link_hand}" finger_origin_xyz="${finger_3_of_3_origin_xyz}" finger_origin_rpy="${finger_2_of_3_origin_rpy}"/>
+  </xacro:macro>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="kinova_2fingers" params="
+    link_hand
+    prefix
+  ">
+    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_2_origin_xyz}" finger_origin_rpy="${finger_1_of_2_origin_rpy}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_2_origin_xyz}" finger_origin_rpy="${finger_2_of_2_origin_rpy}"/>
+  </xacro:macro>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="kinova_finger" params="
+    prefix
+    finger_number
+    hand
+    finger_origin_xyz
+    finger_origin_rpy
+  ">
+    <xacro:kinova_armlink link_name="${prefix}link_finger_${finger_number}" link_mesh="${finger_proximal_mesh}" mu="${finger_link_proximal_mu}"/>
+    <joint name="${prefix}joint_finger_${finger_number}" type="revolute">
+      <parent link="${hand}"/>
+      <child link="${prefix}link_finger_${finger_number}"/>
+      <axis xyz="${finger_proximal_axis_xyz}"/>
+      <origin xyz="${finger_origin_xyz}" rpy="${finger_origin_rpy}"/>
+      <limit lower="${finger_proximal_lower_limit}" upper="${finger_proximal_upper_limit}" effort="${finger_proximal_torque_limit}" velocity="${finger_proximal_velocity_limit}"/>
+      <dynamics damping="${finger_proximal_damping}" friction="${finger_proximal_friction}"/>
+    </joint>
+    <transmission name="${prefix}joint_finger_${finger_number}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}joint_finger_${finger_number}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}joint_finger_${finger_number}_actuator">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <xacro:kinova_armlink link_name="${prefix}link_finger_tip_${finger_number}" link_mesh="${finger_distal_mesh}" mu="${finger_link_distal_mu}"/>
+    <joint name="${prefix}joint_finger_tip_${finger_number}" type="revolute">
+      <parent link="${prefix}link_finger_${finger_number}"/>
+      <child link="${prefix}link_finger_tip_${finger_number}"/>
+      <axis xyz="${finger_distal_axis_xyz}"/>
+      <origin xyz="${finger_distal_origin_xyz}" rpy="${finger_distal_origin_rpy}"/>
+      <limit lower="${finger_distal_lower_limit}" upper="${finger_distal_upper_limit}" effort="${finger_distal_torque_limit}" velocity="${finger_distal_velocity_limit}"/>
+      <dynamics damping="${finger_distal_damping}" friction="${finger_distal_friction}"/>
+    </joint>
+    <transmission name="${prefix}joint_finger_tip_${finger_number}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}joint_finger_tip_${finger_number}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}joint_finger_tip_${finger_number}_actuator">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+</robot>

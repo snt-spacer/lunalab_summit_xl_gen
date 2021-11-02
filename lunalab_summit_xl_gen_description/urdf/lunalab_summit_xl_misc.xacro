@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!-- Macro that includes additional (miscellaneous) resources such as compute units and lights -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+</robot>
