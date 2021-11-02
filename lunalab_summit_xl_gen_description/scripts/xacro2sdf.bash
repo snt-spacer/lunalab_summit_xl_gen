@@ -23,7 +23,7 @@ rm ${SDF_PATH}
 
 # Process xacro into URDF, then convert URDF to SDF
 xacro ${XACRO_PATH} ${XACRO_ARGS} >${TMP_URDF_PATH} &&
-    ign sdf -p ${TMP_URDF_PATH} >${SDF_PATH} &&
+    gs sdf -p ${TMP_URDF_PATH} >${SDF_PATH} &&
     echo "Created new '${SDF_PATH}'"
 
 # Edit SDF to use relative paths for meshes
