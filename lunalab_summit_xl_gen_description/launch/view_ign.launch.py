@@ -19,7 +19,8 @@ def generate_launch_description() -> LaunchDescription:
     world = LaunchConfiguration("world")
     model = LaunchConfiguration("model")
     use_sim_time = LaunchConfiguration("use_sim_time")
-    debug_level = LaunchConfiguration("debug_level")
+    ign_verbosity = LaunchConfiguration("ign_verbosity")
+    log_level = LaunchConfiguration("log_level")
 
     # List of included launch descriptions
     launch_descriptions = [
@@ -29,7 +30,7 @@ def generate_launch_description() -> LaunchDescription:
                 [FindPackageShare("ros_ign_gazebo"),
                  "launch",
                  "ign_gazebo.launch.py"])),
-            launch_arguments=[("ign_args", [world, " -v ", debug_level])]
+            launch_arguments=[("ign_args", [world, " -v ", ign_verbosity])]
         ),
     ]
 
@@ -41,7 +42,8 @@ def generate_launch_description() -> LaunchDescription:
             executable="create",
             name="ros_ign_gazebo_create",
             output="log",
-            arguments=["-file", model],
+            arguments=["-file", model,
+                       "--ros-args", "--log-level", log_level],
             parameters=[{"use_sim_time": use_sim_time}],
         ),
     ]
@@ -74,8 +76,13 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             description="If true, use simulated clock."
         ),
         DeclareLaunchArgument(
-            "debug_level",
+            "ign_verbosity",
             default_value="3",
-            description="Debug level for Ignition Gazebo (0~4)."
+            description="Verbosity level for Ignition Gazebo (0~4)."
+        ),
+        DeclareLaunchArgument(
+            "log_level",
+            default_value="warn",
+            description="The level of logging that is applied to all ROS 2 nodes launched by this script."
         ),
     ]
