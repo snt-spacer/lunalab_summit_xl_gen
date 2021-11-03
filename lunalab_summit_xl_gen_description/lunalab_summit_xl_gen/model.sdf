@@ -649,12 +649,20 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.5</damping>
-          <friction>0.05</friction>
+          <damping>0.05</damping>
+          <friction>0.01</friction>
           <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <spring_stiffness>0.2</spring_stiffness>
         </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0.0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='robot_j2s7s300_link_finger_tip_1'>
       <pose relative_to='robot_j2s7s300_joint_finger_tip_1'>0 0 0 0 0 0</pose>
@@ -777,12 +785,20 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.5</damping>
-          <friction>0.05</friction>
+          <damping>0.05</damping>
+          <friction>0.01</friction>
           <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <spring_stiffness>0.2</spring_stiffness>
         </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0.0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='robot_j2s7s300_link_finger_tip_2'>
       <pose relative_to='robot_j2s7s300_joint_finger_tip_2'>0 0 0 0 0 0</pose>
@@ -905,12 +921,20 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.5</damping>
-          <friction>0.05</friction>
+          <damping>0.05</damping>
+          <friction>0.01</friction>
           <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <spring_stiffness>0.2</spring_stiffness>
         </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0.0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='robot_j2s7s300_link_finger_tip_3'>
       <pose relative_to='robot_j2s7s300_joint_finger_tip_3'>0 0 0 0 0 0</pose>

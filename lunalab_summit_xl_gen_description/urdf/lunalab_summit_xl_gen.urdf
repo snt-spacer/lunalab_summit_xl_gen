@@ -624,7 +624,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.05" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -636,6 +636,10 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_1">
+    <springStiffness value="0.2"/>
+    <springReference value="0.0"/>
+  </gazebo>
   <link name="robot_j2s7s300_link_finger_2">
     <visual>
       <geometry>
@@ -702,7 +706,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.05" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -714,6 +718,10 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_2">
+    <springStiffness value="0.2"/>
+    <springReference value="0.0"/>
+  </gazebo>
   <link name="robot_j2s7s300_link_finger_3">
     <visual>
       <geometry>
@@ -780,7 +788,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.05" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -792,6 +800,82 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_3">
+    <springStiffness value="0.2"/>
+    <springReference value="0.0"/>
+  </gazebo>
+  <ros2_control name="KinovaArmFakeSystem" type="system">
+    <hardware>
+      <plugin>fake_components/GenericSystem</plugin>
+    </hardware>
+    <joint name="robot_j2s7s300_joint_1">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_2">
+      <param name="initial_position">3.14159265359</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_3">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_4">
+      <param name="initial_position">3.14159265359</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_5">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_6">
+      <param name="initial_position">3.14159265359</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_7">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+  <ros2_control name="KinovaGripperFakeSystem" type="system">
+    <hardware>
+      <plugin>fake_components/GenericSystem</plugin>
+    </hardware>
+    <joint name="robot_j2s7s300_joint_finger_1">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_finger_2">
+      <param name="mimic">robot_j2s7s300_joint_finger_1</param>
+      <param name="multiplier">1</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_finger_3">
+      <param name="mimic">robot_j2s7s300_joint_finger_1</param>
+      <param name="multiplier">1</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
   <!-- Sensors -->
   <!-- <xacro:lunalab_summit_xl_sensors prefix="$(arg prefix)"/> -->
   <!-- Miscellaneous -->

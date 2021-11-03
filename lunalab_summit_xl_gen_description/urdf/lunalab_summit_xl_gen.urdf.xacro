@@ -36,6 +36,9 @@
   <!-- (unimplemented!) Flag to select the high or low quality model -->
   <xacro:arg name="high_quality_mesh" default="ignored"/>
 
+  <!-- Flag to enable ros2 controllers for manipulator -->
+  <xacro:arg name="ros2_control" default="true"/>
+  
 
   <!--            -->
   <!-- Properties -->
@@ -69,6 +72,7 @@
     safety_position_margin="$(arg safety_position_margin)"
     safety_k_position="$(arg safety_k_position)"
     high_quality_mesh="$(arg high_quality_mesh)"
+    ros2_control="$(arg ros2_control)"
   />
 
   <!-- Sensors -->
