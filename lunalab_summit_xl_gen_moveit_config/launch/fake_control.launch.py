@@ -93,6 +93,7 @@ def generate_launch_description():
     # Planning pipeline
     planning_pipeline = {
         "planning_pipelines": ["ompl"],
+        "default_planning_pipeline": "ompl",
         "ompl": {
             "planning_plugin": "ompl_interface/OMPLPlanner",
             # TODO: Re-enable `default_planner_request_adapters/AddRuckigTrajectorySmoothing` once its issues are resolved
@@ -139,7 +140,6 @@ def generate_launch_description():
         Node(
             package="robot_state_publisher",
             executable="robot_state_publisher",
-            name="robot_state_publisher",
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[robot_description,
@@ -149,7 +149,7 @@ def generate_launch_description():
         Node(
             package="controller_manager",
             executable="ros2_control_node",
-            output="screen",
+            output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[robot_description,
                         ros2_controllers_path,
@@ -159,8 +159,7 @@ def generate_launch_description():
         Node(
             package="moveit_ros_move_group",
             executable="move_group",
-            name="moveit_ros_move_group",
-            output="screen",
+            output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[
                 robot_description,
@@ -177,7 +176,6 @@ def generate_launch_description():
         Node(
             package="rviz2",
             executable="rviz2",
-            name="rviz2",
             output="log",
             arguments=["--display-config", rviz_config,
                        "--ros-args", "--log-level", log_level],
@@ -197,7 +195,6 @@ def generate_launch_description():
             Node(
                 package="controller_manager",
                 executable="spawner",
-                name="controller_manager_spawner_" + controller,
                 output="log",
                 arguments=[controller,
                            "--ros-args", "--log-level", log_level],

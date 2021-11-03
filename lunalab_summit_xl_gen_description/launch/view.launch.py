@@ -68,7 +68,6 @@ def generate_launch_description() -> LaunchDescription:
         Node(
             package="robot_state_publisher",
             executable="robot_state_publisher",
-            name="robot_state_publisher",
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[robot_description,
@@ -78,7 +77,6 @@ def generate_launch_description() -> LaunchDescription:
         Node(
             package="rviz2",
             executable="rviz2",
-            name="rviz2",
             output="log",
             arguments=["--display-config", rviz_config,
                        "--ros-args", "--log-level", log_level],
@@ -88,7 +86,6 @@ def generate_launch_description() -> LaunchDescription:
         Node(
             package="joint_state_publisher_gui",
             executable="joint_state_publisher_gui",
-            name="joint_state_publisher_gui",
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[{"use_sim_time": use_sim_time}],

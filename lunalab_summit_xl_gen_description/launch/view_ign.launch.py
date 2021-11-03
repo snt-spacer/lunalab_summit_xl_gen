@@ -40,7 +40,6 @@ def generate_launch_description() -> LaunchDescription:
         Node(
             package="ros_ign_gazebo",
             executable="create",
-            name="ros_ign_gazebo_create",
             output="log",
             arguments=["-file", model,
                        "--ros-args", "--log-level", log_level],
