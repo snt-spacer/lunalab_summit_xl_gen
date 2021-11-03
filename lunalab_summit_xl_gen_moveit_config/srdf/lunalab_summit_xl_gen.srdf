@@ -9,15 +9,12 @@
     <chain base_link="robot_j2s7s300_link_base" tip_link="robot_j2s7s300_end_effector"/>
   </group>
   <group name="gripper">
-    <link name="robot_j2s7s300_link_finger_1"/>
-    <link name="robot_j2s7s300_link_finger_tip_1"/>
-    <link name="robot_j2s7s300_link_finger_2"/>
-    <link name="robot_j2s7s300_link_finger_tip_2"/>
-    <link name="robot_j2s7s300_link_finger_3"/>
-    <link name="robot_j2s7s300_link_finger_tip_3"/>
     <joint name="robot_j2s7s300_joint_finger_1"/>
     <joint name="robot_j2s7s300_joint_finger_2"/>
     <joint name="robot_j2s7s300_joint_finger_3"/>
+    <passive_joint name="robot_j2s7s300_joint_finger_tip_1"/>
+    <passive_joint name="robot_j2s7s300_joint_finger_tip_2"/>
+    <passive_joint name="robot_j2s7s300_joint_finger_tip_3"/>
   </group>
   <group_state group="arm" name="vertical">
     <joint name="robot_j2s7s300_joint_1" value="0"/>
@@ -41,17 +38,11 @@
     <joint name="robot_j2s7s300_joint_finger_1" value="0.2"/>
     <joint name="robot_j2s7s300_joint_finger_2" value="0.2"/>
     <joint name="robot_j2s7s300_joint_finger_3" value="0.2"/>
-    <joint name="robot_j2s7s300_joint_finger_tip_1" value="0.0"/>
-    <joint name="robot_j2s7s300_joint_finger_tip_2" value="0.0"/>
-    <joint name="robot_j2s7s300_joint_finger_tip_3" value="0.0"/>
   </group_state>
   <group_state group="gripper" name="close">
     <joint name="robot_j2s7s300_joint_finger_1" value="1.2"/>
     <joint name="robot_j2s7s300_joint_finger_2" value="1.2"/>
     <joint name="robot_j2s7s300_joint_finger_3" value="1.2"/>
-    <joint name="robot_j2s7s300_joint_finger_tip_1" value="0.0"/>
-    <joint name="robot_j2s7s300_joint_finger_tip_2" value="0.0"/>
-    <joint name="robot_j2s7s300_joint_finger_tip_3" value="0.0"/>
   </group_state>
   <end_effector group="gripper" name="gripper" parent_group="arm" parent_link="robot_j2s7s300_end_effector"/>
   <passive_joint name="robot_j2s7s300_joint_finger_tip_1"/>
