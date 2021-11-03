@@ -6,7 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /MotionPlanning1
-        - /MotionPlanning1/Planned Path1
       Splitter Ratio: 0.6278260946273804
     Tree Height: 471
   - Class: rviz_common/Selection
@@ -171,13 +170,13 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-        Loop Animation: false
+        Loop Animation: true
         Robot Alpha: 0.25
         Robot Color: 150; 50; 150
         Show Robot Collision: false
         Show Robot Visual: true
         Show Trail: false
-        State Display Time: 1x
+        State Display Time: 0.1s
         Trail Step Size: 1
         Trajectory Topic: /display_planned_path
       Planning Metrics:
