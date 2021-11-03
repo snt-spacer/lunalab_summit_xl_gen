@@ -12,6 +12,7 @@ XACRO_ARGS="name:=lunalab_summit_xl_gen
             safety_soft_limit_margin:=0.17453293
             safety_k_position:=20
             high_quality_mesh:=true
+            ros2_control:=true
            "
 
 # Remove old URDF file

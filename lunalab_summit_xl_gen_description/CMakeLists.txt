@@ -5,7 +5,7 @@ project(lunalab_summit_xl_gen_description)
 find_package(ament_cmake REQUIRED)
 
 # Install directories
-install(DIRECTORY urdf lunalab_summit_xl_gen/meshes launch rviz DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY config launch lunalab_summit_xl_gen/meshes rviz urdf DESTINATION share/${PROJECT_NAME})
 
 # Setup the project
 ament_package()
