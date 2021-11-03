@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!-- Macro for SRDF of Summit XL-GEN (LunaLab variant) with Kinova robot j2s7s300 -->
+<!-- j - Jaco -->
+<!-- 2 - v2 (Gen2) -->
+<!-- s - spherical wrist -->
+<!-- 7 - 7 DOF -->
+<!-- s - service -->
+<!-- 3 - 3 finger gripper -->
+<!-- 0 - reserved -->
+<!-- 0 - reserved -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="lunalab_summit_xl_gen_j2s7s300" params=" prefix:=robot_
+  ">
+    <group name="arm">
+      <chain base_link="${prefix}j2s7s300_link_base" tip_link="${prefix}j2s7s300_end_effector"/>
+    </group>
+    <group name="gripper">
+      <link name="${prefix}j2s7s300_link_finger_1"/>
+      <link name="${prefix}j2s7s300_link_finger_tip_1"/>
+      <link name="${prefix}j2s7s300_link_finger_2"/>
+      <link name="${prefix}j2s7s300_link_finger_tip_2"/>
+      <link name="${prefix}j2s7s300_link_finger_3"/>
+      <link name="${prefix}j2s7s300_link_finger_tip_3"/>
+      <joint name="${prefix}j2s7s300_joint_finger_1"/>
+      <joint name="${prefix}j2s7s300_joint_finger_2"/>
+      <joint name="${prefix}j2s7s300_joint_finger_3"/>
+    </group>
+
+    <group_state name="vertical" group="arm">
+      <joint name="${prefix}j2s7s300_joint_1" value="0"/>
+      <joint name="${prefix}j2s7s300_joint_2" value="${pi}"/>
+      <joint name="${prefix}j2s7s300_joint_3" value="0"/>
+      <joint name="${prefix}j2s7s300_joint_4" value="${pi}"/>
+      <joint name="${prefix}j2s7s300_joint_5" value="0"/>
+      <joint name="${prefix}j2s7s300_joint_6" value="${pi}"/>
+      <joint name="${prefix}j2s7s300_joint_7" value="0"/>
+    </group_state>
+    <group_state name="home" group="arm">
+      <joint name="${prefix}j2s7s300_joint_1" value="0"/>
+      <joint name="${prefix}j2s7s300_joint_2" value="${200*pi/180}"/>
+      <joint name="${prefix}j2s7s300_joint_3" value="0"/>
+      <joint name="${prefix}j2s7s300_joint_4" value="${300*pi/180}"/>
+      <joint name="${prefix}j2s7s300_joint_5" value="0"/>
+      <joint name="${prefix}j2s7s300_joint_6" value="${100*pi/180}"/>
+      <joint name="${prefix}j2s7s300_joint_7" value="0"/>
+    </group_state>
+
+    <group_state name="open" group="gripper">
+      <joint name="${prefix}j2s7s300_joint_finger_1" value="0.2"/>
+      <joint name="${prefix}j2s7s300_joint_finger_2" value="0.2"/>
+      <joint name="${prefix}j2s7s300_joint_finger_3" value="0.2"/>
+      <joint name="robot_j2s7s300_joint_finger_tip_1" value="0.0"/>
+      <joint name="robot_j2s7s300_joint_finger_tip_2" value="0.0"/>
+      <joint name="robot_j2s7s300_joint_finger_tip_3" value="0.0"/>
+    </group_state>
+    <group_state name="close" group="gripper">
+      <joint name="${prefix}j2s7s300_joint_finger_1" value="1.2"/>
+      <joint name="${prefix}j2s7s300_joint_finger_2" value="1.2"/>
+      <joint name="${prefix}j2s7s300_joint_finger_3" value="1.2"/>
+      <joint name="robot_j2s7s300_joint_finger_tip_1" value="0.0"/>
+      <joint name="robot_j2s7s300_joint_finger_tip_2" value="0.0"/>
+      <joint name="robot_j2s7s300_joint_finger_tip_3" value="0.0"/>
+    </group_state>
+
+    <end_effector name="gripper" parent_link="${prefix}j2s7s300_end_effector" group="gripper" parent_group="arm"/>
+
+    <passive_joint name="${prefix}j2s7s300_joint_finger_tip_1"/>
+    <passive_joint name="${prefix}j2s7s300_joint_finger_tip_2"/>
+    <passive_joint name="${prefix}j2s7s300_joint_finger_tip_3"/>
+
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}j2s7s300_link_2" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}j2s7s300_link_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}j2s7s300_link_4" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}j2s7s300_link_5" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}j2s7s300_link_6" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}j2s7s300_link_base" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}summit_xl_back_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}summit_xl_back_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}summit_xl_base_link" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}summit_xl_front_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_1" link2="${prefix}summit_xl_front_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}j2s7s300_link_3" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}j2s7s300_link_4" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}j2s7s300_link_5" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}j2s7s300_link_6" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}j2s7s300_link_base" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}summit_xl_back_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}summit_xl_back_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}summit_xl_front_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_2" link2="${prefix}summit_xl_front_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_4" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_5" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_6" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_7" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_base" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_finger_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_finger_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_finger_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_finger_tip_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_finger_tip_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}summit_xl_back_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}summit_xl_back_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}summit_xl_front_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_3" link2="${prefix}summit_xl_front_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_5" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_6" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_7" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_base" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_finger_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_finger_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_finger_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_finger_tip_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_finger_tip_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_4" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_6" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_7" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_finger_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_finger_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_finger_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_finger_tip_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_finger_tip_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_5" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_6" link2="${prefix}j2s7s300_link_7" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_6" link2="${prefix}j2s7s300_link_finger_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_6" link2="${prefix}j2s7s300_link_finger_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_6" link2="${prefix}j2s7s300_link_finger_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_6" link2="${prefix}j2s7s300_link_finger_tip_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_6" link2="${prefix}j2s7s300_link_finger_tip_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_6" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_7" link2="${prefix}j2s7s300_link_finger_1" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_7" link2="${prefix}j2s7s300_link_finger_2" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_7" link2="${prefix}j2s7s300_link_finger_3" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_7" link2="${prefix}j2s7s300_link_finger_tip_1" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_7" link2="${prefix}j2s7s300_link_finger_tip_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_7" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_base" link2="${prefix}summit_xl_back_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_base" link2="${prefix}summit_xl_back_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_base" link2="${prefix}summit_xl_base_link" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_base" link2="${prefix}summit_xl_front_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_base" link2="${prefix}summit_xl_front_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_1" link2="${prefix}j2s7s300_link_finger_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_1" link2="${prefix}j2s7s300_link_finger_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_1" link2="${prefix}j2s7s300_link_finger_tip_1" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_1" link2="${prefix}j2s7s300_link_finger_tip_2" reason="User"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_1" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_2" link2="${prefix}j2s7s300_link_finger_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_2" link2="${prefix}j2s7s300_link_finger_tip_1" reason="User"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_2" link2="${prefix}j2s7s300_link_finger_tip_2" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_2" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_3" link2="${prefix}j2s7s300_link_finger_tip_1" reason="User"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_3" link2="${prefix}j2s7s300_link_finger_tip_2" reason="Never"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_3" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_tip_1" link2="${prefix}j2s7s300_link_finger_tip_2" reason="User"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_tip_1" link2="${prefix}j2s7s300_link_finger_tip_3" reason="User"/>
+    <disable_collisions link1="${prefix}j2s7s300_link_finger_tip_2" link2="${prefix}j2s7s300_link_finger_tip_3" reason="Never"/>
+    <disable_collisions link1="${prefix}summit_xl_back_left_wheel" link2="${prefix}summit_xl_back_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}summit_xl_back_left_wheel" link2="${prefix}summit_xl_base_link" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}summit_xl_back_left_wheel" link2="${prefix}summit_xl_front_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}summit_xl_back_left_wheel" link2="${prefix}summit_xl_front_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}summit_xl_back_right_wheel" link2="${prefix}summit_xl_base_link" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}summit_xl_back_right_wheel" link2="${prefix}summit_xl_front_left_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}summit_xl_back_right_wheel" link2="${prefix}summit_xl_front_right_wheel" reason="Never"/>
+    <disable_collisions link1="${prefix}summit_xl_base_link" link2="${prefix}summit_xl_front_left_wheel" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}summit_xl_base_link" link2="${prefix}summit_xl_front_right_wheel" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}summit_xl_front_left_wheel" link2="${prefix}summit_xl_front_right_wheel" reason="Never"/>
+  </xacro:macro>
+</robot>
