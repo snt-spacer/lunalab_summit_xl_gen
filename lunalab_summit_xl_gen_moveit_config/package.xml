@@ -11,11 +11,13 @@
 
   <exec_depend>lunalab_summit_xl_gen_description</exec_depend>
 
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>moveit_ros_move_group</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>ros_ign_gazebo</exec_depend>
   <exec_depend>rviz2</exec_depend>
-  <exec_depend>xacro</exec_depend>
   <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
