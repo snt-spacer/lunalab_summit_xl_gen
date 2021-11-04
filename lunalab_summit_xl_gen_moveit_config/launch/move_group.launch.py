@@ -181,7 +181,7 @@ def generate_launch_description():
                 planning_scene_monitor_parameters,
                 moveit_controller_manager,
                 {"use_sim_time": use_sim_time}],
-            condition=IfCondition(execute_trajectories)
+            condition=IfCondition(execute_trajectories),
         ),
         Node(
             package="moveit_ros_move_group",
@@ -197,7 +197,7 @@ def generate_launch_description():
                 trajectory_execution,
                 planning_scene_monitor_parameters,
                 {"use_sim_time": use_sim_time}],
-            condition=UnlessCondition(execute_trajectories)
+            condition=UnlessCondition(execute_trajectories),
         ),
         # rviz2
         Node(
