@@ -46,7 +46,7 @@
     <origin rpy="0 0 0" xyz="0.229 0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_front_left_wheel">
     <visual>
@@ -88,7 +88,7 @@
     <origin rpy="0 0 0" xyz="-0.229 0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_back_left_wheel">
     <visual>
@@ -130,7 +130,7 @@
     <origin rpy="0 0 0" xyz="0.229 -0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_front_right_wheel">
     <visual>
@@ -172,7 +172,7 @@
     <origin rpy="0 0 0" xyz="-0.229 -0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_back_right_wheel">
     <visual>
