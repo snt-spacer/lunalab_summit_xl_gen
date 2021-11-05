@@ -181,6 +181,7 @@ def generate_launch_description():
                 planning_scene_monitor_parameters,
                 moveit_controller_manager,
                 {"use_sim_time": use_sim_time}],
+            remappings=[("/joint_states", ["/", name, "/joint_states"])],
             condition=IfCondition(execute_trajectories),
         ),
         Node(
@@ -197,6 +198,7 @@ def generate_launch_description():
                 trajectory_execution,
                 planning_scene_monitor_parameters,
                 {"use_sim_time": use_sim_time}],
+            remappings=[("/joint_states", ["/", name, "/joint_states"])],
             condition=UnlessCondition(execute_trajectories),
         ),
         # rviz2
