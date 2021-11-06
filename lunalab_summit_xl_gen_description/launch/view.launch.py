@@ -26,6 +26,10 @@ def generate_launch_description() -> LaunchDescription:
     safety_k_position = LaunchConfiguration("safety_k_position")
     high_quality_mesh = LaunchConfiguration("high_quality_mesh")
     ros2_control = LaunchConfiguration("ros2_control")
+    gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
+    gazebo_joint_trajectory_controller = LaunchConfiguration("gazebo_joint_trajectory_controller")
+    gazebo_joint_state_publisher = LaunchConfiguration("gazebo_joint_state_publisher")
+    gazebo_pose_publisher = LaunchConfiguration("gazebo_pose_publisher")
     rviz_config = LaunchConfiguration("rviz_config")
     use_sim_time = LaunchConfiguration("use_sim_time")
     log_level = LaunchConfiguration("log_level")
@@ -58,6 +62,18 @@ def generate_launch_description() -> LaunchDescription:
             " ",
             "ros2_control:=",
             ros2_control,
+            " ",       
+            "gazebo_diff_drive:=",
+            gazebo_diff_drive,
+            " ",       
+            "gazebo_joint_trajectory_controller:=",
+            gazebo_joint_trajectory_controller,
+            " ",      
+            "gazebo_joint_state_publisher:=",
+            gazebo_joint_state_publisher,
+            " ",        
+            "gazebo_pose_publisher:=",
+            gazebo_pose_publisher,
         ]
     )
     robot_description = {"robot_description": robot_description_content}
@@ -155,6 +171,28 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "ros2_control",
             default_value="true",
             description="Flag to enable ros2 controllers for manipulator.",
+        ),
+
+        # Gazebo plugins
+        DeclareLaunchArgument(
+            "gazebo_diff_drive",
+            default_value="true",
+            description="Flag to enable DiffDrive Gazebo plugin for Summit XL.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_joint_trajectory_controller",
+            default_value="true",
+            description="Flag to enable JointTrajectoryController Gazebo plugin for manipulator.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_joint_state_publisher",
+            default_value="true",
+            description="Flag to enable JointStatePublisher Gazebo plugin for all joints.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_pose_publisher",
+            default_value="true",
+            description="Flag to enable PosePublisher Gazebo plugin for true pose of robot.",
         ),
 
         # Miscellaneous

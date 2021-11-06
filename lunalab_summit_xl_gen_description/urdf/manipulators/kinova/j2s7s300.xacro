@@ -15,8 +15,8 @@
   <!--                   -->
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova_common.xacro"/>
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova_finger_set.xacro"/>
-  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova.gazebo"/>
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova.ros2_control"/>
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova.gazebo"/>
 
 
   <!--            -->
@@ -148,6 +148,7 @@
     safety_k_position:=20.0
     high_quality_mesh:=false
     ros2_control:=true
+    gazebo_joint_trajectory_controller:=true
   ">
     <xacro:kinova_armlink link_name="${prefix}link_base" link_mesh="${link_base_mesh}" mu="${link_base_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_base" type="${joint_base_type}" parent="${base_parent}" child="${prefix}link_base" joint_axis_xyz="${joint_base_axis_xyz}" joint_origin_xyz="${joint_base_origin_xyz}" joint_origin_rpy="${joint_base_origin_rpy}" joint_lower_limit="0" joint_upper_limit="0" joint_velocity_limit="0" joint_torque_limit="0" fixed="true" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}"/>
@@ -181,6 +182,11 @@
     <xacro:if value="${ros2_control}">
       <xacro:ros2_control_j2s7s300_arm name="KinovaArmFakeSystem" prefix="${prefix}"/>
       <xacro:ros2_control_3fingers name="KinovaGripperFakeSystem" prefix="${prefix}"/>
+    </xacro:if>
+
+    <!-- Gazebo - Joint trajectory controller -->
+    <xacro:if value="${gazebo_joint_trajectory_controller}">
+      <xacro:gazebo_joint_trajectory_controller_j2s7s300 prefix="${prefix}"/>
     </xacro:if>
   </xacro:macro>
 

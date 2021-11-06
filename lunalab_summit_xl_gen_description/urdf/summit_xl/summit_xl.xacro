@@ -11,6 +11,8 @@
   <!-- Import Summit XL wheels (rubber) -->
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/rubber_wheel.xacro"/>
 
+  <!-- Gazebo plugins -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/summit_xl.gazebo"/>
 
   <!--            -->
   <!-- Properties -->
@@ -31,6 +33,7 @@
     prefix:=summit_xl_
     add_base_footprint:=true
     high_quality_mesh:=true
+    gazebo_diff_drive:=true
   ">
     <!-- Radius of wheels based on the utilised wheels (only default rubber wheels are currently supported) -->
     <xacro:property name="wheel_radius" value="${rubber_wheel_radius}"/>
@@ -51,6 +54,11 @@
     <xacro:rubber_wheel prefix="${prefix}back_right_" parent="${prefix}base_link" left_wheel="false" high_quality_mesh="${high_quality_mesh}">
       <origin xyz="-${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
     </xacro:rubber_wheel>
+
+    <!-- Gazebo - Differential drive -->
+    <xacro:if value="${gazebo_diff_drive}">
+      <xacro:gazebo_diff_drive prefix="${prefix}" wheel_separation="${2*wheel_offset_y}" wheel_radius="${wheel_radius}"/>
+    </xacro:if>
   </xacro:macro>
 
 </robot>
