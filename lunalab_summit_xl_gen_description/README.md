@@ -57,6 +57,7 @@ The following directory structure is utilised for this package because it provid
     ├── misc/                                # [dir] Xacros for all miscellaneous additions to the platform
     ├── sensors/                             # [dir] Xacros for all sensors
     ├── summit_xl/                           # [dir] Xacros for Summit XL
+    ├── lunalab_summit_xl_gen.gazebo         # Xacro for utilised Ignition Gazebo plugins
     ├── lunalab_summit_xl_gen.urdf           # URDF generated from `lunalab_summit_xl_gen.urdf.xacro`
     ├── lunalab_summit_xl_gen.urdf.xacro     # The primary xacro of the robot
     ├── lunalab_summit_xl_manipulators.xacro # Xacro for utilised manipulators

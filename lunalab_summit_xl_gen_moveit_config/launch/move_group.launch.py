@@ -31,6 +31,10 @@ def generate_launch_description():
     publish_state = LaunchConfiguration("publish_state")
     execute_trajectories = LaunchConfiguration("execute_trajectories")
     ros2_control = LaunchConfiguration("ros2_control")
+    gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
+    gazebo_joint_trajectory_controller = LaunchConfiguration("gazebo_joint_trajectory_controller")
+    gazebo_joint_state_publisher = LaunchConfiguration("gazebo_joint_state_publisher")
+    gazebo_pose_publisher = LaunchConfiguration("gazebo_pose_publisher")
     enable_rviz = LaunchConfiguration("enable_rviz")
     rviz_config = LaunchConfiguration("rviz_config")
     use_sim_time = LaunchConfiguration("use_sim_time")
@@ -68,6 +72,18 @@ def generate_launch_description():
             " ",
             "ros2_control:=",
             ros2_control,
+            " ",       
+            "gazebo_diff_drive:=",
+            gazebo_diff_drive,
+            " ",       
+            "gazebo_joint_trajectory_controller:=",
+            gazebo_joint_trajectory_controller,
+            " ",      
+            "gazebo_joint_state_publisher:=",
+            gazebo_joint_state_publisher,
+            " ",        
+            "gazebo_pose_publisher:=",
+            gazebo_pose_publisher,
         ]
     )
     robot_description = {"robot_description": _robot_description_xml}
@@ -151,7 +167,10 @@ def generate_launch_description():
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
             parameters=[robot_description,
-                        {"use_sim_time": use_sim_time}],
+                        {"publish_frequency": 20.0,
+                         "frame_prefix": "",
+                         "use_sim_time": use_sim_time}],
+            remappings=[("/joint_states", ["/", name, "/joint_states"])],
             condition=IfCondition(publish_state),
         ),
         # ros2_control_node
@@ -337,8 +356,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         # State publishing
         DeclareLaunchArgument(
             "publish_state",
-            # TODO: Default `publish_state` launch argument to true once ros2_control has been integrated with Ignition or real robot
-            default_value="false",
+            default_value="true",
             description="Flag to enable robot state publisher.",
         ),
 
@@ -356,6 +374,28 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             # TODO: Default `ros2_control` launch argument to true once ros2_control has been integrated with Ignition or real robot
             default_value="false",
             description="Flag to enable ros2 controllers for manipulator.",
+        ),
+
+        # Gazebo plugins
+        DeclareLaunchArgument(
+            "gazebo_diff_drive",
+            default_value="true",
+            description="Flag to enable DiffDrive Gazebo plugin for Summit XL.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_joint_trajectory_controller",
+            default_value="true",
+            description="Flag to enable JointTrajectoryController Gazebo plugin for manipulator.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_joint_state_publisher",
+            default_value="true",
+            description="Flag to enable JointStatePublisher Gazebo plugin for all joints.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_pose_publisher",
+            default_value="true",
+            description="Flag to enable PosePublisher Gazebo plugin for true pose of robot.",
         ),
 
         # Miscellaneous
