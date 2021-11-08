@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- Macros that add Ignition Gazebo plugins for Summit XL-GEN (LunaLab variant) -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <!-- Joint state publisher -->
+  <xacro:macro name="gazebo_joint_state_publisher_summit_xl_gen_j2s7s300" params="
+   prefix_summit_xl:=robot_summit_xl_
+   prefix_manipulator:=robot_j2s7s300_
+  ">
+    <gazebo>
+      <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher">
+        <joint_name>${prefix_summit_xl}front_left_wheel_joint</joint_name>
+        <joint_name>${prefix_summit_xl}back_left_wheel_joint</joint_name>
+        <joint_name>${prefix_summit_xl}front_right_wheel_joint</joint_name>
+        <joint_name>${prefix_summit_xl}back_right_wheel_joint</joint_name>
+        <joint_name>${prefix_manipulator}joint_1</joint_name>
+        <joint_name>${prefix_manipulator}joint_2</joint_name>
+        <joint_name>${prefix_manipulator}joint_3</joint_name>
+        <joint_name>${prefix_manipulator}joint_4</joint_name>
+        <joint_name>${prefix_manipulator}joint_5</joint_name>
+        <joint_name>${prefix_manipulator}joint_6</joint_name>
+        <joint_name>${prefix_manipulator}joint_7</joint_name>
+        <joint_name>${prefix_manipulator}joint_finger_1</joint_name>
+        <joint_name>${prefix_manipulator}joint_finger_2</joint_name>
+        <joint_name>${prefix_manipulator}joint_finger_3</joint_name>
+        <joint_name>${prefix_manipulator}joint_finger_tip_1</joint_name>
+        <joint_name>${prefix_manipulator}joint_finger_tip_2</joint_name>
+        <joint_name>${prefix_manipulator}joint_finger_tip_3</joint_name>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <!-- Pose publisher -->
+  <xacro:macro name="gazebo_pose_publisher">
+    <gazebo>
+      <plugin filename="ignition-gazebo-pose-publisher-system" name="ignition::gazebo::systems::PosePublisher">
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <publish_nested_model_pose>true</publish_nested_model_pose>
+        <publish_link_pose>false</publish_link_pose>
+        <publish_collision_pose>false</publish_collision_pose>
+        <publish_visual_pose>false</publish_visual_pose>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+</robot>

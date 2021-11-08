@@ -1,12 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
-  <!--                   -->
-  <!-- Imported elements -->
-  <!--                   -->
-  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/summit.gazebo"/>
-
-
   <!--       -->
   <!-- Macro -->
   <!--       -->
