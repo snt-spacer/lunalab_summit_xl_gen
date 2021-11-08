@@ -42,8 +42,10 @@
   <xacro:property name="finger_distal_upper_limit" value="2.0"/>
   <xacro:property name="finger_distal_velocity_limit" value="1.0"/>
   <xacro:property name="finger_distal_torque_limit" value="2.0"/>
-  <xacro:property name="finger_distal_damping" value="0.5"/>
-  <xacro:property name="finger_distal_friction" value="0.05"/>
+  <xacro:property name="finger_distal_damping" value="0.05"/>
+  <xacro:property name="finger_distal_friction" value="0.01"/>
+  <xacro:property name="finger_distal_spring_stiffness" value="0.2"/>
+  <xacro:property name="finger_distal_spring_reference" value="0.0"/>
   <xacro:property name="finger_link_distal_mu" value="1.6"/>
 
 
@@ -121,6 +123,10 @@
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
+    <gazebo reference="${prefix}joint_finger_tip_${finger_number}">
+      <springStiffness value="${finger_distal_spring_stiffness}"/>
+      <springReference value="${finger_distal_spring_reference}"/>
+    </gazebo>
   </xacro:macro>
 
 </robot>

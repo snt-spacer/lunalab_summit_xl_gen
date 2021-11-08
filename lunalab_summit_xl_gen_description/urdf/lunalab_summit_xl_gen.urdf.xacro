@@ -17,6 +17,9 @@
   <!-- Miscellaneous -->
   <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_misc.xacro"/> -->
 
+  <!-- Gazebo plugins -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_gen.gazebo"/>
+
 
   <!--            -->
   <!-- Parameters -->
@@ -36,6 +39,21 @@
   <!-- (unimplemented!) Flag to select the high or low quality model -->
   <xacro:arg name="high_quality_mesh" default="ignored"/>
 
+  <!-- Flag to enable ros2 controllers for manipulator -->
+  <xacro:arg name="ros2_control" default="true"/>
+
+  <!-- Flag to enable DiffDrive Gazebo plugin for Summit XL -->
+  <xacro:arg name="gazebo_diff_drive" default="true"/>
+
+  <!-- Flag to enable JointTrajectoryController Gazebo plugin for manipulator -->
+  <xacro:arg name="gazebo_joint_trajectory_controller" default="true"/>
+
+  <!-- Flag to enable JointStatePublisher Gazebo plugin for all joints -->
+  <xacro:arg name="gazebo_joint_state_publisher" default="true"/>
+
+  <!-- Flag to enable PosePublisher Gazebo plugin for true pose of robot -->
+  <xacro:arg name="gazebo_pose_publisher" default="true"/>
+
 
   <!--            -->
   <!-- Properties -->
@@ -48,27 +66,34 @@
   <xacro:property name="manipulator_offset_p" value="0.0"/>
   <xacro:property name="manipulator_offset_y" value="0.0"/>
 
+  <!-- Prefixes -->
+  <xacro:property name="prefix_summit_xl" value="$(arg prefix)summit_xl_"/>
+  <xacro:property name="prefix_manipulator" value="$(arg prefix)j2s7s300_"/>
+
 
   <!--       -->
   <!-- Robot -->
   <!--       -->
   <!-- Summit XL -->
   <xacro:summit_xl
-    prefix="$(arg prefix)summit_xl_"
+    prefix="${prefix_summit_xl}"
     add_base_footprint="true"
     high_quality_mesh="$(arg high_quality_mesh)"
+    gazebo_diff_drive="$(arg gazebo_diff_drive)"
   />
 
   <!-- Kinova Gen2 (Jaco2, spherical wrist, 7DOF, 3-finger gripper) -->
   <xacro:j2s7s300
-    base_parent="$(arg prefix)summit_xl_base_link"
-    prefix="$(arg prefix)j2s7s300_"
+    base_parent="${prefix_summit_xl}base_link"
+    prefix="${prefix_manipulator}"
     joint_base_origin_xyz="${manipulator_offset_x} ${manipulator_offset_y} ${manipulator_offset_z}"
     joint_base_origin_rpy="${manipulator_offset_r} ${manipulator_offset_p} ${manipulator_offset_y}"
     safety_limits="$(arg safety_limits)"
     safety_position_margin="$(arg safety_position_margin)"
     safety_k_position="$(arg safety_k_position)"
     high_quality_mesh="$(arg high_quality_mesh)"
+    ros2_control="$(arg ros2_control)"
+    gazebo_joint_trajectory_controller="$(arg gazebo_joint_trajectory_controller)"
   />
 
   <!-- Sensors -->
@@ -77,4 +102,13 @@
   <!-- Miscellaneous -->
   <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
 
+  <!-- Gazebo - Joint state publisher -->
+  <xacro:if value="$(arg gazebo_joint_state_publisher)">
+    <xacro:gazebo_joint_state_publisher_summit_xl_gen_j2s7s300 prefix_summit_xl="${prefix_summit_xl}" prefix_manipulator="${prefix_manipulator}"/>
+  </xacro:if>
+
+  <!-- Gazebo - Pose publisher -->
+  <xacro:if value="$(arg gazebo_pose_publisher)">
+    <xacro:gazebo_pose_publisher/>
+  </xacro:if>
 </robot>

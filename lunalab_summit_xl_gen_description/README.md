@@ -2,9 +2,9 @@
 
 URDF and SDF description of Summit XL-GEN (LunaLab variant).
 
-<!-- <p align="left" float="middle">
-  <img width="50.0%" src="lunalab_summit_xl_gen/thumbnails/1.png" alt="Visualisation of lunalab_summit_xl_gen URDF in RViz2"/>
-</p> -->
+<p align="left" float="middle">
+  <img width="50.0%" src="lunalab_summit_xl_gen/thumbnails/1.png" alt="Visualisation of lunalab_summit_xl_gen in Ignition Gazebo"/>
+</p>
 
 ## Instructions
 
@@ -39,25 +39,30 @@ The following directory structure is utilised for this package because it provid
 
 ```bash
 .
+├── config/initial_joint_positions.yaml      # List of initial joint positions for fake and simulated ROS 2 control
+├── launch/                                  # [dir] ROS 2 launch scripts
+    ├── view.launch.py                       # Launch script for visualising URDF with RViz2
+    └── view_ign.launch.py                   # Launch script for visualising SDF with Ignition Gazebo
 ├── lunalab_summit_xl_gen/                   # [dir] Model directory compatible with Ignition Fuel
     ├── meshes/                              # [dir] Meshes for both URDF and SDF
-        ├── **/*.stl                         # STL meshes for collision geometry
-        └── **/*.dae                         # COLLADA meshes for visuals
+        ├── **/collision/*.stl               # STL meshes for collision geometry
+        └── **/visual/*.dae                  # COLLADA meshes for visuals
     ├── thumbnails/                          # [dir] Thumbnails for Ignition Fuel
     ├── model.config                         # Model meta data
     └── model.sdf                            # SDF (generated from URDF)
+├── rviz/view.rviz                           # RViz2 config for visualising URDF
+├── scripts/                                 # [dir] Additional useful scripts
 ├── urdf/                                    # [dir] URDF description (xacros)
-    ├── summit_xl/                           # [dir] Xacros for Summit XL
     ├── manipulators/                        # [dir] Xacros for manipulators (e.g. Kinova j2s7s300)
-    ├── sensors/                             # [dir] Xacros for all sensors
     ├── misc/                                # [dir] Xacros for all miscellaneous additions to the platform
+    ├── sensors/                             # [dir] Xacros for all sensors
+    ├── summit_xl/                           # [dir] Xacros for Summit XL
+    ├── lunalab_summit_xl_gen.gazebo         # Xacro for utilised Ignition Gazebo plugins
     ├── lunalab_summit_xl_gen.urdf           # URDF generated from `lunalab_summit_xl_gen.urdf.xacro`
     ├── lunalab_summit_xl_gen.urdf.xacro     # The primary xacro of the robot
     ├── lunalab_summit_xl_manipulators.xacro # Xacro for utilised manipulators
-    ├── lunalab_summit_xl_sensors.xacro      # Xacro for utilised sensors
-    └── lunalab_summit_xl_misc.xacro         # Xacro for utilised miscellaneous additions
-├── launch/view.launch.py                    # Launch script for visualising URDF with RViz2
-├── rviz/view.rviz                           # RViz2 config for visualising URDF 
+    ├── lunalab_summit_xl_misc.xacro         # Xacro for utilised miscellaneous additions
+    └── lunalab_summit_xl_sensors.xacro      # Xacro for utilised sensors
 ├── CMakeLists.txt                           # Colcon-enabled CMake recipe
 └── package.xml                              # ROS 2 package metadata
 ```

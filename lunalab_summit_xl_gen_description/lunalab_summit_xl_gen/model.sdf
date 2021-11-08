@@ -649,12 +649,20 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.5</damping>
-          <friction>0.05</friction>
+          <damping>0.05</damping>
+          <friction>0.01</friction>
           <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <spring_stiffness>0.2</spring_stiffness>
         </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0.0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='robot_j2s7s300_link_finger_tip_1'>
       <pose relative_to='robot_j2s7s300_joint_finger_tip_1'>0 0 0 0 0 0</pose>
@@ -777,12 +785,20 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.5</damping>
-          <friction>0.05</friction>
+          <damping>0.05</damping>
+          <friction>0.01</friction>
           <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <spring_stiffness>0.2</spring_stiffness>
         </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0.0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='robot_j2s7s300_link_finger_tip_2'>
       <pose relative_to='robot_j2s7s300_joint_finger_tip_2'>0 0 0 0 0 0</pose>
@@ -905,12 +921,20 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.5</damping>
-          <friction>0.05</friction>
+          <damping>0.05</damping>
+          <friction>0.01</friction>
           <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <spring_stiffness>0.2</spring_stiffness>
         </dynamics>
       </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0.0</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
     </joint>
     <link name='robot_j2s7s300_link_finger_tip_3'>
       <pose relative_to='robot_j2s7s300_joint_finger_tip_3'>0 0 0 0 0 0</pose>
@@ -969,6 +993,8 @@
           <upper>1e16</upper>
         </limit>
         <dynamics>
+          <damping>0.035</damping>
+          <friction>0.0005</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1032,6 +1058,8 @@
           <upper>1e16</upper>
         </limit>
         <dynamics>
+          <damping>0.035</damping>
+          <friction>0.0005</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1095,6 +1123,8 @@
           <upper>1e16</upper>
         </limit>
         <dynamics>
+          <damping>0.035</damping>
+          <friction>0.0005</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1158,6 +1188,8 @@
           <upper>1e16</upper>
         </limit>
         <dynamics>
+          <damping>0.035</damping>
+          <friction>0.0005</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1208,5 +1240,132 @@
         </geometry>
       </visual>
     </link>
+    <plugin name='ignition::gazebo::systems::DiffDrive' filename='ignition-gazebo-diff-drive-system'>
+      <left_joint>robot_summit_xl_front_left_wheel_joint</left_joint>
+      <left_joint>robot_summit_xl_rear_left_wheel_joint</left_joint>
+      <right_joint>robot_summit_xl_front_right_wheel_joint</right_joint>
+      <right_joint>robot_summit_xl_rear_right_wheel_joint</right_joint>
+      <wheel_separation>0.47</wheel_separation>
+      <wheel_radius>0.11</wheel_radius>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::JointTrajectoryController' filename='libignition-gazebo-joint-trajectory-controller-system.so'>
+      <joint_name>robot_j2s7s300_joint_1</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>500</position_p_gain>
+      <position_d_gain>15</position_d_gain>
+      <position_i_gain>2000</position_i_gain>
+      <position_i_min>-7</position_i_min>
+      <position_i_max>7</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_2</joint_name>
+      <initial_position>3.14159</initial_position>
+      <position_p_gain>1100</position_p_gain>
+      <position_d_gain>25</position_d_gain>
+      <position_i_gain>5000</position_i_gain>
+      <position_i_min>-9</position_i_min>
+      <position_i_max>9</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_3</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>950</position_p_gain>
+      <position_d_gain>17.5</position_d_gain>
+      <position_i_gain>3500</position_i_gain>
+      <position_i_min>-8</position_i_min>
+      <position_i_max>8</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_4</joint_name>
+      <initial_position>3.14159</initial_position>
+      <position_p_gain>800</position_p_gain>
+      <position_d_gain>12.5</position_d_gain>
+      <position_i_gain>2500</position_i_gain>
+      <position_i_min>-5</position_i_min>
+      <position_i_max>-5</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_5</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>750</position_p_gain>
+      <position_d_gain>7.5</position_d_gain>
+      <position_i_gain>2000</position_i_gain>
+      <position_i_min>-6</position_i_min>
+      <position_i_max>6</position_i_max>
+      <position_cmd_min>-13.6</position_cmd_min>
+      <position_cmd_max>13.6</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_6</joint_name>
+      <initial_position>3.14159</initial_position>
+      <position_p_gain>600</position_p_gain>
+      <position_d_gain>6</position_d_gain>
+      <position_i_gain>1800</position_i_gain>
+      <position_i_min>-5</position_i_min>
+      <position_i_max>5</position_i_max>
+      <position_cmd_min>-13.6</position_cmd_min>
+      <position_cmd_max>13.6</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_7</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>400</position_p_gain>
+      <position_d_gain>4</position_d_gain>
+      <position_i_gain>1200</position_i_gain>
+      <position_i_min>-3.5</position_i_min>
+      <position_i_max>3.5</position_i_max>
+      <position_cmd_min>-13.6</position_cmd_min>
+      <position_cmd_max>13.6</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_finger_1</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>8</position_p_gain>
+      <position_d_gain>0.35</position_d_gain>
+      <position_i_gain>105</position_i_gain>
+      <position_i_min>-3</position_i_min>
+      <position_i_max>3</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_finger_2</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>8</position_p_gain>
+      <position_d_gain>0.35</position_d_gain>
+      <position_i_gain>105</position_i_gain>
+      <position_i_min>-3</position_i_min>
+      <position_i_max>3</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_finger_3</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>8</position_p_gain>
+      <position_d_gain>0.35</position_d_gain>
+      <position_i_gain>105</position_i_gain>
+      <position_i_min>-3</position_i_min>
+      <position_i_max>3</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::JointStatePublisher' filename='libignition-gazebo-joint-state-publisher-system.so'>
+      <joint_name>robot_summit_xl_front_left_wheel_joint</joint_name>
+      <joint_name>robot_summit_xl_back_left_wheel_joint</joint_name>
+      <joint_name>robot_summit_xl_front_right_wheel_joint</joint_name>
+      <joint_name>robot_summit_xl_back_right_wheel_joint</joint_name>
+      <joint_name>robot_j2s7s300_joint_1</joint_name>
+      <joint_name>robot_j2s7s300_joint_2</joint_name>
+      <joint_name>robot_j2s7s300_joint_3</joint_name>
+      <joint_name>robot_j2s7s300_joint_4</joint_name>
+      <joint_name>robot_j2s7s300_joint_5</joint_name>
+      <joint_name>robot_j2s7s300_joint_6</joint_name>
+      <joint_name>robot_j2s7s300_joint_7</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_1</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_2</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_3</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_tip_1</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_tip_2</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_tip_3</joint_name>
+    </plugin>
+    <static>false</static>
+    <plugin name='ignition::gazebo::systems::PosePublisher' filename='ignition-gazebo-pose-publisher-system'>
+      <use_pose_vector_msg>true</use_pose_vector_msg>
+      <publish_nested_model_pose>true</publish_nested_model_pose>
+      <publish_link_pose>false</publish_link_pose>
+      <publish_collision_pose>false</publish_collision_pose>
+      <publish_visual_pose>false</publish_visual_pose>
+    </plugin>
   </model>
 </sdf>

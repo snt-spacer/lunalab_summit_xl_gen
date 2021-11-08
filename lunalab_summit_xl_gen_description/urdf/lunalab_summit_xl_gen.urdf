@@ -46,7 +46,7 @@
     <origin rpy="0 0 0" xyz="0.229 0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_front_left_wheel">
     <visual>
@@ -88,7 +88,7 @@
     <origin rpy="0 0 0" xyz="-0.229 0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_back_left_wheel">
     <visual>
@@ -130,7 +130,7 @@
     <origin rpy="0 0 0" xyz="0.229 -0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_front_right_wheel">
     <visual>
@@ -172,7 +172,7 @@
     <origin rpy="0 0 0" xyz="-0.229 -0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_back_right_wheel">
     <visual>
@@ -207,6 +207,16 @@
     <mu1 value="1.9"/>
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
+  </gazebo>
+  <gazebo>
+    <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
+      <left_joint>robot_summit_xl_front_left_wheel_joint</left_joint>
+      <left_joint>robot_summit_xl_rear_left_wheel_joint</left_joint>
+      <right_joint>robot_summit_xl_front_right_wheel_joint</right_joint>
+      <right_joint>robot_summit_xl_rear_right_wheel_joint</right_joint>
+      <wheel_separation>0.47</wheel_separation>
+      <wheel_radius>0.11</wheel_radius>
+    </plugin>
   </gazebo>
   <link name="robot_j2s7s300_link_base">
     <visual>
@@ -624,7 +634,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.05" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -636,6 +646,10 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_1">
+    <springStiffness value="0.2"/>
+    <springReference value="0.0"/>
+  </gazebo>
   <link name="robot_j2s7s300_link_finger_2">
     <visual>
       <geometry>
@@ -702,7 +716,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.05" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -714,6 +728,10 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_2">
+    <springStiffness value="0.2"/>
+    <springReference value="0.0"/>
+  </gazebo>
   <link name="robot_j2s7s300_link_finger_3">
     <visual>
       <geometry>
@@ -780,7 +798,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.05" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -792,8 +810,208 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_3">
+    <springStiffness value="0.2"/>
+    <springReference value="0.0"/>
+  </gazebo>
+  <ros2_control name="KinovaArmFakeSystem" type="system">
+    <hardware>
+      <plugin>fake_components/GenericSystem</plugin>
+    </hardware>
+    <joint name="robot_j2s7s300_joint_1">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_2">
+      <param name="initial_position">3.14159265359</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_3">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_4">
+      <param name="initial_position">3.14159265359</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_5">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_6">
+      <param name="initial_position">3.14159265359</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_7">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+  <ros2_control name="KinovaGripperFakeSystem" type="system">
+    <hardware>
+      <plugin>fake_components/GenericSystem</plugin>
+    </hardware>
+    <joint name="robot_j2s7s300_joint_finger_1">
+      <param name="initial_position">0.0</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_finger_2">
+      <param name="mimic">robot_j2s7s300_joint_finger_1</param>
+      <param name="multiplier">1</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="robot_j2s7s300_joint_finger_3">
+      <param name="mimic">robot_j2s7s300_joint_finger_1</param>
+      <param name="multiplier">1</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+  <gazebo>
+    <plugin filename="libignition-gazebo-joint-trajectory-controller-system.so" name="ignition::gazebo::systems::JointTrajectoryController">
+      <joint_name>robot_j2s7s300_joint_1</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>500</position_p_gain>
+      <position_d_gain>15</position_d_gain>
+      <position_i_gain>2000</position_i_gain>
+      <position_i_min>-7</position_i_min>
+      <position_i_max>7</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_2</joint_name>
+      <initial_position>3.14159</initial_position>
+      <position_p_gain>1100</position_p_gain>
+      <position_d_gain>25</position_d_gain>
+      <position_i_gain>5000</position_i_gain>
+      <position_i_min>-9</position_i_min>
+      <position_i_max>9</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_3</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>950</position_p_gain>
+      <position_d_gain>17.5</position_d_gain>
+      <position_i_gain>3500</position_i_gain>
+      <position_i_min>-8</position_i_min>
+      <position_i_max>8</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_4</joint_name>
+      <initial_position>3.14159</initial_position>
+      <position_p_gain>800</position_p_gain>
+      <position_d_gain>12.5</position_d_gain>
+      <position_i_gain>2500</position_i_gain>
+      <position_i_min>-5</position_i_min>
+      <position_i_max>-5</position_i_max>
+      <position_cmd_min>-30.5</position_cmd_min>
+      <position_cmd_max>30.5</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_5</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>750</position_p_gain>
+      <position_d_gain>7.5</position_d_gain>
+      <position_i_gain>2000</position_i_gain>
+      <position_i_min>-6</position_i_min>
+      <position_i_max>6</position_i_max>
+      <position_cmd_min>-13.6</position_cmd_min>
+      <position_cmd_max>13.6</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_6</joint_name>
+      <initial_position>3.14159</initial_position>
+      <position_p_gain>600</position_p_gain>
+      <position_d_gain>6</position_d_gain>
+      <position_i_gain>1800</position_i_gain>
+      <position_i_min>-5</position_i_min>
+      <position_i_max>5</position_i_max>
+      <position_cmd_min>-13.6</position_cmd_min>
+      <position_cmd_max>13.6</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_7</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>400</position_p_gain>
+      <position_d_gain>4</position_d_gain>
+      <position_i_gain>1200</position_i_gain>
+      <position_i_min>-3.5</position_i_min>
+      <position_i_max>3.5</position_i_max>
+      <position_cmd_min>-13.6</position_cmd_min>
+      <position_cmd_max>13.6</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_finger_1</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>8</position_p_gain>
+      <position_d_gain>0.35</position_d_gain>
+      <position_i_gain>105</position_i_gain>
+      <position_i_min>-3</position_i_min>
+      <position_i_max>3</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_finger_2</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>8</position_p_gain>
+      <position_d_gain>0.35</position_d_gain>
+      <position_i_gain>105</position_i_gain>
+      <position_i_min>-3</position_i_min>
+      <position_i_max>3</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+      <joint_name>robot_j2s7s300_joint_finger_3</joint_name>
+      <initial_position>0</initial_position>
+      <position_p_gain>8</position_p_gain>
+      <position_d_gain>0.35</position_d_gain>
+      <position_i_gain>105</position_i_gain>
+      <position_i_min>-3</position_i_min>
+      <position_i_max>3</position_i_max>
+      <position_cmd_min>-20</position_cmd_min>
+      <position_cmd_max>20</position_cmd_max>
+    </plugin>
+  </gazebo>
   <!-- Sensors -->
   <!-- <xacro:lunalab_summit_xl_sensors prefix="$(arg prefix)"/> -->
   <!-- Miscellaneous -->
   <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
+  <gazebo>
+    <plugin filename="libignition-gazebo-joint-state-publisher-system.so" name="ignition::gazebo::systems::JointStatePublisher">
+      <joint_name>robot_summit_xl_front_left_wheel_joint</joint_name>
+      <joint_name>robot_summit_xl_back_left_wheel_joint</joint_name>
+      <joint_name>robot_summit_xl_front_right_wheel_joint</joint_name>
+      <joint_name>robot_summit_xl_back_right_wheel_joint</joint_name>
+      <joint_name>robot_j2s7s300_joint_1</joint_name>
+      <joint_name>robot_j2s7s300_joint_2</joint_name>
+      <joint_name>robot_j2s7s300_joint_3</joint_name>
+      <joint_name>robot_j2s7s300_joint_4</joint_name>
+      <joint_name>robot_j2s7s300_joint_5</joint_name>
+      <joint_name>robot_j2s7s300_joint_6</joint_name>
+      <joint_name>robot_j2s7s300_joint_7</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_1</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_2</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_3</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_tip_1</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_tip_2</joint_name>
+      <joint_name>robot_j2s7s300_joint_finger_tip_3</joint_name>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin filename="ignition-gazebo-pose-publisher-system" name="ignition::gazebo::systems::PosePublisher">
+      <use_pose_vector_msg>true</use_pose_vector_msg>
+      <publish_nested_model_pose>true</publish_nested_model_pose>
+      <publish_link_pose>false</publish_link_pose>
+      <publish_collision_pose>false</publish_collision_pose>
+      <publish_visual_pose>false</publish_visual_pose>
+    </plugin>
+  </gazebo>
 </robot>
