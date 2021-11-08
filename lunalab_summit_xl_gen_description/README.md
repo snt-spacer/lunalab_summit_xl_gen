@@ -2,9 +2,9 @@
 
 URDF and SDF description of Summit XL-GEN (LunaLab variant).
 
-<!-- <p align="left" float="middle">
-  <img width="50.0%" src="lunalab_summit_xl_gen/thumbnails/1.png" alt="Visualisation of lunalab_summit_xl_gen URDF in RViz2"/>
-</p> -->
+<p align="left" float="middle">
+  <img width="50.0%" src="lunalab_summit_xl_gen/thumbnails/1.png" alt="Visualisation of lunalab_summit_xl_gen in Ignition Gazebo"/>
+</p>
 
 ## Instructions
 
