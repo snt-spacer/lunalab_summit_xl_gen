@@ -83,21 +83,21 @@
       </hardware>
       <joint name="${prefix}joint_finger_1">
         <param name="initial_position">${initial_positions['joint_1']}</param>
-        <command_interface name="position" />
+        <command_interface name="position"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}joint_finger_2">
         <param name="mimic">${prefix}joint_finger_1</param>
         <param name="multiplier">1</param>
-        <command_interface name="position" />
+        <command_interface name="position"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}joint_finger_3">
         <param name="mimic">${prefix}joint_finger_1</param>
         <param name="multiplier">1</param>
-        <command_interface name="position" />
+        <command_interface name="position"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
       </joint>
