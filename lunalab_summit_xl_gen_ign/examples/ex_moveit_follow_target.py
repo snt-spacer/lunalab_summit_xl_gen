@@ -9,9 +9,11 @@ import rclpy
 import tf2_ros
 
 
-def quat_mul(quat_0: Tuple[float, float, float, float],
-             quat_1: Tuple[float, float, float, float],
-             xyzw: bool = True) -> Tuple[float, float, float, float]:
+def quat_mul(
+    quat_0: Tuple[float, float, float, float],
+    quat_1: Tuple[float, float, float, float],
+    xyzw: bool = True,
+) -> Tuple[float, float, float, float]:
     """
     Multiply two quaternions
     """
@@ -20,37 +22,48 @@ def quat_mul(quat_0: Tuple[float, float, float, float],
     if xyzw:
         x0, y0, z0, w0 = quat_0
         x1, y1, z1, w1 = quat_1
-        return (x1 * w0 + y1 * z0 - z1 * y0 + w1 * x0,
-                -x1 * z0 + y1 * w0 + z1 * x0 + w1 * y0,
-                x1 * y0 - y1 * x0 + z1 * w0 + w1 * z0,
-                -x1 * x0 - y1 * y0 - z1 * z0 + w1 * w0)
+        return (
+            x1 * w0 + y1 * z0 - z1 * y0 + w1 * x0,
+            -x1 * z0 + y1 * w0 + z1 * x0 + w1 * y0,
+            x1 * y0 - y1 * x0 + z1 * w0 + w1 * z0,
+            -x1 * x0 - y1 * y0 - z1 * z0 + w1 * w0,
+        )
     else:
         w0, x0, y0, z0 = quat_0
         w1, x1, y1, z1 = quat_1
-        return (-x1 * x0 - y1 * y0 - z1 * z0 + w1 * w0,
-                x1 * w0 + y1 * z0 - z1 * y0 + w1 * x0,
-                -x1 * z0 + y1 * w0 + z1 * x0 + w1 * y0,
-                x1 * y0 - y1 * x0 + z1 * w0 + w1 * z0)
+        return (
+            -x1 * x0 - y1 * y0 - z1 * z0 + w1 * w0,
+            x1 * w0 + y1 * z0 - z1 * y0 + w1 * x0,
+            -x1 * z0 + y1 * w0 + z1 * x0 + w1 * y0,
+            x1 * y0 - y1 * x0 + z1 * w0 + w1 * z0,
+        )
 
 
 class MoveItFollowTarget(Node):
-
     def __init__(self):
 
         super().__init__("ex_moveit_follow_target")
 
         # Create a subscriber for target pose
         self.previous_target_pose_ = Pose()
-        self.target_pose_sub_ = self.create_subscription(PoseStamped, "/target_pose",
-                                                         self.target_pose_callback, 1)
+        self.target_pose_sub_ = self.create_subscription(
+            PoseStamped, "/target_pose", self.target_pose_callback, 1
+        )
 
         # Create MoveIt2 interface node
-        self.moveit2_ = MoveIt2Interface(robot_model="kinova_j2s7s300")
+        self.moveit2_ = MoveIt2Interface(
+            robot_model="kinova_j2s7s300",
+            namespace="/lunalab_summit_xl_gen",
+            prefix="robot_",
+            arm_group_name="arm",
+            gripper_group_name="gripper",
+        )
 
         # Create tf2 buffer and listener for transform lookup
         self.tf2_buffer_ = tf2_ros.Buffer()
-        self.tf2_listener_ = tf2_ros.TransformListener(buffer=self.tf2_buffer_,
-                                                       node=self)
+        self.tf2_listener_ = tf2_ros.TransformListener(
+            buffer=self.tf2_buffer_, node=self
+        )
 
         # Spin up multi-threaded executor
         self.executor_ = rclpy.executors.MultiThreadedExecutor(3)
@@ -67,22 +80,34 @@ class MoveItFollowTarget(Node):
         # Plan trajectory only if target was moved
         if self.previous_target_pose_ != pose_msg.pose:
             # Set position goal (in world coordinate system)
-            self.moveit2_.set_position_goal([pose_msg.pose.position.x,
-                                             pose_msg.pose.position.y,
-                                             pose_msg.pose.position.z],
-                                            frame=pose_msg.header._frame_id)
+            self.moveit2_.set_position_goal(
+                [
+                    pose_msg.pose.position.x,
+                    pose_msg.pose.position.y,
+                    pose_msg.pose.position.z,
+                ],
+                frame=pose_msg.header._frame_id,
+            )
 
             # Set orientation goal (transformed into robot frame)
-            transform = self.lookup_transform_sync(target_frame=self.moveit2_.arm_base_link,
-                                                   source_frame=pose_msg.header._frame_id)
-            orientation_goal = quat_mul((pose_msg.pose.orientation.x,
-                                         pose_msg.pose.orientation.y,
-                                         pose_msg.pose.orientation.z,
-                                         pose_msg.pose.orientation.w),
-                                        (transform.rotation.x,
-                                         transform.rotation.y,
-                                         transform.rotation.z,
-                                         transform.rotation.w))
+            transform = self.lookup_transform_sync(
+                target_frame=self.moveit2_.arm_base_link,
+                source_frame=pose_msg.header._frame_id,
+            )
+            orientation_goal = quat_mul(
+                (
+                    pose_msg.pose.orientation.x,
+                    pose_msg.pose.orientation.y,
+                    pose_msg.pose.orientation.z,
+                    pose_msg.pose.orientation.w,
+                ),
+                (
+                    transform.rotation.x,
+                    transform.rotation.y,
+                    transform.rotation.z,
+                    transform.rotation.w,
+                ),
+            )
             self.moveit2_.set_orientation_goal(orientation_goal)
 
             # Plan and execute
@@ -92,26 +117,29 @@ class MoveItFollowTarget(Node):
             # Update for next callback
             self.previous_target_pose_ = pose_msg.pose
 
-    def lookup_transform_sync(self,
-                              target_frame: str,
-                              source_frame: str) -> Transform:
+    def lookup_transform_sync(self, target_frame: str, source_frame: str) -> Transform:
         """
         Lookup transform from `source_frame` to `target_frame` using tf2
         """
 
         while rclpy.ok():
-            if self.tf2_buffer_.can_transform(target_frame=target_frame,
-                                              source_frame=source_frame,
-                                              time=rclpy.time.Time(),
-                                              timeout=rclpy.time.Duration(seconds=1,
-                                                                          nanoseconds=0)):
-                transform_stamped = self.tf2_buffer_.lookup_transform(target_frame=target_frame,
-                                                                      source_frame=source_frame,
-                                                                      time=rclpy.time.Time())
+            if self.tf2_buffer_.can_transform(
+                target_frame=target_frame,
+                source_frame=source_frame,
+                time=rclpy.time.Time(),
+                timeout=rclpy.time.Duration(seconds=1, nanoseconds=0),
+            ):
+                transform_stamped = self.tf2_buffer_.lookup_transform(
+                    target_frame=target_frame,
+                    source_frame=source_frame,
+                    time=rclpy.time.Time(),
+                )
                 return transform_stamped.transform
 
-            print(f'Lookup of transform from "{source_frame}"'
-                  f' to "{target_frame}" failed, retrying...')
+            print(
+                f'Lookup of transform from "{source_frame}"'
+                f' to "{target_frame}" failed, retrying...'
+            )
 
 
 def main(args=None):

@@ -3,11 +3,16 @@
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
 from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch.conditions import IfCondition, UnlessCondition
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import (
+    Command,
+    FindExecutable,
+    LaunchConfiguration,
+    PathJoinSubstitution,
+)
+from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
 from os import path
 from typing import List, Dict
 import yaml
@@ -32,7 +37,9 @@ def generate_launch_description():
     execute_trajectories = LaunchConfiguration("execute_trajectories")
     ros2_control = LaunchConfiguration("ros2_control")
     gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
-    gazebo_joint_trajectory_controller = LaunchConfiguration("gazebo_joint_trajectory_controller")
+    gazebo_joint_trajectory_controller = LaunchConfiguration(
+        "gazebo_joint_trajectory_controller"
+    )
     gazebo_joint_state_publisher = LaunchConfiguration("gazebo_joint_state_publisher")
     gazebo_pose_publisher = LaunchConfiguration("gazebo_pose_publisher")
     enable_rviz = LaunchConfiguration("enable_rviz")
@@ -41,16 +48,18 @@ def generate_launch_description():
     log_level = LaunchConfiguration("log_level")
 
     # Environment variables
-    SetEnvironmentVariable("LUNALAB_SUMMIT_XL_GEN_MOVEIT_EXECUTE_TRAJECTORIES",
-                           execute_trajectories)
+    SetEnvironmentVariable(
+        "LUNALAB_SUMMIT_XL_GEN_MOVEIT_EXECUTE_TRAJECTORIES", execute_trajectories
+    )
 
     # URDF
     _robot_description_xml = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare(description_package),
-                                  description_filepath]),
+            PathJoinSubstitution(
+                [FindPackageShare(description_package), description_filepath]
+            ),
             " ",
             "name:=",
             name,
@@ -72,16 +81,16 @@ def generate_launch_description():
             " ",
             "ros2_control:=",
             ros2_control,
-            " ",       
+            " ",
             "gazebo_diff_drive:=",
             gazebo_diff_drive,
-            " ",       
+            " ",
             "gazebo_joint_trajectory_controller:=",
             gazebo_joint_trajectory_controller,
-            " ",      
+            " ",
             "gazebo_joint_state_publisher:=",
             gazebo_joint_state_publisher,
-            " ",        
+            " ",
             "gazebo_pose_publisher:=",
             gazebo_pose_publisher,
         ]
@@ -93,8 +102,13 @@ def generate_launch_description():
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare(moveit_config_package),
-                                  "srdf", "lunalab_summit_xl_gen.srdf.xacro"]),
+            PathJoinSubstitution(
+                [
+                    FindPackageShare(moveit_config_package),
+                    "srdf",
+                    "lunalab_summit_xl_gen.srdf.xacro",
+                ]
+            ),
             " ",
             "name:=",
             name,
@@ -103,16 +117,21 @@ def generate_launch_description():
             prefix,
         ]
     )
-    robot_description_semantic = {"robot_description_semantic":
-                                  _robot_description_semantic_xml}
+    robot_description_semantic = {
+        "robot_description_semantic": _robot_description_semantic_xml
+    }
 
     # Kinematics
-    kinematics = load_yaml(moveit_config_package,
-                           path.join("config", "kinematics.yaml"))
+    kinematics = load_yaml(
+        moveit_config_package, path.join("config", "kinematics.yaml")
+    )
 
     # Joint limits
-    joint_limits = {"robot_description_planning": load_yaml(moveit_config_package,
-                                                            path.join("config", "joint_limits.yaml"))}
+    joint_limits = {
+        "robot_description_planning": load_yaml(
+            moveit_config_package, path.join("config", "joint_limits.yaml")
+        )
+    }
 
     # Planning pipeline
     planning_pipeline = {
@@ -125,8 +144,9 @@ def generate_launch_description():
             "start_state_max_bounds_error": 0.1,
         },
     }
-    _ompl_yaml = load_yaml(moveit_config_package,
-                           path.join("config", "ompl_planning.yaml"))
+    _ompl_yaml = load_yaml(
+        moveit_config_package, path.join("config", "ompl_planning.yaml")
+    )
     planning_pipeline["ompl"].update(_ompl_yaml)
 
     # Planning scene
@@ -140,8 +160,9 @@ def generate_launch_description():
     # MoveIt controller manager
     moveit_controller_manager = {
         "moveit_controller_manager": "moveit_simple_controller_manager/MoveItSimpleControllerManager",
-        "moveit_simple_controller_manager": load_yaml(moveit_config_package,
-                                                      path.join("config", "controllers.yaml")),
+        "moveit_simple_controller_manager": load_yaml(
+            moveit_config_package, path.join("config", "controllers.yaml")
+        ),
     }
 
     # Trajectory execution
@@ -154,8 +175,11 @@ def generate_launch_description():
     }
 
     # ROS 2 controller manager
-    ros2_controllers_path = path.join(get_package_share_directory(moveit_config_package),
-                                      "config", "ros2_controllers.yaml")
+    ros2_controllers_path = path.join(
+        get_package_share_directory(moveit_config_package),
+        "config",
+        "ros2_controllers.yaml",
+    )
     ros2_controllers_yaml = parse_yaml(ros2_controllers_path)
 
     # List of nodes to be launched
@@ -166,10 +190,14 @@ def generate_launch_description():
             executable="robot_state_publisher",
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
-            parameters=[robot_description,
-                        {"publish_frequency": 20.0,
-                         "frame_prefix": "",
-                         "use_sim_time": use_sim_time}],
+            parameters=[
+                robot_description,
+                {
+                    "publish_frequency": 20.0,
+                    "frame_prefix": "",
+                    "use_sim_time": use_sim_time,
+                },
+            ],
             remappings=[("/joint_states", ["/", name, "/joint_states"])],
             condition=IfCondition(publish_state),
         ),
@@ -179,9 +207,11 @@ def generate_launch_description():
             executable="ros2_control_node",
             output="log",
             arguments=["--ros-args", "--log-level", log_level],
-            parameters=[robot_description,
-                        ros2_controllers_path,
-                        {"use_sim_time": use_sim_time}],
+            parameters=[
+                robot_description,
+                ros2_controllers_path,
+                {"use_sim_time": use_sim_time},
+            ],
             condition=IfCondition(execute_trajectories),
         ),
         # move_group
@@ -199,7 +229,8 @@ def generate_launch_description():
                 trajectory_execution,
                 planning_scene_monitor_parameters,
                 moveit_controller_manager,
-                {"use_sim_time": use_sim_time}],
+                {"use_sim_time": use_sim_time},
+            ],
             remappings=[("/joint_states", ["/", name, "/joint_states"])],
             condition=IfCondition(execute_trajectories),
         ),
@@ -216,7 +247,8 @@ def generate_launch_description():
                 planning_pipeline,
                 trajectory_execution,
                 planning_scene_monitor_parameters,
-                {"use_sim_time": use_sim_time}],
+                {"use_sim_time": use_sim_time},
+            ],
             remappings=[("/joint_states", ["/", name, "/joint_states"])],
             condition=UnlessCondition(execute_trajectories),
         ),
@@ -225,14 +257,21 @@ def generate_launch_description():
             package="rviz2",
             executable="rviz2",
             output="log",
-            arguments=["--display-config", rviz_config,
-                       "--ros-args", "--log-level", log_level],
-            parameters=[robot_description,
-                        robot_description_semantic,
-                        kinematics,
-                        planning_pipeline,
-                        joint_limits,
-                        {"use_sim_time": use_sim_time}],
+            arguments=[
+                "--display-config",
+                rviz_config,
+                "--ros-args",
+                "--log-level",
+                log_level,
+            ],
+            parameters=[
+                robot_description,
+                robot_description_semantic,
+                kinematics,
+                planning_pipeline,
+                joint_limits,
+                {"use_sim_time": use_sim_time},
+            ],
             condition=IfCondition(enable_rviz),
         ),
     ]
@@ -245,8 +284,7 @@ def generate_launch_description():
                 package="controller_manager",
                 executable="spawner",
                 output="log",
-                arguments=[controller,
-                           "--ros-args", "--log-level", log_level],
+                arguments=[controller, "--ros-args", "--log-level", log_level],
                 parameters=[{"use_sim_time": use_sim_time}],
                 condition=IfCondition(execute_trajectories),
             ),
@@ -312,11 +350,9 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "description_filepath",
-            default_value=path.join("urdf",
-                                    "lunalab_summit_xl_gen.urdf.xacro"),
+            default_value=path.join("urdf", "lunalab_summit_xl_gen.urdf.xacro"),
             description="Path to xacro or URDF description of the robot, relative to share of `description_package`.",
         ),
-
         # Naming of the robot
         DeclareLaunchArgument(
             "name",
@@ -328,7 +364,6 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="robot_",
             description="Prefix for all robot entities. If modified, then joint names in the configuration of controllers must also be updated.",
         ),
-
         # Safety controller
         DeclareLaunchArgument(
             "safety_limits",
@@ -345,21 +380,18 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="20",
             description="Parametric k-position factor of all safety controllers.",
         ),
-
         # Geometry
         DeclareLaunchArgument(
             "high_quality_mesh",
             default_value="true",
             description="Flag to select the high or low quality model.",
         ),
-
         # State publishing
         DeclareLaunchArgument(
             "publish_state",
             default_value="true",
             description="Flag to enable robot state publisher.",
         ),
-
         # Execution
         DeclareLaunchArgument(
             "execute_trajectories",
@@ -367,7 +399,6 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="false",
             description="Flag to enable execution of trajectories for MoveIt 2.",
         ),
-
         # ROS 2 control
         DeclareLaunchArgument(
             "ros2_control",
@@ -375,7 +406,6 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="false",
             description="Flag to enable ros2 controllers for manipulator.",
         ),
-
         # Gazebo plugins
         DeclareLaunchArgument(
             "gazebo_diff_drive",
@@ -397,27 +427,27 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="true",
             description="Flag to enable PosePublisher Gazebo plugin for true pose of robot.",
         ),
-
         # Miscellaneous
         DeclareLaunchArgument(
-            "enable_rviz",
-            default_value="true",
-            description="Flag to enable RViz2."
+            "enable_rviz", default_value="true", description="Flag to enable RViz2."
         ),
         DeclareLaunchArgument(
             "rviz_config",
-            default_value=path.join(get_package_share_directory("lunalab_summit_xl_gen_moveit_config"),
-                                    "rviz", "moveit.rviz"),
-            description="Path to configuration for RViz2."
+            default_value=path.join(
+                get_package_share_directory("lunalab_summit_xl_gen_moveit_config"),
+                "rviz",
+                "moveit.rviz",
+            ),
+            description="Path to configuration for RViz2.",
         ),
         DeclareLaunchArgument(
             "use_sim_time",
             default_value="false",
-            description="If true, use simulated clock."
+            description="If true, use simulated clock.",
         ),
         DeclareLaunchArgument(
             "log_level",
             default_value="warn",
-            description="The level of logging that is applied to all ROS 2 nodes launched by this script."
+            description="The level of logging that is applied to all ROS 2 nodes launched by this script.",
         ),
     ]

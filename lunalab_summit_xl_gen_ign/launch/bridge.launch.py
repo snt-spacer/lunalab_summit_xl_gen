@@ -2,10 +2,10 @@
 """Launch various bridges between Ignition Transport and ROS 2"""
 
 from launch import LaunchDescription
-from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument, LogInfo
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, TextSubstitution
+from launch_ros.actions import Node
 from typing import List
 
 DIR_BOTH = "@"
@@ -14,30 +14,24 @@ DIR_ROS2_TO_IGN = "]"
 
 # Directory of all supported bridges with their indicated message types and direction
 bridges = {
-    "clock": ("rosgraph_msgs/msg/Clock" +
-              DIR_IGN_TO_ROS2 +
-              "ignition.msgs.Clock"),
-    "joint_state": ("sensor_msgs/msg/JointState" +
-                    DIR_IGN_TO_ROS2 +
-                    "ignition.msgs.Model"),
-    "joint_trajectory": ("trajectory_msgs/msg/JointTrajectory" +
-                         DIR_ROS2_TO_IGN +
-                         "ignition.msgs.JointTrajectory"),
-    "joint_trajectory_progress": ("std_msgs/msg/Float32" +
-                                  DIR_IGN_TO_ROS2 +
-                                  "ignition.msgs.Float"),
-    "true_base_tf": ("tf2_msgs/msg/TFMessage" +
-                     DIR_IGN_TO_ROS2 +
-                     "ignition.msgs.Pose_V"),
-    "odom": ("nav_msgs/msg/Odometry" +
-             DIR_IGN_TO_ROS2 +
-             "ignition.msgs.Odometry"),
-    "odom_tf": ("tf2_msgs/msg/TFMessage" +
-                DIR_IGN_TO_ROS2 +
-                "ignition.msgs.Pose_V"),
-    "cmd_vel": ("geometry_msgs/msg/Twist" +
-                DIR_ROS2_TO_IGN +
-                "ignition.msgs.Twist"),
+    "clock": ("rosgraph_msgs/msg/Clock" + DIR_IGN_TO_ROS2 + "ignition.msgs.Clock"),
+    "joint_state": (
+        "sensor_msgs/msg/JointState" + DIR_IGN_TO_ROS2 + "ignition.msgs.Model"
+    ),
+    "joint_trajectory": (
+        "trajectory_msgs/msg/JointTrajectory"
+        + DIR_ROS2_TO_IGN
+        + "ignition.msgs.JointTrajectory"
+    ),
+    "joint_trajectory_progress": (
+        "std_msgs/msg/Float32" + DIR_IGN_TO_ROS2 + "ignition.msgs.Float"
+    ),
+    "true_base_tf": (
+        "tf2_msgs/msg/TFMessage" + DIR_IGN_TO_ROS2 + "ignition.msgs.Pose_V"
+    ),
+    "odom": ("nav_msgs/msg/Odometry" + DIR_IGN_TO_ROS2 + "ignition.msgs.Odometry"),
+    "odom_tf": ("tf2_msgs/msg/TFMessage" + DIR_IGN_TO_ROS2 + "ignition.msgs.Pose_V"),
+    "cmd_vel": ("geometry_msgs/msg/Twist" + DIR_ROS2_TO_IGN + "ignition.msgs.Twist"),
 }
 
 
@@ -53,7 +47,9 @@ def generate_launch_description():
         "clock": LaunchConfiguration("bridge_clock"),
         "joint_state": LaunchConfiguration("bridge_joint_state"),
         "joint_trajectory": LaunchConfiguration("bridge_joint_trajectory"),
-        "joint_trajectory_progress": LaunchConfiguration("bridge_joint_trajectory_progress"),
+        "joint_trajectory_progress": LaunchConfiguration(
+            "bridge_joint_trajectory_progress"
+        ),
         "true_base_tf": LaunchConfiguration("bridge_true_base_tf"),
         "odom": LaunchConfiguration("bridge_odom"),
         "odom_tf": LaunchConfiguration("bridge_odom_tf"),
@@ -63,7 +59,9 @@ def generate_launch_description():
         "clock": LaunchConfiguration("ign_clock"),
         "joint_state": LaunchConfiguration("ign_joint_state"),
         "joint_trajectory": LaunchConfiguration("ign_joint_trajectory"),
-        "joint_trajectory_progress": LaunchConfiguration("ign_joint_trajectory_progress"),
+        "joint_trajectory_progress": LaunchConfiguration(
+            "ign_joint_trajectory_progress"
+        ),
         "true_base_tf": LaunchConfiguration("ign_true_base_tf"),
         "odom": LaunchConfiguration("ign_odom"),
         "odom_tf": LaunchConfiguration("ign_odom_tf"),
@@ -73,7 +71,9 @@ def generate_launch_description():
         "clock": LaunchConfiguration("ros_clock"),
         "joint_state": LaunchConfiguration("ros_joint_state"),
         "joint_trajectory": LaunchConfiguration("ros_joint_trajectory"),
-        "joint_trajectory_progress": LaunchConfiguration("ros_joint_trajectory_progress"),
+        "joint_trajectory_progress": LaunchConfiguration(
+            "ros_joint_trajectory_progress"
+        ),
         "true_base_tf": LaunchConfiguration("ros_true_base_tf"),
         "odom": LaunchConfiguration("ros_odom"),
         "odom_tf": LaunchConfiguration("ros_odom_tf"),
@@ -89,11 +89,19 @@ def generate_launch_description():
             package="tf2_ros",
             executable="static_transform_publisher",
             output="log",
-            arguments=["0.0", "0.0", "0.0",
-                       "0.0", "0.0", "0.0",
-                       [robot_name],
-                       [prefix, "summit_xl_base_footprint"],
-                       "--ros-args", "--log-level", log_level],
+            arguments=[
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                [robot_name],
+                [prefix, "summit_xl_base_footprint"],
+                "--ros-args",
+                "--log-level",
+                log_level,
+            ],
             parameters=[{"use_sim_time": use_sim_time}],
             condition=IfCondition(enabled_bridges["true_base_tf"]),
         ),
@@ -102,12 +110,19 @@ def generate_launch_description():
             package="tf2_ros",
             executable="static_transform_publisher",
             output="log",
-            arguments=["0.0", "0.0", "0.0",
-                       "0.0", "0.0", "0.0",
-                       [robot_name, "/", prefix, "summit_xl_base_footprint"],
-                       [prefix,
-                           "summit_xl_base_footprint"],
-                       "--ros-args", "--log-level", log_level],
+            arguments=[
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                [robot_name, "/", prefix, "summit_xl_base_footprint"],
+                [prefix, "summit_xl_base_footprint"],
+                "--ros-args",
+                "--log-level",
+                log_level,
+            ],
             parameters=[{"use_sim_time": use_sim_time}],
             condition=IfCondition(enabled_bridges["odom_tf"]),
         ),
@@ -124,8 +139,12 @@ def generate_launch_description():
                 package="ros_ign_bridge",
                 executable="parameter_bridge",
                 output="log",
-                arguments=[[ign_topic[bridge], TextSubstitution(text="@"), bridge_type],
-                           "--ros-args", "--log-level", log_level],
+                arguments=[
+                    [ign_topic[bridge], TextSubstitution(text="@"), bridge_type],
+                    "--ros-args",
+                    "--log-level",
+                    log_level,
+                ],
                 parameters=[{"use_sim_time": use_sim_time}],
                 remappings=[(ign_topic[bridge], ros_topic[bridge])],
                 condition=IfCondition(enabled_bridges[bridge]),
@@ -133,11 +152,12 @@ def generate_launch_description():
         )
         logs.append(
             LogInfo(
-                msg=["Bridge enabled between [ROS 2] ",
-                     ros_topic[bridge],
-                     " and [IGN] ",
-                     ign_topic[bridge],
-                     ],
+                msg=[
+                    "Bridge enabled between [ROS 2] ",
+                    ros_topic[bridge],
+                    " and [IGN] ",
+                    ign_topic[bridge],
+                ],
                 condition=IfCondition(enabled_bridges[bridge]),
             )
         )
@@ -167,170 +187,152 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="robot_",
             description="Prefix for all robot entities. If modified, then joint names in the configuration of controllers must also be updated.",
         ),
-
         # Bridge enablers
         DeclareLaunchArgument(
             "bridge_clock",
             default_value="true",
-            description="Flag to enable bridging of `clock` (IGN -> ROS 2)."
+            description="Flag to enable bridging of `clock` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
             "bridge_joint_state",
             default_value="true",
-            description="Flag to enable bridging of `joint_state` (IGN -> ROS 2)."
+            description="Flag to enable bridging of `joint_state` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
             "bridge_joint_trajectory",
             default_value="true",
-            description="Flag to enable bridging of `joint_trajectory` (ROS 2 -> IGN)."
+            description="Flag to enable bridging of `joint_trajectory` (ROS 2 -> IGN).",
         ),
         DeclareLaunchArgument(
             "bridge_joint_trajectory_progress",
             default_value="true",
-            description="Flag to enable bridging of `joint_trajectory_progress` (IGN -> ROS 2)."
+            description="Flag to enable bridging of `joint_trajectory_progress` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
             "bridge_true_base_tf",
             default_value="true",
-            description="Flag to enable bridging of `true_base_tf` (IGN -> ROS 2)."
+            description="Flag to enable bridging of `true_base_tf` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
             "bridge_odom",
             default_value="false",
-            description="Flag to enable bridging of `odom` (IGN -> ROS 2)."
+            description="Flag to enable bridging of `odom` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
             "bridge_odom_tf",
             default_value="false",
-            description="Flag to enable bridging of `odom_tf` (IGN -> ROS 2)."
+            description="Flag to enable bridging of `odom_tf` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
             "bridge_cmd_vel",
             default_value="true",
-            description="Flag to enable bridging of `cmd_vel` (ROS 2 -> IGN)."
+            description="Flag to enable bridging of `cmd_vel` (ROS 2 -> IGN).",
         ),
-
         # Source topic names
         DeclareLaunchArgument(
             "ign_clock",
-            default_value=["/world/",
-                           LaunchConfiguration("world_name"),
-                           "/clock"],
-            description="Ignition topic for `clock`."
+            default_value=["/world/", LaunchConfiguration("world_name"), "/clock"],
+            description="Ignition topic for `clock`.",
         ),
         DeclareLaunchArgument(
             "ign_joint_state",
-            default_value=["/world/",
-                           LaunchConfiguration("world_name"),
-                           "/model/",
-                           LaunchConfiguration("robot_name"),
-                           "/joint_state"],
-            description="Ignition topic for `joint_state`."
+            default_value=[
+                "/world/",
+                LaunchConfiguration("world_name"),
+                "/model/",
+                LaunchConfiguration("robot_name"),
+                "/joint_state",
+            ],
+            description="Ignition topic for `joint_state`.",
         ),
         DeclareLaunchArgument(
             "ign_joint_trajectory",
-            default_value=["/model/",
-                           LaunchConfiguration("robot_name"),
-                           "/joint_trajectory"],
-            description="Ignition topic for `joint_trajectory`."
+            default_value=[
+                "/model/",
+                LaunchConfiguration("robot_name"),
+                "/joint_trajectory",
+            ],
+            description="Ignition topic for `joint_trajectory`.",
         ),
         DeclareLaunchArgument(
             "ign_joint_trajectory_progress",
-            default_value=["/model/",
-                           LaunchConfiguration("robot_name"),
-                           "/joint_trajectory_progress"],
-            description="Ignition topic for `joint_trajectory_progress`."
+            default_value=[
+                "/model/",
+                LaunchConfiguration("robot_name"),
+                "/joint_trajectory_progress",
+            ],
+            description="Ignition topic for `joint_trajectory_progress`.",
         ),
         DeclareLaunchArgument(
             "ign_true_base_tf",
-            default_value=["/model/",
-                           LaunchConfiguration("robot_name"),
-                           "/pose"],
-            description="Ignition topic for `true_base_tf`."
+            default_value=["/model/", LaunchConfiguration("robot_name"), "/pose"],
+            description="Ignition topic for `true_base_tf`.",
         ),
         DeclareLaunchArgument(
             "ign_odom",
-            default_value=["/model/",
-                           LaunchConfiguration("robot_name"),
-                           "/odom"],
-            description="Ignition topic for `odom`."
+            default_value=["/model/", LaunchConfiguration("robot_name"), "/odom"],
+            description="Ignition topic for `odom`.",
         ),
         DeclareLaunchArgument(
             "ign_odom_tf",
-            default_value=["/model/",
-                           LaunchConfiguration("robot_name"),
-                           "/tf"],
-            description="Ignition topic for `odom_tf`."
+            default_value=["/model/", LaunchConfiguration("robot_name"), "/tf"],
+            description="Ignition topic for `odom_tf`.",
         ),
         DeclareLaunchArgument(
             "ign_cmd_vel",
-            default_value=["/model/",
-                           LaunchConfiguration("robot_name"),
-                           "/cmd_vel"],
-            description="Ignition topic for `cmd_vel`."
+            default_value=["/model/", LaunchConfiguration("robot_name"), "/cmd_vel"],
+            description="Ignition topic for `cmd_vel`.",
         ),
-
         # Bridge enablers
         DeclareLaunchArgument(
-            "ros_clock",
-            default_value="/clock",
-            description="ROS 2 topic for `clock`."
+            "ros_clock", default_value="/clock", description="ROS 2 topic for `clock`."
         ),
         DeclareLaunchArgument(
             "ros_joint_state",
-            default_value=["/",
-                           LaunchConfiguration("robot_name"),
-                           "/joint_states"],
-            description="ROS 2 topic for `joint_states`."
+            default_value=["/", LaunchConfiguration("robot_name"), "/joint_states"],
+            description="ROS 2 topic for `joint_states`.",
         ),
         DeclareLaunchArgument(
             "ros_joint_trajectory",
-            default_value=["/",
-                           LaunchConfiguration("robot_name"),
-                           "/joint_trajectory"],
-            description="ROS 2 topic for `joint_trajectory`."
+            default_value=["/", LaunchConfiguration("robot_name"), "/joint_trajectory"],
+            description="ROS 2 topic for `joint_trajectory`.",
         ),
         DeclareLaunchArgument(
             "ros_joint_trajectory_progress",
-            default_value=["/",
-                           LaunchConfiguration("robot_name"),
-                           "/joint_trajectory_progress"],
-            description="ROS 2 topic for `joint_trajectory_progress`."
+            default_value=[
+                "/",
+                LaunchConfiguration("robot_name"),
+                "/joint_trajectory_progress",
+            ],
+            description="ROS 2 topic for `joint_trajectory_progress`.",
         ),
         DeclareLaunchArgument(
             "ros_true_base_tf",
             default_value="/tf",
-            description="ROS 2 topic for `true_base_tf`."
+            description="ROS 2 topic for `true_base_tf`.",
         ),
         DeclareLaunchArgument(
             "ros_odom",
-            default_value=["/",
-                           LaunchConfiguration("robot_name"),
-                           "/odom"],
-            description="ROS 2 topic for `odom`."
+            default_value=["/", LaunchConfiguration("robot_name"), "/odom"],
+            description="ROS 2 topic for `odom`.",
         ),
         DeclareLaunchArgument(
-            "ros_odom_tf",
-            default_value="/tf",
-            description="ROS 2 topic for `odom_tf`."
+            "ros_odom_tf", default_value="/tf", description="ROS 2 topic for `odom_tf`."
         ),
         DeclareLaunchArgument(
             "ros_cmd_vel",
-            default_value=["/",
-                           LaunchConfiguration("robot_name"),
-                           "/cmd_vel"],
-            description="ROS 2 topic for `cmd_vel`."
+            default_value=["/", LaunchConfiguration("robot_name"), "/cmd_vel"],
+            description="ROS 2 topic for `cmd_vel`.",
         ),
-
         # Miscellaneous
         DeclareLaunchArgument(
             "use_sim_time",
             default_value="true",
-            description="If true, use simulated clock."
+            description="If true, use simulated clock.",
         ),
         DeclareLaunchArgument(
             "log_level",
             default_value="warn",
-            description="The level of logging that is applied to all ROS 2 nodes launched by this script."
+            description="The level of logging that is applied to all ROS 2 nodes launched by this script.",
         ),
     ]

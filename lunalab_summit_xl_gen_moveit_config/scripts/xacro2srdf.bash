@@ -6,9 +6,10 @@ XACRO_PATH="$(dirname ${SCRIPT_DIR})/srdf/lunalab_summit_xl_gen.srdf.xacro"
 SRDF_PATH="$(dirname ${SCRIPT_DIR})/srdf/lunalab_summit_xl_gen.srdf"
 
 # Arguments for xacro
-XACRO_ARGS="name:=lunalab_summit_xl_gen
-            prefix:=robot_
-           "
+XACRO_ARGS="
+name:=lunalab_summit_xl_gen
+prefix:=robot_
+"
 
 # Remove old SRDF file
 rm ${SRDF_PATH} 2>/dev/null

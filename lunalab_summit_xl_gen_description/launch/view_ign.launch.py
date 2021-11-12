@@ -26,11 +26,16 @@ def generate_launch_description() -> LaunchDescription:
     launch_descriptions = [
         # Launch Ignition Gazebo
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(PathJoinSubstitution(
-                [FindPackageShare("ros_ign_gazebo"),
-                 "launch",
-                 "ign_gazebo.launch.py"])),
-            launch_arguments=[("ign_args", [world, " -v ", ign_verbosity])]
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution(
+                    [
+                        FindPackageShare("ros_ign_gazebo"),
+                        "launch",
+                        "ign_gazebo.launch.py",
+                    ]
+                )
+            ),
+            launch_arguments=[("ign_args", [world, " -v ", ign_verbosity])],
         ),
     ]
 
@@ -41,8 +46,7 @@ def generate_launch_description() -> LaunchDescription:
             package="ros_ign_gazebo",
             executable="create",
             output="log",
-            arguments=["-file", model,
-                       "--ros-args", "--log-level", log_level],
+            arguments=["-file", model, "--ros-args", "--log-level", log_level],
             parameters=[{"use_sim_time": use_sim_time}],
         ),
     ]
@@ -67,21 +71,20 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="lunalab_summit_xl_gen",
             description="Name or filepath of model to load.",
         ),
-
         # Miscellaneous
         DeclareLaunchArgument(
             "use_sim_time",
             default_value="true",
-            description="If true, use simulated clock."
+            description="If true, use simulated clock.",
         ),
         DeclareLaunchArgument(
             "ign_verbosity",
             default_value="3",
-            description="Verbosity level for Ignition Gazebo (0~4)."
+            description="Verbosity level for Ignition Gazebo (0~4).",
         ),
         DeclareLaunchArgument(
             "log_level",
             default_value="warn",
-            description="The level of logging that is applied to all ROS 2 nodes launched by this script."
+            description="The level of logging that is applied to all ROS 2 nodes launched by this script.",
         ),
     ]
