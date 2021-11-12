@@ -6,18 +6,19 @@ XACRO_PATH="$(dirname ${SCRIPT_DIR})/urdf/lunalab_summit_xl_gen.urdf.xacro"
 URDF_PATH="$(dirname ${SCRIPT_DIR})/urdf/lunalab_summit_xl_gen.urdf"
 
 # Arguments for xacro
-XACRO_ARGS="name:=lunalab_summit_xl_gen
-            prefix:=robot_
-            safety_limits:=true
-            safety_soft_limit_margin:=0.17453293
-            safety_k_position:=20
-            high_quality_mesh:=true
-            ros2_control:=true
-            gazebo_diff_drive:=true
-            gazebo_joint_trajectory_controller:=true
-            gazebo_joint_state_publisher:=true
-            gazebo_pose_publisher:=true
-           "
+XACRO_ARGS="
+name:=lunalab_summit_xl_gen
+prefix:=robot_
+safety_limits:=true
+safety_soft_limit_margin:=0.17453293
+safety_k_position:=20
+high_quality_mesh:=true
+ros2_control:=true
+gazebo_diff_drive:=true
+gazebo_joint_trajectory_controller:=true
+gazebo_joint_state_publisher:=true
+gazebo_pose_publisher:=true
+"
 
 # Remove old URDF file
 rm ${URDF_PATH} 2>/dev/null
