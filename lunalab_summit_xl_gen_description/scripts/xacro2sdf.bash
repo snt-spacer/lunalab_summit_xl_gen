@@ -21,15 +21,15 @@ XACRO_ARGS="name:=lunalab_summit_xl_gen
            "
 
 # Remove old SDF file
-rm ${SDF_PATH}
+rm ${SDF_PATH} 2>/dev/null
 
-# Process xacro into URDF, then convert URDF to SDF
-xacro ${XACRO_PATH} ${XACRO_ARGS} >${TMP_URDF_PATH} &&
-    ign sdf -p ${TMP_URDF_PATH} >${SDF_PATH} &&
+# Process xacro into URDF, then convert URDF to SDF and edit the SDF to use relative paths for meshes
+xacro ${XACRO_PATH} ${XACRO_ARGS} -o ${TMP_URDF_PATH} &&
+    ign sdf -p ${TMP_URDF_PATH} | sed 's/model:\/\/lunalab_summit_xl_gen_description\///g' >${SDF_PATH} &&
     echo "Created new '${SDF_PATH}'"
 
-# Edit SDF to use relative paths for meshes
-sed -i -e 's/model:\/\/lunalab_summit_xl_gen_description\///g' ${SDF_PATH}
-
 # Remove temporary URDF file
-rm ${TMP_URDF_PATH}
+rm ${TMP_URDF_PATH} 2>/dev/null
+
+# Add to stating area
+git add ${SDF_PATH}
