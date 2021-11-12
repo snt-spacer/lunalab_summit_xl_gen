@@ -11,8 +11,11 @@ XACRO_ARGS="name:=lunalab_summit_xl_gen
            "
 
 # Remove old SRDF file
-rm ${SRDF_PATH}
+rm ${SRDF_PATH} 2>/dev/null
 
 # Process xacro into SRDF
-xacro ${XACRO_PATH} ${XACRO_ARGS} >${SRDF_PATH} &&
+xacro ${XACRO_PATH} ${XACRO_ARGS} -o ${SRDF_PATH} &&
     echo "Created new '${SRDF_PATH}'"
+
+# Add to stating area
+git add ${SRDF_PATH}

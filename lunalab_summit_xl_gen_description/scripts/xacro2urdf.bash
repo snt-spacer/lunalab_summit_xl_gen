@@ -20,8 +20,11 @@ XACRO_ARGS="name:=lunalab_summit_xl_gen
            "
 
 # Remove old URDF file
-rm ${URDF_PATH}
+rm ${URDF_PATH} 2>/dev/null
 
 # Process xacro into URDF
-xacro ${XACRO_PATH} ${XACRO_ARGS} >${URDF_PATH} &&
+xacro ${XACRO_PATH} ${XACRO_ARGS} -o ${URDF_PATH} &&
     echo "Created new '${URDF_PATH}'"
+
+# Add to stating area
+git add ${URDF_PATH}
