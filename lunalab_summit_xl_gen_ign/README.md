@@ -18,7 +18,7 @@ To see all arguments, please use `ros2 launch --show-args lunalab_summit_xl_gen_
 
 ### ex_moveit_follow_target
 
-To see if everything is functioning properly, try using [ex_moveit_folow_target.launch.py](./launch/ex_moveit_folow_target.launch.py) script. It launches Ignition Gazebo, move_group of MoveIt 2 and ROS 2 <-> IGN bridges that enable robot to follow a target. Simply start the simulation and move the target object around with Transform Control tool.
+To see if everything is functioning properly, try using [ex_moveit_folow_target.launch.py](./launch/ex_moveit_folow_target.launch.py) script. It launches Ignition Gazebo, move_group of MoveIt 2 and ROS 2 \<-> IGN bridges that enable robot to follow a target. Simply start the simulation and move the target object around with Transform Control tool.
 
 ```bash
 ros2 launch lunalab_summit_xl_gen_ign ex_moveit_folow_target.launch.py

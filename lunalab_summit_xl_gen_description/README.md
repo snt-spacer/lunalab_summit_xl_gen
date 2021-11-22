@@ -13,6 +13,7 @@ URDF and SDF description of Summit XL-GEN (LunaLab variant).
 For URDF, [lunalab_summit_xl_gen.urdf.xacro](./urdf/lunalab_summit_xl_gen.urdf.xacro) is the primary descriptor that includes all other xacros and creates a model based on the passed arguments. To generate URDF out of xacro, you can use the included [xacro2urdf.bash](./scripts/xacro2urdf.bash) script and modify its arguments as needed. Once executed, [lunalab_summit_xl_gen.urdf](./urdf/lunalab_summit_xl_gen.urdf) will automatically be replaced. Alternatively, `xacro lunalab_summit_xl_gen.urdf.xacro name:="lunalab_summit_xl_gen" <arg_i>:=<val_i> ...` can be executed directly, e.g. this is preferred within any launch script.
 
 In order to visualise URDF with RViz2, included [view.launch.py](./launch/view.launch.py) script can be used.
+
 ```bash
 ros2 launch lunalab_summit_xl_gen_description view.launch.py
 ```
@@ -20,11 +21,13 @@ ros2 launch lunalab_summit_xl_gen_description view.launch.py
 ### SDF
 
 For SDF, please use the included [xacro2sdf.bash](./scripts/xacro2sdf.bash) script with the desired arguments. This script makes sure that a correct relative path is used to locate all assets. In order to make the model discoverable within the context of Ignition Gazebo, please extend the `IGN_GAZEBO_RESOURCE_PATH` environment variable.
+
 ```bash
 export IGN_GAZEBO_RESOURCE_PATH=/absolute/path/lunalab_summit_xl_gen_description:${IGN_GAZEBO_RESOURCE_PATH}
 ```
 
 To visualise SDF with Ignition Gazebo, included [view_ign.launch.py](./launch/view_ign.launch.py) script can be used.
+
 ```bash
 ros2 launch lunalab_summit_xl_gen_description view_ign.launch.py
 ```
