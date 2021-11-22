@@ -7,9 +7,10 @@ This branch targets packages that are built around ROS 2. Furthermore, Ignition 
 ## Overview
 
 Below is an overview of the included packages, with a small description of their purpose. For more information, please see README.md of each individual package.
-- [**lunalab_summit_xl_gen_description**](./lunalab_summit_xl_gen_description) &ndash; URDF and SDF description of the robot
-- [**lunalab_summit_xl_gen_ign**](./lunalab_summit_xl_gen_ign) &ndash; Additional Ignition Gazebo-specific configuration of the robot
-- [**lunalab_summit_xl_gen_moveit_config**](./lunalab_summit_xl_gen_moveit_config) &ndash; MoveIt 2 configuration for the robotic manipulator
+
+- [**lunalab_summit_xl_gen_description**](./lunalab_summit_xl_gen_description) – URDF and SDF description of the robot
+- [**lunalab_summit_xl_gen_ign**](./lunalab_summit_xl_gen_ign) – Additional Ignition Gazebo-specific configuration of the robot
+- [**lunalab_summit_xl_gen_moveit_config**](./lunalab_summit_xl_gen_moveit_config) – MoveIt 2 configuration for the robotic manipulator
 
 ## Instructions
 
@@ -58,6 +59,7 @@ source lunalab_summit_xl_gen_ws/install/local_setup.bash
 ```
 
 This enables:
+
 - Execution of scripts and examples via `ros2 run lunalab_summit_xl_gen <executable>`
 - Launching of setup scripts via `ros2 launch lunalab_summit_xl_gen <launch_script>`
 - Discoverability of shared resources
