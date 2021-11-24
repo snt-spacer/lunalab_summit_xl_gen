@@ -42,6 +42,9 @@
   <!-- Flag to enable ros2 controllers for manipulator -->
   <xacro:arg name="ros2_control" default="true"/>
 
+  <!-- Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo -->
+  <xacro:arg name="gazebo_preserve_fixed_joint" default="false"/>
+
   <!-- Flag to enable DiffDrive Gazebo plugin for Summit XL -->
   <xacro:arg name="gazebo_diff_drive" default="true"/>
 
@@ -79,6 +82,7 @@
     prefix="${prefix_summit_xl}"
     add_base_footprint="true"
     high_quality_mesh="$(arg high_quality_mesh)"
+    gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint)"
     gazebo_diff_drive="$(arg gazebo_diff_drive)"
   />
 
@@ -93,6 +97,7 @@
     safety_k_position="$(arg safety_k_position)"
     high_quality_mesh="$(arg high_quality_mesh)"
     ros2_control="$(arg ros2_control)"
+    gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint)"
     gazebo_joint_trajectory_controller="$(arg gazebo_joint_trajectory_controller)"
   />
 
