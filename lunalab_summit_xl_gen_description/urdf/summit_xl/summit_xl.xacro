@@ -33,13 +33,14 @@
     prefix:=summit_xl_
     add_base_footprint:=true
     high_quality_mesh:=true
+    gazebo_preserve_fixed_joint:=false
     gazebo_diff_drive:=true
   ">
     <!-- Radius of wheels based on the utilised wheels (only default rubber wheels are currently supported) -->
     <xacro:property name="wheel_radius" value="${rubber_wheel_radius}"/>
 
     <!-- Summit XL base -->
-    <xacro:summit_xl_base prefix="${prefix}" add_base_footprint="${add_base_footprint}" high_quality_mesh="${high_quality_mesh}"/>
+    <xacro:summit_xl_base prefix="${prefix}" add_base_footprint="${add_base_footprint}" high_quality_mesh="${high_quality_mesh}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
     <!-- Wheels (rubber) -->
     <xacro:rubber_wheel prefix="${prefix}front_left_" parent="${prefix}base_link" left_wheel="true" high_quality_mesh="${high_quality_mesh}">
