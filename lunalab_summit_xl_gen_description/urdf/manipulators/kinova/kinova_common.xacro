@@ -83,6 +83,7 @@
     safety_limits:=false
     safety_position_margin:=${10*pi/180}
     safety_k_position:=20.0
+    gazebo_preserve_fixed_joint:=false
   ">
     <xacro:if value="${(type == 'fixed' and not fixed) or (type != 'fixed' and fixed)}">
       <xacro:ERROR_inconsistent_joint_type_specification/>
@@ -119,6 +120,14 @@
         <safety_controller soft_lower_limit="${joint_lower_limit+safety_position_margin}" soft_upper_limit="${joint_upper_limit-safety_position_margin}" k_position="${safety_k_position}" k_velocity="0.0"/>
       </xacro:if>
     </joint>
+    <xacro:if value="${fixed}">
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <gazebo reference="${joint_name}">
+          <preserveFixedJoint>true</preserveFixedJoint>
+          <disableFixedJointLumping>true</disableFixedJointLumping>
+        </gazebo>
+      </xacro:if>
+    </xacro:if>
     <xacro:unless value="${fixed}">
       <transmission name="${joint_name}_trans">
         <type>transmission_interface/SimpleTransmission</type>
@@ -143,13 +152,27 @@
     child
     joint_origin_xyz
     joint_origin_rpy
+    gazebo_preserve_fixed_joint:=false
   ">
-    <link name="${child}"/>
+    <link name="${child}">
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <inertial>
+          <mass value="1e-5"/>
+          <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+      </xacro:if>
+    </link>
     <joint name="${joint_name}" type="fixed">
       <parent link="${parent}"/>
       <child link="${child}"/>
       <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}"/>
     </joint>
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${joint_name}">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
   </xacro:macro>
 
 </robot>
