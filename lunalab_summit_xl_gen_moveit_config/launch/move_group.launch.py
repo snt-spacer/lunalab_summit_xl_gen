@@ -36,6 +36,7 @@ def generate_launch_description():
     publish_state = LaunchConfiguration("publish_state")
     execute_trajectories = LaunchConfiguration("execute_trajectories")
     ros2_control = LaunchConfiguration("ros2_control")
+    gazebo_preserve_fixed_joint = LaunchConfiguration("gazebo_preserve_fixed_joint")
     gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
     gazebo_joint_trajectory_controller = LaunchConfiguration(
         "gazebo_joint_trajectory_controller"
@@ -81,6 +82,9 @@ def generate_launch_description():
             " ",
             "ros2_control:=",
             ros2_control,
+            " ",
+            "gazebo_preserve_fixed_joint:=",
+            gazebo_preserve_fixed_joint,
             " ",
             "gazebo_diff_drive:=",
             gazebo_diff_drive,
@@ -406,7 +410,12 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="false",
             description="Flag to enable ros2 controllers for manipulator.",
         ),
-        # Gazebo plugins
+        # Gazebo
+        DeclareLaunchArgument(
+            "gazebo_preserve_fixed_joint",
+            default_value="false",
+            description="Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo.",
+        ),
         DeclareLaunchArgument(
             "gazebo_diff_drive",
             default_value="true",

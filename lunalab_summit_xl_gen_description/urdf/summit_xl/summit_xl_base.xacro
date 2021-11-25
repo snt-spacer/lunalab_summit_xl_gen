@@ -8,14 +8,28 @@
     prefix
     add_base_footprint
     high_quality_mesh
+    gazebo_preserve_fixed_joint:=false
   ">
     <xacro:if value="${add_base_footprint}">
-      <link name="${prefix}base_footprint"/>
+      <link name="${prefix}base_footprint">
+        <xacro:if value="${gazebo_preserve_fixed_joint}">
+          <inertial>
+            <mass value="1e-5"/>
+            <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+          </inertial>
+        </xacro:if>
+      </link>
       <joint name="${prefix}base_footprint_joint" type="fixed">
         <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
         <parent link="${prefix}base_footprint"/>
         <child link="${prefix}base_link"/>
       </joint>
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <gazebo reference="${prefix}base_footprint_joint">
+          <preserveFixedJoint>true</preserveFixedJoint>
+          <disableFixedJointLumping>true</disableFixedJointLumping>
+        </gazebo>
+      </xacro:if>
     </xacro:if>
 
     <link name="${prefix}base_link">
@@ -38,13 +52,26 @@
       </collision>
     </link>
 
+    <link name="${prefix}base_docking_contact_link">
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <inertial>
+          <mass value="1e-5"/>
+          <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+      </xacro:if>
+    </link>
     <joint name="${prefix}base_docking_joint" type="fixed">
       <origin xyz="0.284 0.012 0.068" rpy="0 0 0 "/>
       <parent link="${prefix}base_link"/>
       <child link="${prefix}base_docking_contact_link"/>
     </joint>
 
-    <link name="${prefix}base_docking_contact_link"/>
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${prefix}base_docking_joint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
   </xacro:macro>
 
 </robot>

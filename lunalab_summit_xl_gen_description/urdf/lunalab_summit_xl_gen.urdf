@@ -9,7 +9,8 @@
   <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_sensors.xacro"/> -->
   <!-- Miscellaneous -->
   <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_misc.xacro"/> -->
-  <link name="robot_summit_xl_base_footprint"/>
+  <link name="robot_summit_xl_base_footprint">
+  </link>
   <joint name="robot_summit_xl_base_footprint_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0.11"/>
     <parent link="robot_summit_xl_base_footprint"/>
@@ -34,12 +35,13 @@
       </geometry>
     </collision>
   </link>
+  <link name="robot_summit_xl_base_docking_contact_link">
+  </link>
   <joint name="robot_summit_xl_base_docking_joint" type="fixed">
     <origin rpy="0 0 0 " xyz="0.284 0.012 0.068"/>
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_summit_xl_base_docking_contact_link"/>
   </joint>
-  <link name="robot_summit_xl_base_docking_contact_link"/>
   <joint name="robot_summit_xl_front_left_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_summit_xl_front_left_wheel"/>
@@ -562,7 +564,8 @@
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
-  <link name="robot_j2s7s300_end_effector"/>
+  <link name="robot_j2s7s300_end_effector">
+  </link>
   <joint name="robot_j2s7s300_joint_end_effector" type="fixed">
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_end_effector"/>
