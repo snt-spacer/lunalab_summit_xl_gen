@@ -39,7 +39,8 @@ The following directory structure is utilised for this package.
     ├── joint_limits.yaml                    # List of velocity and acceleration joint limits
     ├── kinematics.yaml                      # Configuration for the kinematic solver
     ├── moveit_controller_manager.yaml       # List of controllers with their type and action namespace for use with MoveIt 2
-    └── ompl_planning.yaml                   # Configuration of OMPL planning and specific planners
+    ├── ompl_planning.yaml                   # Configuration of OMPL planning and specific planners
+    └── servo.yaml                           # Configuration for moveit_servo
 ├── launch/                                  # [dir] ROS 2 launch scripts
     ├── ex_fake_control.launch.py            # Launch script virtual motion planning and execution inside RViz2
     └── move_group.launch.py                 # Launch script for configuring and setting up move_group of MoveIt 2
