@@ -14,9 +14,9 @@
     <gazebo>
       <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
         <left_joint>${prefix}front_left_wheel_joint</left_joint>
-        <left_joint>${prefix}rear_left_wheel_joint</left_joint>
+        <left_joint>${prefix}back_left_wheel_joint</left_joint>
         <right_joint>${prefix}front_right_wheel_joint</right_joint>
-        <right_joint>${prefix}rear_right_wheel_joint</right_joint>
+        <right_joint>${prefix}back_right_wheel_joint</right_joint>
         <wheel_separation>${wheel_separation}</wheel_separation>
         <wheel_radius>${wheel_radius}</wheel_radius>
       </plugin>
