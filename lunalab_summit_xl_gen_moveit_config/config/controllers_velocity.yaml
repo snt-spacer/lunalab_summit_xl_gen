@@ -1,0 +1,92 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 250
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - robot_j2s7s300_joint_1
+      - robot_j2s7s300_joint_2
+      - robot_j2s7s300_joint_3
+      - robot_j2s7s300_joint_4
+      - robot_j2s7s300_joint_5
+      - robot_j2s7s300_joint_6
+      - robot_j2s7s300_joint_7
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    gains:
+      robot_j2s7s300_joint_1:
+        p: 1500.0
+        d: 5.0
+        i: 50.0
+        i_clamp: 10.0
+      robot_j2s7s300_joint_2:
+        p: 3500.0
+        d: 13.0
+        i: 450.0
+        i_clamp: 23.0
+      robot_j2s7s300_joint_3:
+        p: 2500.0
+        d: 7.0
+        i: 125.0
+        i_clamp: 15.0
+      robot_j2s7s300_joint_4:
+        p: 1900.0
+        d: 6.0
+        i: 200.0
+        i_clamp: 17.0
+      robot_j2s7s300_joint_5:
+        p: 1500.0
+        d: 1.5
+        i: 75.0
+        i_clamp: 9.0
+      robot_j2s7s300_joint_6:
+        p: 1300.0
+        d: 1.0
+        i: 55.0
+        i_clamp: 5.0
+      robot_j2s7s300_joint_7:
+        p: 1000.0
+        d: 0.5
+        i: 40.0
+        i_clamp: 4.0
+
+gripper_trajectory_controller:
+  ros__parameters:
+    joints:
+      - robot_j2s7s300_joint_finger_1
+      - robot_j2s7s300_joint_finger_2
+      - robot_j2s7s300_joint_finger_3
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    gains:
+      robot_j2s7s300_joint_finger_1:
+        p: 85.0
+        d: 0.0005
+        i: 0.2
+        i_clamp: 2.0
+      robot_j2s7s300_joint_finger_2:
+        p: 85.0
+        d: 0.0005
+        i: 0.2
+        i_clamp: 2.0
+      robot_j2s7s300_joint_finger_3:
+        p: 85.0
+        d: 0.0005
+        i: 0.2
+        i_clamp: 2.0

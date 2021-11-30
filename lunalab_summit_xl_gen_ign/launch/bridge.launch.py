@@ -195,17 +195,17 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "bridge_joint_state",
-            default_value="true",
+            default_value="false",
             description="Flag to enable bridging of `joint_state` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
             "bridge_joint_trajectory",
-            default_value="true",
+            default_value="false",
             description="Flag to enable bridging of `joint_trajectory` (ROS 2 -> IGN).",
         ),
         DeclareLaunchArgument(
             "bridge_joint_trajectory_progress",
-            default_value="true",
+            default_value="false",
             description="Flag to enable bridging of `joint_trajectory_progress` (IGN -> ROS 2).",
         ),
         DeclareLaunchArgument(
