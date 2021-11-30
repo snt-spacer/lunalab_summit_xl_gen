@@ -12,7 +12,7 @@
   <!--            -->
   <!-- Finger origin for 3-finger hand -->
   <xacro:property name="finger_1_of_3_origin_xyz" value="0.00279 0.03126 -0.11467"/>
-  <xacro:property name="finger_1_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${77.9*pi/180}"/>
+  <xacro:property name="finger_1_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${102.1*pi/180}"/>
   <xacro:property name="finger_2_of_3_origin_xyz" value="0.02226 -0.02707 -0.11482"/>
   <xacro:property name="finger_2_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-79.42*pi/180}"/>
   <xacro:property name="finger_3_of_3_origin_xyz" value="-0.02226 -0.02707 -0.11482"/>

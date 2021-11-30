@@ -246,9 +246,9 @@
   <gazebo>
     <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
       <left_joint>robot_summit_xl_front_left_wheel_joint</left_joint>
-      <left_joint>robot_summit_xl_rear_left_wheel_joint</left_joint>
+      <left_joint>robot_summit_xl_back_left_wheel_joint</left_joint>
       <right_joint>robot_summit_xl_front_right_wheel_joint</right_joint>
-      <right_joint>robot_summit_xl_rear_right_wheel_joint</right_joint>
+      <right_joint>robot_summit_xl_back_right_wheel_joint</right_joint>
       <wheel_separation>0.47</wheel_separation>
       <wheel_radius>0.11</wheel_radius>
     </plugin>
@@ -629,7 +629,7 @@
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_1"/>
     <axis xyz="0 0 1"/>
-    <origin rpy="-1.5707963267948966 0.6492624817418906 1.3596114873035827" xyz="0.00279 0.03126 -0.11467"/>
+    <origin rpy="-1.5707963267948966 0.6492624817418906 1.7819811662862104" xyz="0.00279 0.03126 -0.11467"/>
     <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
     <dynamics damping="0.15" friction="0.01"/>
   </joint>
@@ -862,7 +862,7 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_2">
-      <param name="initial_position">3.14159265359</param>
+      <param name="initial_position">3.490658504</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
@@ -876,7 +876,7 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_4">
-      <param name="initial_position">3.14159265359</param>
+      <param name="initial_position">5.235987756</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
@@ -890,7 +890,7 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_6">
-      <param name="initial_position">3.14159265359</param>
+      <param name="initial_position">1.745329252</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
@@ -909,7 +909,7 @@
       <plugin>ignition_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <joint name="robot_j2s7s300_joint_finger_1">
-      <param name="initial_position">0.0</param>
+      <param name="initial_position">0.2</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
