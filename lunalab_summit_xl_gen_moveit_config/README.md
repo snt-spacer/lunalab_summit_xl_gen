@@ -35,11 +35,11 @@ The following directory structure is utilised for this package.
 ```bash
 .
 ├── config/                                  # [dir] Configuration files for MoveIt 2
-    ├── controllers.yaml                     # List of controllers with their type and action namespace
+    ├── controllers_*.yaml                   # Configuration of ROS 2 controllers for different command interfaces
     ├── joint_limits.yaml                    # List of velocity and acceleration joint limits
     ├── kinematics.yaml                      # Configuration for the kinematic solver
-    ├── ompl_planning.yaml                   # Configuration of OMPL planning and specific planners
-    └── ros2_controllers.yaml                # Configuration of controllers that is specific to ROS 2 control
+    ├── moveit_controller_manager.yaml       # List of controllers with their type and action namespace for use with MoveIt 2
+    └── ompl_planning.yaml                   # Configuration of OMPL planning and specific planners
 ├── launch/                                  # [dir] ROS 2 launch scripts
     ├── fake_control.launch.py               # Launch script virtual motion planning and execution inside RViz2
     └── move_group.launch.py                 # Launch script for configuring and setting up move_group of MoveIt 2

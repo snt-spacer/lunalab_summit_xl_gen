@@ -49,4 +49,18 @@
       </plugin>
     </gazebo>
   </xacro:macro>
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <!-- Ignition ROS 2 control -->
+  <xacro:macro name="ignition_ros2_control" params="
+   controller_parameters
+  ">
+    <gazebo>
+      <plugin filename="ignition_ros2_control-system" name="ignition_ros2_control::IgnitionROS2ControlPlugin">
+        <parameters>${controller_parameters}</parameters>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
 </robot>

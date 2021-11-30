@@ -12,57 +12,133 @@
   <!-- Macro -->
   <!--       -->
   <xacro:macro name="ros2_control_j2s7s300_arm" params="
-    name:=KinovaArmFakeSystem
-    prefix:=j2s7s300_
-    initial_positions_file:=${default_initial_positions_file}
+   name:=KinovaArmSystem
+   prefix:=j2s7s300_
+   plugin:=ignition
+   command_interface:=effort
+   initial_positions_file:=${default_initial_positions_file}
   ">
     <xacro:property name="initial_positions" value="${load_yaml(initial_positions_file)['initial_joint_positions']['j2s7s300']}"/>
 
     <ros2_control name="${name}" type="system">
       <hardware>
-        <plugin>fake_components/GenericSystem</plugin>
+        <xacro:if value="${plugin == 'fake'}">
+          <plugin>fake_components/GenericSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${plugin == 'ignition'}">
+          <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${plugin == 'real'}">
+          <xacro:ERROR_ros2_control_for_real_robot_unimplemented/>
+        </xacro:if>
+        <xacro:unless value="${plugin == 'fake' or plugin == 'ignition' or plugin == 'real'}">
+          <plugin>${plugin}</plugin>
+        </xacro:unless>
       </hardware>
       <joint name="${prefix}joint_1">
         <param name="initial_position">${initial_positions['joint_1']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_2">
         <param name="initial_position">${initial_positions['joint_2']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_3">
         <param name="initial_position">${initial_positions['joint_3']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_4">
         <param name="initial_position">${initial_positions['joint_4']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_5">
         <param name="initial_position">${initial_positions['joint_5']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_6">
         <param name="initial_position">${initial_positions['joint_6']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_7">
         <param name="initial_position">${initial_positions['joint_7']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
     </ros2_control>
   </xacro:macro>
@@ -71,35 +147,98 @@
   <!-- Macro -->
   <!--       -->
   <xacro:macro name="ros2_control_3fingers" params="
-    name:=KinovaGripperFakeSystem
-    prefix:=j2s7s300_
-    initial_positions_file:=${default_initial_positions_file}
+   name:=KinovaGripperSystem
+   prefix:=j2s7s300_
+   plugin:=ignition
+   command_interface:=effort
+   initial_positions_file:=${default_initial_positions_file}
+   mimic_joints:=false
   ">
     <xacro:property name="initial_positions" value="${load_yaml(initial_positions_file)['initial_joint_positions']['kinova_3fingers']}"/>
 
     <ros2_control name="${name}" type="system">
       <hardware>
-        <plugin>fake_components/GenericSystem</plugin>
+        <xacro:if value="${plugin == 'fake'}">
+          <plugin>fake_components/GenericSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${plugin == 'ignition'}">
+          <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${plugin == 'real'}">
+          <xacro:ERROR_ros2_control_for_real_robot_unimplemented/>
+        </xacro:if>
+        <xacro:unless value="${plugin == 'fake' or plugin == 'ignition' or plugin == 'real'}">
+          <plugin>${plugin}</plugin>
+        </xacro:unless>
       </hardware>
       <joint name="${prefix}joint_finger_1">
         <param name="initial_position">${initial_positions['joint_1']}</param>
-        <command_interface name="position"/>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_finger_2">
-        <param name="mimic">${prefix}joint_finger_1</param>
-        <param name="multiplier">1</param>
-        <command_interface name="position"/>
+        <xacro:if value="${mimic_joints}">
+          <param name="mimic">${prefix}joint_finger_1</param>
+          <param name="multiplier">1</param>
+        </xacro:if>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
       <joint name="${prefix}joint_finger_3">
-        <param name="mimic">${prefix}joint_finger_1</param>
-        <param name="multiplier">1</param>
-        <command_interface name="position"/>
+        <xacro:if value="${mimic_joints}">
+          <param name="mimic">${prefix}joint_finger_1</param>
+          <param name="multiplier">1</param>
+        </xacro:if>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}joint_finger_tip_1">
+        <param name="initial_position">0</param>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}joint_finger_tip_2">
+        <param name="initial_position">0</param>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}joint_finger_tip_3">
+        <param name="initial_position">0</param>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
       </joint>
     </ros2_control>
   </xacro:macro>
