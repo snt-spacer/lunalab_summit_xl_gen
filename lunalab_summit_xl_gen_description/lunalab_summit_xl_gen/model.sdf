@@ -573,7 +573,7 @@
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_finger_1' type='revolute'>
-      <pose relative_to='robot_j2s7s300_link_7'>0.00279 0.03126 -0.11467 -1.570796326794896 0.6492624817418907 1.359611487303583</pose>
+      <pose relative_to='robot_j2s7s300_link_7'>0.00279 0.03126 -0.11467 -1.570796326794896 0.6492624817418907 1.781981166286211</pose>
       <parent>robot_j2s7s300_link_7</parent>
       <child>robot_j2s7s300_link_finger_1</child>
       <axis>
@@ -1242,9 +1242,9 @@
     </link>
     <plugin name='ignition::gazebo::systems::DiffDrive' filename='ignition-gazebo-diff-drive-system'>
       <left_joint>robot_summit_xl_front_left_wheel_joint</left_joint>
-      <left_joint>robot_summit_xl_rear_left_wheel_joint</left_joint>
+      <left_joint>robot_summit_xl_back_left_wheel_joint</left_joint>
       <right_joint>robot_summit_xl_front_right_wheel_joint</right_joint>
-      <right_joint>robot_summit_xl_rear_right_wheel_joint</right_joint>
+      <right_joint>robot_summit_xl_back_right_wheel_joint</right_joint>
       <wheel_separation>0.47</wheel_separation>
       <wheel_radius>0.11</wheel_radius>
     </plugin>
