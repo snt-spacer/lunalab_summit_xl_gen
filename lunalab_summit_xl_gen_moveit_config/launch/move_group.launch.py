@@ -42,6 +42,7 @@ def generate_launch_description():
     ros2_control_command_interface = LaunchConfiguration(
         "ros2_control_command_interface"
     )
+    servo = LaunchConfiguration("servo")
     gazebo_preserve_fixed_joint = LaunchConfiguration("gazebo_preserve_fixed_joint")
     gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
     gazebo_joint_trajectory_controller = LaunchConfiguration(
@@ -146,6 +147,14 @@ def generate_launch_description():
             moveit_config_package, path.join("config", "joint_limits.yaml")
         )
     }
+
+    # Servo
+    servo_params = {
+        "moveit_servo": load_yaml(
+            moveit_config_package, path.join("config", "servo.yaml")
+        )
+    }
+    servo_params["moveit_servo"].update({"use_gazebo": use_sim_time})
 
     # Planning pipeline
     planning_pipeline = {
@@ -287,6 +296,25 @@ def generate_launch_description():
                 {"use_sim_time": use_sim_time},
             ],
             condition=UnlessCondition(execute_trajectories),
+        ),
+        # move_servo
+        Node(
+            package="moveit_servo",
+            executable="servo_node_main",
+            output="log",
+            arguments=["--ros-args", "--log-level", log_level],
+            parameters=[
+                robot_description,
+                robot_description_semantic,
+                kinematics,
+                joint_limits,
+                planning_pipeline,
+                trajectory_execution,
+                planning_scene_monitor_parameters,
+                servo_params,
+                {"use_sim_time": use_sim_time},
+            ],
+            condition=IfCondition(servo),
         ),
         # rviz2
         Node(
@@ -436,6 +464,12 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "ros2_control_command_interface",
             default_value="effort",
             description="The output control command interface provided by ros2_control ('position', 'velocity' or 'effort').",
+        ),
+        # Servo
+        DeclareLaunchArgument(
+            "servo",
+            default_value="true",
+            description="Flag to enable MoveIt2 Servo for manipulator.",
         ),
         # Gazebo
         DeclareLaunchArgument(
