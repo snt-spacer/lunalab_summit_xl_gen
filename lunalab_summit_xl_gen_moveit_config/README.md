@@ -22,10 +22,10 @@ For SRDF, [lunalab_summit_xl_gen.srdf.xacro](./srdf/lunalab_summit_xl_gen.srdf.x
 
 ### fake_control
 
-To see if everything works in an isolated environment, try using [fake_control.launch.py](./launch/fake_control.launch.py) script that allows planning motions with MoveIt 2 and executing them with fake controllers inside RViz2.
+To see if everything works in an isolated environment, try using [ex_fake_control.launch.py](./launch/ex_fake_control.launch.py) script that allows planning motions with MoveIt 2 and executing them with fake controllers inside RViz2.
 
 ```bash
-ros2 launch lunalab_summit_xl_gen_moveit_config fake_control.launch.py
+ros2 launch lunalab_summit_xl_gen_moveit_config ex_fake_control.launch.py
 ```
 
 ## Directory Structure
@@ -41,7 +41,7 @@ The following directory structure is utilised for this package.
     ├── moveit_controller_manager.yaml       # List of controllers with their type and action namespace for use with MoveIt 2
     └── ompl_planning.yaml                   # Configuration of OMPL planning and specific planners
 ├── launch/                                  # [dir] ROS 2 launch scripts
-    ├── fake_control.launch.py               # Launch script virtual motion planning and execution inside RViz2
+    ├── ex_fake_control.launch.py            # Launch script virtual motion planning and execution inside RViz2
     └── move_group.launch.py                 # Launch script for configuring and setting up move_group of MoveIt 2
 ├── rviz/moveit.rviz                         # RViz2 config for motion planning with MoveIt 2
 ├── scripts/                                 # [dir] Additional useful scripts
