@@ -1,16 +1,15 @@
 controller_manager:
   ros__parameters:
-    update_rate: 500
+    update_rate: 250
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
 
     joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
-    gripper_action_controller:
-      # type: position_controllers/GripperActionController
+    gripper_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
-
-    joint_state_broadcaster:
-      type: joint_state_broadcaster/JointStateBroadcaster
 
 joint_trajectory_controller:
   ros__parameters:
@@ -28,7 +27,7 @@ joint_trajectory_controller:
       - position
       - velocity
 
-gripper_action_controller:
+gripper_trajectory_controller:
   ros__parameters:
     joints:
       - robot_j2s7s300_joint_finger_1

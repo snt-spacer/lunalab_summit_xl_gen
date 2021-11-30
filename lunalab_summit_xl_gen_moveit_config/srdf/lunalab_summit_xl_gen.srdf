@@ -40,9 +40,9 @@
     <joint name="robot_j2s7s300_joint_finger_3" value="0.2"/>
   </group_state>
   <group_state group="gripper" name="close">
-    <joint name="robot_j2s7s300_joint_finger_1" value="1.2"/>
-    <joint name="robot_j2s7s300_joint_finger_2" value="1.2"/>
-    <joint name="robot_j2s7s300_joint_finger_3" value="1.2"/>
+    <joint name="robot_j2s7s300_joint_finger_1" value="1.3"/>
+    <joint name="robot_j2s7s300_joint_finger_2" value="1.3"/>
+    <joint name="robot_j2s7s300_joint_finger_3" value="1.3"/>
   </group_state>
   <end_effector group="gripper" name="gripper" parent_group="arm" parent_link="robot_j2s7s300_end_effector"/>
   <passive_joint name="robot_j2s7s300_joint_finger_tip_1"/>

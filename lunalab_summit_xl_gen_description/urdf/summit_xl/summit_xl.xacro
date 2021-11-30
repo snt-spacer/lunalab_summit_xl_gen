@@ -5,13 +5,9 @@
   <!--                   -->
   <!-- Imported elements -->
   <!--                   -->
-  <!-- Import Summit XL base -->
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/summit_xl_base.xacro"/>
-
-  <!-- Import Summit XL wheels (rubber) -->
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/rubber_wheel.xacro"/>
-
-  <!-- Gazebo plugins -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/summit_xl.ros2_control"/>
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/summit_xl/summit_xl.gazebo"/>
 
   <!--            -->
@@ -33,6 +29,9 @@
     prefix:=summit_xl_
     add_base_footprint:=true
     high_quality_mesh:=true
+    ros2_control:=true
+    ros2_control_plugin:=ignition
+    ros2_control_command_interface:=none
     gazebo_preserve_fixed_joint:=false
     gazebo_diff_drive:=true
   ">
@@ -55,6 +54,11 @@
     <xacro:rubber_wheel prefix="${prefix}back_right_" parent="${prefix}base_link" left_wheel="false" high_quality_mesh="${high_quality_mesh}">
       <origin xyz="-${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
     </xacro:rubber_wheel>
+
+    <!-- ROS 2 control -->
+    <xacro:if value="${ros2_control}">
+      <xacro:ros2_control_summit_xl prefix="${prefix}" plugin="${ros2_control_plugin}" command_interface="${ros2_control_command_interface}"/>
+    </xacro:if>
 
     <!-- Gazebo - Differential drive -->
     <xacro:if value="${gazebo_diff_drive}">

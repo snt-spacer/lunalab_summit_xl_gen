@@ -52,9 +52,9 @@
       <joint name="${prefix}j2s7s300_joint_finger_3" value="0.2"/>
     </group_state>
     <group_state name="close" group="gripper">
-      <joint name="${prefix}j2s7s300_joint_finger_1" value="1.2"/>
-      <joint name="${prefix}j2s7s300_joint_finger_2" value="1.2"/>
-      <joint name="${prefix}j2s7s300_joint_finger_3" value="1.2"/>
+      <joint name="${prefix}j2s7s300_joint_finger_1" value="1.3"/>
+      <joint name="${prefix}j2s7s300_joint_finger_2" value="1.3"/>
+      <joint name="${prefix}j2s7s300_joint_finger_3" value="1.3"/>
     </group_state>
 
     <end_effector name="gripper" parent_link="${prefix}j2s7s300_end_effector" group="gripper" parent_group="arm"/>
