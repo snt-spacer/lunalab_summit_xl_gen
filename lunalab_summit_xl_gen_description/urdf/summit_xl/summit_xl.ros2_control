@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!-- Macros that adds ros2 control for Summit XL -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="ros2_control_summit_xl" params="
+   name:=SummitXlSystem
+   prefix:=summit_xl_
+   plugin:=ignition
+   command_interface:=none
+   initial_positions_file:=${default_initial_positions_file}
+  ">
+    <ros2_control name="${name}" type="system">
+      <hardware>
+        <xacro:if value="${plugin == 'fake'}">
+          <plugin>fake_components/GenericSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${plugin == 'ignition'}">
+          <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${plugin == 'real'}">
+          <xacro:ERROR_ros2_control_for_real_robot_unimplemented/>
+        </xacro:if>
+        <xacro:unless value="${plugin == 'fake' or plugin == 'ignition' or plugin == 'real'}">
+          <plugin>${plugin}</plugin>
+        </xacro:unless>
+      </hardware>
+      <joint name="${prefix}front_left_wheel_joint">
+        <param name="initial_position">0</param>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}back_left_wheel_joint">
+        <param name="initial_position">0</param>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}front_right_wheel_joint">
+        <param name="initial_position">0</param>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}back_right_wheel_joint">
+        <param name="initial_position">0</param>
+        <xacro:if value="${'position' in command_interface}">
+          <command_interface name="position"/>
+        </xacro:if>
+        <xacro:if value="${'velocity' in command_interface}">
+          <command_interface name="velocity"/>
+        </xacro:if>
+        <xacro:if value="${'effort' in command_interface}">
+          <command_interface name="effort"/>
+        </xacro:if>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+    </ros2_control>
+  </xacro:macro>
+</robot>

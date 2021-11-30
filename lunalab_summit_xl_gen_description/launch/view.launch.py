@@ -30,7 +30,12 @@ def generate_launch_description() -> LaunchDescription:
     safety_position_margin = LaunchConfiguration("safety_position_margin")
     safety_k_position = LaunchConfiguration("safety_k_position")
     high_quality_mesh = LaunchConfiguration("high_quality_mesh")
+    mimic_gripper_joints = LaunchConfiguration("mimic_gripper_joints")
     ros2_control = LaunchConfiguration("ros2_control")
+    ros2_control_plugin = LaunchConfiguration("ros2_control_plugin")
+    ros2_control_command_interface = LaunchConfiguration(
+        "ros2_control_command_interface"
+    )
     gazebo_preserve_fixed_joint = LaunchConfiguration("gazebo_preserve_fixed_joint")
     gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
     gazebo_joint_trajectory_controller = LaunchConfiguration(
@@ -69,8 +74,17 @@ def generate_launch_description() -> LaunchDescription:
             "high_quality_mesh:=",
             high_quality_mesh,
             " ",
+            "mimic_gripper_joints:=",
+            mimic_gripper_joints,
+            " ",
             "ros2_control:=",
             ros2_control,
+            " ",
+            "ros2_control_plugin:=",
+            ros2_control_plugin,
+            " ",
+            "ros2_control_command_interface:=",
+            ros2_control_command_interface,
             " ",
             "gazebo_preserve_fixed_joint:=",
             gazebo_preserve_fixed_joint,
@@ -177,11 +191,27 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="true",
             description="Flag to select the high or low quality model.",
         ),
+        # Gripper
+        DeclareLaunchArgument(
+            "mimic_gripper_joints",
+            default_value="false",
+            description="Flag to mimic joints of the gripper.",
+        ),
         # ROS 2 control
         DeclareLaunchArgument(
             "ros2_control",
             default_value="true",
             description="Flag to enable ros2 controllers for manipulator.",
+        ),
+        DeclareLaunchArgument(
+            "ros2_control_plugin",
+            default_value="ignition",
+            description="The ros2_control plugin that should be loaded for the manipulator ('fake', 'ignition', 'real' or custom).",
+        ),
+        DeclareLaunchArgument(
+            "ros2_control_command_interface",
+            default_value="effort",
+            description="The output control command interface provided by ros2_control ('position', 'velocity' or 'effort').",
         ),
         # Gazebo
         DeclareLaunchArgument(
@@ -196,12 +226,12 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "gazebo_joint_trajectory_controller",
-            default_value="true",
+            default_value="false",
             description="Flag to enable JointTrajectoryController Gazebo plugin for manipulator.",
         ),
         DeclareLaunchArgument(
             "gazebo_joint_state_publisher",
-            default_value="true",
+            default_value="false",
             description="Flag to enable JointStatePublisher Gazebo plugin for all joints.",
         ),
         DeclareLaunchArgument(

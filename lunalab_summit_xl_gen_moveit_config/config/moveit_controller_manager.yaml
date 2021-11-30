@@ -1,0 +1,43 @@
+controller_names:
+  - joint_trajectory_controller
+  - gripper_trajectory_controller
+  # - gripper_action_controller
+
+joint_trajectory_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - robot_j2s7s300_joint_1
+    - robot_j2s7s300_joint_2
+    - robot_j2s7s300_joint_3
+    - robot_j2s7s300_joint_4
+    - robot_j2s7s300_joint_5
+    - robot_j2s7s300_joint_6
+    - robot_j2s7s300_joint_7
+
+gripper_trajectory_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - robot_j2s7s300_joint_finger_1
+    - robot_j2s7s300_joint_finger_2
+    - robot_j2s7s300_joint_finger_3
+
+# ----- Gripper action controller (not yet functional)
+# gripper_action_controller:
+#   action_ns: gripper_cmd
+#   type: GripperCommand
+#   default: true
+#   joints:
+#     - robot_j2s7s300_joint_finger_1
+#
+# Note: Once implemented, the following config needs to be within controller parameters
+# controller_manager:
+#   ros__parameters:
+#     gripper_action_controller:
+#       type: position_controllers/GripperActionController
+# gripper_action_controller:
+#   ros__parameters:
+#     joint: robot_j2s7s300_joint_finger_1

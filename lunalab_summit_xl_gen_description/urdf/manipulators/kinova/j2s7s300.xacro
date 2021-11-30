@@ -46,8 +46,8 @@
   <xacro:property name="joint_1_upper_limit" value="${2*pi}"/>
   <xacro:property name="joint_1_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_1_torque_limit" value="40"/>
-  <xacro:property name="joint_1_damping" value="16.0"/>
-  <xacro:property name="joint_1_friction" value="0.6"/>
+  <xacro:property name="joint_1_damping" value="14.0"/>
+  <xacro:property name="joint_1_friction" value="0.5"/>
 
   <xacro:property name="joint_2" value="joint_2"/>
   <xacro:property name="joint_2_type" value="revolute"/>
@@ -58,7 +58,7 @@
   <xacro:property name="joint_2_upper_limit" value="${313/180*pi}"/>
   <xacro:property name="joint_2_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_2_torque_limit" value="80"/>
-  <xacro:property name="joint_2_damping" value="8.5"/>
+  <xacro:property name="joint_2_damping" value="12.0"/>
   <xacro:property name="joint_2_friction" value="0.9"/>
 
   <xacro:property name="joint_3" value="joint_3"/>
@@ -70,8 +70,8 @@
   <xacro:property name="joint_3_upper_limit" value="${2*pi}"/>
   <xacro:property name="joint_3_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_3_torque_limit" value="40"/>
-  <xacro:property name="joint_3_damping" value="7.5"/>
-  <xacro:property name="joint_3_friction" value="0.75"/>
+  <xacro:property name="joint_3_damping" value="10.0"/>
+  <xacro:property name="joint_3_friction" value="0.8"/>
 
   <xacro:property name="joint_4" value="joint_4"/>
   <xacro:property name="joint_4_type" value="revolute"/>
@@ -82,8 +82,8 @@
   <xacro:property name="joint_4_upper_limit" value="${330/180*pi}"/>
   <xacro:property name="joint_4_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_4_torque_limit" value="40"/>
-  <xacro:property name="joint_4_damping" value="6.5"/>
-  <xacro:property name="joint_4_friction" value="0.95"/>
+  <xacro:property name="joint_4_damping" value="7.0"/>
+  <xacro:property name="joint_4_friction" value="0.55"/>
 
   <xacro:property name="joint_5" value="joint_5"/>
   <xacro:property name="joint_5_type" value="revolute"/>
@@ -94,7 +94,7 @@
   <xacro:property name="joint_5_upper_limit" value="${2*pi}"/>
   <xacro:property name="joint_5_velocity_limit" value="${48*pi/180}"/>
   <xacro:property name="joint_5_torque_limit" value="20"/>
-  <xacro:property name="joint_5_damping" value="4.5"/>
+  <xacro:property name="joint_5_damping" value="5.5"/>
   <xacro:property name="joint_5_friction" value="0.35"/>
 
   <xacro:property name="joint_6" value="joint_6"/>
@@ -106,8 +106,8 @@
   <xacro:property name="joint_6_upper_limit" value="${295/180*pi}"/>
   <xacro:property name="joint_6_velocity_limit" value="${48*pi/180}"/>
   <xacro:property name="joint_6_torque_limit" value="20"/>
-  <xacro:property name="joint_6_damping" value="4.0"/>
-  <xacro:property name="joint_6_friction" value="0.3"/>
+  <xacro:property name="joint_6_damping" value="4.5"/>
+  <xacro:property name="joint_6_friction" value="0.25"/>
 
   <xacro:property name="joint_7" value="joint_7"/>
   <xacro:property name="joint_7_type" value="revolute"/>
@@ -118,7 +118,7 @@
   <xacro:property name="joint_7_upper_limit" value="${2*pi}"/>
   <xacro:property name="joint_7_velocity_limit" value="${48*pi/180}"/>
   <xacro:property name="joint_7_torque_limit" value="20"/>
-  <xacro:property name="joint_7_damping" value="3.5"/>
+  <xacro:property name="joint_7_damping" value="4.0"/>
   <xacro:property name="joint_7_friction" value="0.2"/>
 
   <xacro:property name="joint_end_effector" value="end_effector_offset"/>
@@ -147,7 +147,10 @@
     safety_position_margin:=${10*pi/180}
     safety_k_position:=20.0
     high_quality_mesh:=false
+    mimic_gripper_joints:=false
     ros2_control:=true
+    ros2_control_plugin:=ignition
+    ros2_control_command_interface:=effort
     gazebo_preserve_fixed_joint:=false
     gazebo_joint_trajectory_controller:=true
   ">
@@ -177,12 +180,12 @@
 
     <xacro:kinova_virtual_fixed_link joint_name="${prefix}joint_end_effector" parent="${prefix}link_7" child="${prefix}end_effector" joint_origin_xyz="${joint_end_effector_origin_xyz}" joint_origin_rpy="${joint_end_effector_origin_rpy}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_3fingers link_hand="${prefix}link_7" prefix="${prefix}"/>
+    <xacro:kinova_3fingers link_hand="${prefix}link_7" prefix="${prefix}" mimic_joints="${mimic_gripper_joints}"/>
 
     <!-- ROS 2 control -->
     <xacro:if value="${ros2_control}">
-      <xacro:ros2_control_j2s7s300_arm name="KinovaArmFakeSystem" prefix="${prefix}"/>
-      <xacro:ros2_control_3fingers name="KinovaGripperFakeSystem" prefix="${prefix}"/>
+      <xacro:ros2_control_j2s7s300_arm prefix="${prefix}" plugin="${ros2_control_plugin}" command_interface="${ros2_control_command_interface}"/>
+      <xacro:ros2_control_3fingers prefix="${prefix}" plugin="${ros2_control_plugin}" command_interface="${ros2_control_command_interface}" mimic_joints="${mimic_gripper_joints}"/>
     </xacro:if>
 
     <!-- Gazebo - Joint trajectory controller -->
