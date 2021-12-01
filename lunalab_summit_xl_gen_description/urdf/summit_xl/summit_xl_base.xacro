@@ -7,6 +7,7 @@
   <xacro:macro name="summit_xl_base" params="
     prefix
     add_base_footprint
+    collision:=true
     high_quality_mesh
     gazebo_preserve_fixed_joint:=false
   ">
@@ -44,12 +45,14 @@
           <mesh filename="package://lunalab_summit_xl_gen_description/meshes/summit_xl/visual/summit_xl_chassis.dae"/>
         </geometry>
       </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0 "/>
-        <geometry>
-          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/summit_xl/collision/summit_xl_chassis.stl"/>
-        </geometry>
-      </collision>
+      <xacro:if value="${collision}">
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0 "/>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/summit_xl/collision/summit_xl_chassis.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
     </link>
 
     <link name="${prefix}base_docking_contact_link">

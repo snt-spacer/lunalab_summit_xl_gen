@@ -28,6 +28,8 @@
   <xacro:macro name="summit_xl" params="
     prefix:=summit_xl_
     add_base_footprint:=true
+    collision_chassis:=true
+    collision_wheels:=true
     high_quality_mesh:=true
     ros2_control:=true
     ros2_control_plugin:=ignition
@@ -39,19 +41,19 @@
     <xacro:property name="wheel_radius" value="${rubber_wheel_radius}"/>
 
     <!-- Summit XL base -->
-    <xacro:summit_xl_base prefix="${prefix}" add_base_footprint="${add_base_footprint}" high_quality_mesh="${high_quality_mesh}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
+    <xacro:summit_xl_base prefix="${prefix}" add_base_footprint="${add_base_footprint}" collision="${collision_chassis}" high_quality_mesh="${high_quality_mesh}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
     <!-- Wheels (rubber) -->
-    <xacro:rubber_wheel prefix="${prefix}front_left_" parent="${prefix}base_link" left_wheel="true" high_quality_mesh="${high_quality_mesh}">
+    <xacro:rubber_wheel prefix="${prefix}front_left_" parent="${prefix}base_link" left_wheel="true" collision="${collision_wheels}" high_quality_mesh="${high_quality_mesh}">
       <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
     </xacro:rubber_wheel>
-    <xacro:rubber_wheel prefix="${prefix}back_left_" parent="${prefix}base_link" left_wheel="true" high_quality_mesh="${high_quality_mesh}">
+    <xacro:rubber_wheel prefix="${prefix}back_left_" parent="${prefix}base_link" left_wheel="true" collision="${collision_wheels}" high_quality_mesh="${high_quality_mesh}">
       <origin xyz="-${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
     </xacro:rubber_wheel>
-    <xacro:rubber_wheel prefix="${prefix}front_right_" parent="${prefix}base_link" left_wheel="false" high_quality_mesh="${high_quality_mesh}">
+    <xacro:rubber_wheel prefix="${prefix}front_right_" parent="${prefix}base_link" left_wheel="false" collision="${collision_wheels}" high_quality_mesh="${high_quality_mesh}">
       <origin xyz="${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
     </xacro:rubber_wheel>
-    <xacro:rubber_wheel prefix="${prefix}back_right_" parent="${prefix}base_link" left_wheel="false" high_quality_mesh="${high_quality_mesh}">
+    <xacro:rubber_wheel prefix="${prefix}back_right_" parent="${prefix}base_link" left_wheel="false" collision="${collision_wheels}" high_quality_mesh="${high_quality_mesh}">
       <origin xyz="-${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
     </xacro:rubber_wheel>
 
