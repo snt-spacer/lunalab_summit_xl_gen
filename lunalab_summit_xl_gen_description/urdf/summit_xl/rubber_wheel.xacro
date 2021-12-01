@@ -50,6 +50,7 @@
     parent
     *origin
     left_wheel
+    collision:=true
     high_quality_mesh
   ">
     <joint name="${prefix}wheel_joint" type="continuous">
@@ -74,12 +75,14 @@
           </xacro:unless>
         </geometry>
       </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
-        <geometry>
-          <cylinder length="${rubber_wheel_width}" radius="${rubber_wheel_radius}"/>
-        </geometry>
-      </collision>
+      <xacro:if value="${collision}">
+        <collision>
+          <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+          <geometry>
+            <cylinder length="${rubber_wheel_width}" radius="${rubber_wheel_radius}"/>
+          </geometry>
+        </collision>
+      </xacro:if>
       <inertial>
         <mass value="${rubber_wheel_mass}"/>
         <origin xyz="0 0 0"/>

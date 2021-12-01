@@ -14,11 +14,14 @@
   <!-- link_mesh     - Name of the mesh to load (filename must be identical for visual and collision geometry, while located in their specific directories) -->
   <!-- use_ring_mesh - Flag to enable ring mesh (visual only) -->
   <!-- ring_mesh     - Selector of ring mesh type, which must correspond to mesh name, e.g. `ring_small` -->
+  <!-- collision     - Flag to enable collision geometry -->
+  <!-- mu            - Friction of the surface applied to both directions -->
   <xacro:macro name="kinova_armlink" params="
     link_name
     link_mesh
     use_ring_mesh:=false
     ring_mesh:=ring_big
+    collision:=true
     mu:=1.0
   ">
     <link name="${link_name}">
@@ -37,11 +40,13 @@
         </visual>
       </xacro:if>
 
-      <collision>
-        <geometry>
-          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/collision/${link_mesh}.stl"/>
-        </geometry>
-      </collision>
+      <xacro:if value="${collision}">
+        <collision>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/collision/${link_mesh}.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
 
       <xacro:kinova_inertial link_mesh="${link_mesh}"/>
     </link>
