@@ -36,6 +36,15 @@
   <!-- Parametric k-position factor of all safety controllers -->
   <xacro:arg name="safety_k_position" default="20"/>
 
+  <!-- Flag to enable collision geometry for the chassis of Summit XL -->
+  <xacro:arg name="collision_chassis" default="true"/>
+  <!-- Flag to enable collision geometry for the wheels fo Summit XL -->
+  <xacro:arg name="collision_wheels" default="true"/>
+  <!-- Flag to enable collision geometry for manipulator's arm -->
+  <xacro:arg name="collision_arm" default="true"/>
+  <!-- Flag to enable collision geometry for manipulator's gripper (hand and fingers) -->
+  <xacro:arg name="collision_gripper" default="true"/>
+
   <!-- (unimplemented!) Flag to select the high or low quality model -->
   <xacro:arg name="high_quality_mesh" default="ignored"/>
 
@@ -73,18 +82,14 @@
   <!--            -->
   <!-- Properties -->
   <!--            -->
-  <!-- Manipulator offset (from base_link to the center of the manipulator's base) -->
-  <xacro:property name="manipulator_offset_x" value="0.204"/>
-  <xacro:property name="manipulator_offset_y" value="0.0"/>
-  <xacro:property name="manipulator_offset_z" value="0.11"/>
-  <xacro:property name="manipulator_offset_r" value="0.0"/>
-  <xacro:property name="manipulator_offset_p" value="0.0"/>
-  <xacro:property name="manipulator_offset_y" value="0.0"/>
-
   <!-- Prefixes -->
   <xacro:property name="prefix_summit_xl" value="$(arg prefix)summit_xl_"/>
   <xacro:property name="prefix_manipulator" value="$(arg prefix)j2s7s300_"/>
 
+  <!-- Manipulator offset -->
+  <xacro:property name="manipulator_base_parent" value="${prefix_summit_xl}base_link"/>
+  <xacro:property name="manipulator_offset_xyz" value="0.204 0.0 0.11"/>
+  <xacro:property name="manipulator_offset_rpy" value="0.0 0.0 0.0"/>
 
   <!--       -->
   <!-- Robot -->
@@ -93,6 +98,8 @@
   <xacro:summit_xl
     prefix="${prefix_summit_xl}"
     add_base_footprint="true"
+    collision_chassis="$(arg collision_chassis)"
+    collision_wheels="$(arg collision_wheels)"
     high_quality_mesh="$(arg high_quality_mesh)"
     ros2_control="$(arg ros2_control)"
     ros2_control_plugin="$(arg ros2_control_plugin)"
@@ -103,13 +110,15 @@
 
   <!-- Kinova Gen2 (Jaco2, spherical wrist, 7DOF, 3-finger gripper) -->
   <xacro:j2s7s300
-    base_parent="${prefix_summit_xl}base_link"
+    base_parent="${manipulator_base_parent}"
     prefix="${prefix_manipulator}"
-    joint_base_origin_xyz="${manipulator_offset_x} ${manipulator_offset_y} ${manipulator_offset_z}"
-    joint_base_origin_rpy="${manipulator_offset_r} ${manipulator_offset_p} ${manipulator_offset_y}"
+    joint_base_origin_xyz="${manipulator_offset_xyz}"
+    joint_base_origin_rpy="${manipulator_offset_rpy}"
     safety_limits="$(arg safety_limits)"
     safety_position_margin="$(arg safety_position_margin)"
     safety_k_position="$(arg safety_k_position)"
+    collision_arm="$(arg collision_arm)"
+    collision_gripper="$(arg collision_gripper)"
     high_quality_mesh="$(arg high_quality_mesh)"
     mimic_gripper_joints="$(arg mimic_gripper_joints)"
     ros2_control="$(arg ros2_control)"

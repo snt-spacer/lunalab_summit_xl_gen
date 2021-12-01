@@ -33,6 +33,10 @@ def generate_launch_description():
     safety_limits = LaunchConfiguration("safety_limits")
     safety_position_margin = LaunchConfiguration("safety_position_margin")
     safety_k_position = LaunchConfiguration("safety_k_position")
+    collision_chassis = LaunchConfiguration("collision_chassis")
+    collision_wheels = LaunchConfiguration("collision_wheels")
+    collision_arm = LaunchConfiguration("collision_arm")
+    collision_gripper = LaunchConfiguration("collision_gripper")
     high_quality_mesh = LaunchConfiguration("high_quality_mesh")
     publish_state = LaunchConfiguration("publish_state")
     execute_trajectories = LaunchConfiguration("execute_trajectories")
@@ -78,6 +82,18 @@ def generate_launch_description():
             " ",
             "safety_k_position:=",
             safety_k_position,
+            " ",
+            "collision_chassis:=",
+            collision_chassis,
+            " ",
+            "collision_wheels:=",
+            collision_wheels,
+            " ",
+            "collision_arm:=",
+            collision_arm,
+            " ",
+            "collision_gripper:=",
+            collision_gripper,
             " ",
             "high_quality_mesh:=",
             high_quality_mesh,
@@ -424,6 +440,27 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "safety_k_position",
             default_value="20",
             description="Parametric k-position factor of all safety controllers.",
+        ),
+        # Collision geometry
+        DeclareLaunchArgument(
+            "collision_chassis",
+            default_value="true",
+            description="Flag to enable collision geometry for the chassis of Summit XL.",
+        ),
+        DeclareLaunchArgument(
+            "collision_wheels",
+            default_value="true",
+            description="Flag to enable collision geometry for the wheels fo Summit XL.",
+        ),
+        DeclareLaunchArgument(
+            "collision_arm",
+            default_value="true",
+            description="Flag to enable collision geometry for manipulator's arm.",
+        ),
+        DeclareLaunchArgument(
+            "collision_gripper",
+            default_value="true",
+            description="Flag to enable collision geometry for manipulator's gripper (hand and fingers).",
         ),
         # Geometry
         DeclareLaunchArgument(
