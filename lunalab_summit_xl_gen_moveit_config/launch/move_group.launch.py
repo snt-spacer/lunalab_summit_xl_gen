@@ -48,6 +48,7 @@ def generate_launch_description():
     )
     servo = LaunchConfiguration("servo")
     gazebo_preserve_fixed_joint = LaunchConfiguration("gazebo_preserve_fixed_joint")
+    gazebo_self_collide_fingers = LaunchConfiguration("gazebo_self_collide_fingers")
     gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
     gazebo_joint_trajectory_controller = LaunchConfiguration(
         "gazebo_joint_trajectory_controller"
@@ -112,6 +113,9 @@ def generate_launch_description():
             " ",
             "gazebo_preserve_fixed_joint:=",
             gazebo_preserve_fixed_joint,
+            " ",
+            "gazebo_self_collide_fingers:=",
+            gazebo_self_collide_fingers,
             " ",
             "gazebo_diff_drive:=",
             gazebo_diff_drive,
@@ -513,6 +517,11 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "gazebo_preserve_fixed_joint",
             default_value="false",
             description="Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_self_collide_fingers",
+            default_value="true",
+            description="Flag to enable self-collision of robot between fingers (finger tips) when generating SDF for Gazebo.",
         ),
         DeclareLaunchArgument(
             "gazebo_diff_drive",

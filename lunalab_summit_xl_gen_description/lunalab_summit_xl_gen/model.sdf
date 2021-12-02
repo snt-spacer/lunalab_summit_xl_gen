@@ -707,6 +707,7 @@
           </mesh>
         </geometry>
       </visual>
+      <self_collide>true</self_collide>
     </link>
     <joint name='robot_j2s7s300_joint_finger_2' type='revolute'>
       <pose relative_to='robot_j2s7s300_link_7'>0.02226 -0.02707 -0.11482 -1.570796326794897 0.6492624817418907 -1.386140491933897</pose>
@@ -843,6 +844,7 @@
           </mesh>
         </geometry>
       </visual>
+      <self_collide>true</self_collide>
     </link>
     <joint name='robot_j2s7s300_joint_finger_3' type='revolute'>
       <pose relative_to='robot_j2s7s300_link_7'>-0.02226 -0.02707 -0.11482 -1.570796326794896 0.6492624817418907 -1.755452161655896</pose>

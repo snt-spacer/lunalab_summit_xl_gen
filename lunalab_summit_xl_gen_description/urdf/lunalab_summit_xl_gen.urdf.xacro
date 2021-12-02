@@ -66,6 +66,9 @@
   <!-- Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo -->
   <xacro:arg name="gazebo_preserve_fixed_joint" default="false"/>
 
+  <!-- Flag to enable self-collision of robot between fingers (finger tips) when generating SDF for Gazebo -->
+  <xacro:arg name="gazebo_self_collide_fingers" default="true"/>
+
   <!-- Flag to enable DiffDrive Gazebo plugin for Summit XL -->
   <xacro:arg name="gazebo_diff_drive" default="true"/>
 
@@ -125,6 +128,7 @@
     ros2_control_plugin="$(arg ros2_control_plugin)"
     ros2_control_command_interface="$(arg ros2_control_command_interface)"
     gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint)"
+    gazebo_self_collide_fingers="$(arg gazebo_self_collide_fingers)"
     gazebo_joint_trajectory_controller="$(arg gazebo_joint_trajectory_controller)"
   />
 

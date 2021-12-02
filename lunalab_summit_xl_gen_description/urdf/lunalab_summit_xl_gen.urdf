@@ -686,6 +686,9 @@
     <springStiffness value="0.5"/>
     <springReference value="0.0"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_tip_1">
+    <self_collide>true</self_collide>
+  </gazebo>
   <link name="robot_j2s7s300_link_finger_2">
     <visual>
       <geometry>
@@ -767,6 +770,9 @@
   <gazebo reference="robot_j2s7s300_joint_finger_tip_2">
     <springStiffness value="0.5"/>
     <springReference value="0.0"/>
+  </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_tip_2">
+    <self_collide>true</self_collide>
   </gazebo>
   <link name="robot_j2s7s300_link_finger_3">
     <visual>
