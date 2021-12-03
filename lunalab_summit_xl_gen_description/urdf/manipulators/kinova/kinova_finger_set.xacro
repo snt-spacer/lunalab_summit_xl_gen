@@ -11,11 +11,11 @@
   <!-- Properties -->
   <!--            -->
   <!-- Finger origin for 3-finger hand -->
-  <xacro:property name="finger_1_of_3_origin_xyz" value="0.00279 0.03126 -0.11467"/>
-  <xacro:property name="finger_1_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${102.1*pi/180}"/>
-  <xacro:property name="finger_2_of_3_origin_xyz" value="0.02226 -0.02707 -0.11482"/>
+  <xacro:property name="finger_1_of_3_origin_xyz" value="0.002786 0.03126 -0.114668"/>
+  <xacro:property name="finger_1_of_3_origin_rpy" value="${-97.68677*pi/180} ${37.2*pi/180} ${95.85*pi/180}"/>
+  <xacro:property name="finger_2_of_3_origin_xyz" value="0.022256 -0.027073 -0.114668"/>
   <xacro:property name="finger_2_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-79.42*pi/180}"/>
-  <xacro:property name="finger_3_of_3_origin_xyz" value="-0.02226 -0.02707 -0.11482"/>
+  <xacro:property name="finger_3_of_3_origin_xyz" value="-0.022256 -0.027073 -0.114668"/>
   <xacro:property name="finger_3_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-100.58*pi/180}"/>
 
   <!-- Finger origin for 2-finger hand -->
@@ -57,10 +57,11 @@
     prefix
     collision:=true
     mimic_joints:=false
+    gazebo_self_collide_fingers:=true
   ">
-    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_3_origin_xyz}" finger_origin_rpy="${finger_1_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}"/>
-    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_3_origin_xyz}" finger_origin_rpy="${finger_2_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}"/>
-    <xacro:kinova_finger prefix="${prefix}" finger_number="3" hand="${link_hand}" finger_origin_xyz="${finger_3_of_3_origin_xyz}" finger_origin_rpy="${finger_3_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_3_origin_xyz}" finger_origin_rpy="${finger_1_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_3_origin_xyz}" finger_origin_rpy="${finger_2_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="3" hand="${link_hand}" finger_origin_xyz="${finger_3_of_3_origin_xyz}" finger_origin_rpy="${finger_3_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="false"/>
   </xacro:macro>
 
 
@@ -72,9 +73,10 @@
     prefix
     mimic_joints:=false
     collision:=true
+    gazebo_self_collide_fingers:=true
   ">
-    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_2_origin_xyz}" finger_origin_rpy="${finger_1_of_2_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}"/>
-    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_2_origin_xyz}" finger_origin_rpy="${finger_2_of_2_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_2_origin_xyz}" finger_origin_rpy="${finger_1_of_2_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_2_origin_xyz}" finger_origin_rpy="${finger_2_of_2_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
   </xacro:macro>
 
 
@@ -87,8 +89,9 @@
     hand
     finger_origin_xyz
     finger_origin_rpy
-    collision:=true
-    mimic_joints:=false
+    mimic_joints
+    collision
+    gazebo_self_collide_fingers
   ">
     <xacro:kinova_armlink link_name="${prefix}link_finger_${finger_number}" link_mesh="${finger_proximal_mesh}" collision="${collision}" mu="${finger_link_proximal_mu}"/>
     <joint name="${prefix}joint_finger_${finger_number}" type="revolute">
@@ -138,6 +141,11 @@
       <springStiffness value="${finger_distal_spring_stiffness}"/>
       <springReference value="${finger_distal_spring_reference}"/>
     </gazebo>
+    <xacro:if value="${gazebo_self_collide_fingers}">
+      <gazebo reference="${prefix}link_finger_tip_${finger_number}">
+        <self_collide>true</self_collide>
+      </gazebo>
+    </xacro:if>
   </xacro:macro>
 
 </robot>
