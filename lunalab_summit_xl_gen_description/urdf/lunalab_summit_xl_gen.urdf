@@ -629,7 +629,7 @@
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_1"/>
     <axis xyz="0 0 1"/>
-    <origin rpy="-1.5707963267948966 0.6492624817418906 1.7819811662862104" xyz="0.00279 0.03126 -0.11467"/>
+    <origin rpy="-1.704955772138421 0.6492624817418906 1.6728980880365647" xyz="0.002786 0.03126 -0.114668"/>
     <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
     <dynamics damping="0.15" friction="0.01"/>
   </joint>
@@ -714,7 +714,7 @@
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_2"/>
     <axis xyz="0 0 1"/>
-    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.3861404919338964" xyz="0.02226 -0.02707 -0.11482"/>
+    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.3861404919338964" xyz="0.022256 -0.027073 -0.114668"/>
     <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
     <dynamics damping="0.15" friction="0.01"/>
   </joint>
@@ -799,7 +799,7 @@
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_3"/>
     <axis xyz="0 0 1"/>
-    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.7554521616558967" xyz="-0.02226 -0.02707 -0.11482"/>
+    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.7554521616558967" xyz="-0.022256 -0.027073 -0.114668"/>
     <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
     <dynamics damping="0.15" friction="0.01"/>
   </joint>
