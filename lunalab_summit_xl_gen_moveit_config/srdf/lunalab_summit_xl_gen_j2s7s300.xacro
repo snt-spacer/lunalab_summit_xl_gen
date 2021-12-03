@@ -38,11 +38,11 @@
     </group_state>
     <group_state name="home" group="arm">
       <joint name="${prefix}j2s7s300_joint_1" value="0"/>
-      <joint name="${prefix}j2s7s300_joint_2" value="${200*pi/180}"/>
+      <joint name="${prefix}j2s7s300_joint_2" value="${pi}"/>
       <joint name="${prefix}j2s7s300_joint_3" value="0"/>
-      <joint name="${prefix}j2s7s300_joint_4" value="${300*pi/180}"/>
+      <joint name="${prefix}j2s7s300_joint_4" value="${270*pi/180}"/>
       <joint name="${prefix}j2s7s300_joint_5" value="0"/>
-      <joint name="${prefix}j2s7s300_joint_6" value="${100*pi/180}"/>
+      <joint name="${prefix}j2s7s300_joint_6" value="${90*pi/180}"/>
       <joint name="${prefix}j2s7s300_joint_7" value="0"/>
     </group_state>
 
