@@ -22,6 +22,7 @@ ros2_control:=true
 ros2_control_plugin:=ignition
 ros2_control_command_interface:=effort
 gazebo_preserve_fixed_joint:=false
+gazebo_self_collide_fingers:=true
 gazebo_diff_drive:=true
 gazebo_joint_trajectory_controller:=false
 gazebo_joint_state_publisher:=false

@@ -154,6 +154,7 @@
     ros2_control_plugin:=ignition
     ros2_control_command_interface:=effort
     gazebo_preserve_fixed_joint:=false
+    gazebo_self_collide_fingers:=true
     gazebo_joint_trajectory_controller:=true
   ">
     <xacro:kinova_armlink link_name="${prefix}link_base" link_mesh="${link_base_mesh}" collision="${collision_arm}" mu="${link_base_mu}"/>
@@ -182,7 +183,7 @@
 
     <xacro:kinova_virtual_fixed_link joint_name="${prefix}joint_end_effector" parent="${prefix}link_7" child="${prefix}end_effector" joint_origin_xyz="${joint_end_effector_origin_xyz}" joint_origin_rpy="${joint_end_effector_origin_rpy}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_3fingers link_hand="${prefix}link_7" prefix="${prefix}" collision="${collision_gripper}" mimic_joints="${mimic_gripper_joints}"/>
+    <xacro:kinova_3fingers link_hand="${prefix}link_7" prefix="${prefix}" collision="${collision_gripper}" mimic_joints="${mimic_gripper_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
 
     <!-- ROS 2 control -->
     <xacro:if value="${ros2_control}">
