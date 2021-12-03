@@ -1,40 +1,40 @@
-# These are joint limits according to specifications for KA75+ and KA58 actuators
+# These are more conservative joint limits that result in a slower motion
 joint_limits:
   robot_j2s7s300_joint_1:
     has_velocity_limits: true
-    max_velocity: 0.9844
+    max_velocity: 0.3927
     has_acceleration_limits: true
-    max_acceleration: 2.9531
+    max_acceleration: 1.9635
   robot_j2s7s300_joint_2:
     has_velocity_limits: true
-    max_velocity: 0.9844
+    max_velocity: 0.3927
     has_acceleration_limits: true
-    max_acceleration: 2.9531
+    max_acceleration: 1.9635
   robot_j2s7s300_joint_3:
     has_velocity_limits: true
-    max_velocity: 0.9844
+    max_velocity: 0.3927
     has_acceleration_limits: true
-    max_acceleration: 2.9531
+    max_acceleration: 1.9635
   robot_j2s7s300_joint_4:
     has_velocity_limits: true
-    max_velocity: 0.9844
+    max_velocity: 0.3927
     has_acceleration_limits: true
-    max_acceleration: 2.9531
+    max_acceleration: 1.9635
   robot_j2s7s300_joint_5:
     has_velocity_limits: true
-    max_velocity: 1.5708
+    max_velocity: 0.3927
     has_acceleration_limits: true
-    max_acceleration: 4.7124
+    max_acceleration: 1.9635
   robot_j2s7s300_joint_6:
     has_velocity_limits: true
-    max_velocity: 1.5708
+    max_velocity: 0.3927
     has_acceleration_limits: true
-    max_acceleration: 4.7124
+    max_acceleration: 1.9635
   robot_j2s7s300_joint_7:
     has_velocity_limits: true
-    max_velocity: 1.5708
+    max_velocity: 0.3927
     has_acceleration_limits: true
-    max_acceleration: 4.7124
+    max_acceleration: 1.9635
   robot_j2s7s300_joint_finger_1:
     has_velocity_limits: true
     max_velocity: 4.7124

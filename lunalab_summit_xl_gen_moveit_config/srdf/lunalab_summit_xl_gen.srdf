@@ -27,11 +27,11 @@
   </group_state>
   <group_state group="arm" name="home">
     <joint name="robot_j2s7s300_joint_1" value="0"/>
-    <joint name="robot_j2s7s300_joint_2" value="3.490658503988659"/>
+    <joint name="robot_j2s7s300_joint_2" value="3.141592653589793"/>
     <joint name="robot_j2s7s300_joint_3" value="0"/>
-    <joint name="robot_j2s7s300_joint_4" value="5.235987755982989"/>
+    <joint name="robot_j2s7s300_joint_4" value="4.71238898038469"/>
     <joint name="robot_j2s7s300_joint_5" value="0"/>
-    <joint name="robot_j2s7s300_joint_6" value="1.7453292519943295"/>
+    <joint name="robot_j2s7s300_joint_6" value="1.5707963267948966"/>
     <joint name="robot_j2s7s300_joint_7" value="0"/>
   </group_state>
   <group_state group="gripper" name="open">

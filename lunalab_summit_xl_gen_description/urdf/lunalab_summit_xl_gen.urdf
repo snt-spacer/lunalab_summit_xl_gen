@@ -868,7 +868,7 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_2">
-      <param name="initial_position">3.490658504</param>
+      <param name="initial_position">3.141592653589793</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
@@ -882,7 +882,7 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_4">
-      <param name="initial_position">5.235987756</param>
+      <param name="initial_position">4.71238898038469</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
@@ -896,7 +896,7 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_6">
-      <param name="initial_position">1.745329252</param>
+      <param name="initial_position">1.5707963267948966</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
