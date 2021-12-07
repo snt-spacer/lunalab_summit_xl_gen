@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>lunalab_summit_xl_gen_control</name>
+  <version>1.0.0</version>
+  <description>Control package for Summit XL-GEN (LunaLab variant)</description>
+  <maintainer email="TODO@uni.lu">TODO</maintainer>
+  <author>TODO</author>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>lunalab_summit_xl_gen_description</exec_depend>
+
+  <exec_depend>kinova_driver</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <export>
+  </export>
+</package>

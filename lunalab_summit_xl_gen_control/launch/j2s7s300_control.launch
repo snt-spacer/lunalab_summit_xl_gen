@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Arguments -->
+  <arg name="robot_type" default="j2s7s300"/>
+  <arg name="prefix" default="robot_"/>
+  <arg name="prefix_manipulator" default="$(arg prefix)$(arg robot_type)_"/>
+  <arg name="ns" default="$(arg robot_type)"/>
+  <arg name="serial_number" default="not_set"/>
+
+  <!-- Driver of the manipulator -->
+  <node pkg="kinova_driver" type="kinova_arm_driver" name="$(arg prefix_manipulator)driver" ns="$(arg ns)" respawn="false" output="screen" cwd="node" args="$(arg robot_type)">
+    <rosparam file="$(find lunalab_summit_xl_gen_control)/config/$(arg robot_type)_parameters.yaml" command="load"/>
+    <param name="serial_number" value="$(arg serial_number)"/>
+    <param name="robot_name" value="$(arg prefix_manipulator)"/>
+    <param name="robot_type" value="$(arg robot_type)"/>
+  </node>
+  <node pkg="kinova_driver" type="kinova_tf_updater" name="$(arg prefix_manipulator)tf_updater" ns="$(arg ns)" respawn="false" output="screen" cwd="node" args="$(arg robot_type)">
+    <remap from="/$(arg prefix_manipulator)tf_updater/in/joint_angles" to="/$(arg prefix_manipulator)driver/out/joint_angles"/>
+    <param name="base_frame" value="root"/>
+  </node>
+
+  <!-- Action server for Follow Joint Trajectory. All received goals are republished to the internal joint trajectory controller (initialised in kinova_arm_driver). -->
+  <node pkg="kinova_driver" type="joint_trajectory_action_server" name="$(arg prefix_manipulator)joint_trajectory_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)"/>
+  <!-- Action server for Gripper Command. All received goals are republished to the internal gripper controller (initialised in kinova_arm_driver). -->
+  <node pkg="kinova_driver" type="gripper_command_action_server" name="$(arg prefix_manipulator)gripper_command_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)"/>
+
+  <!-- Robot state publisher -->
+  <param name="robot_description" command="xacro '$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_gen.urdf.xacro' name:=lunalab_summit_xl_gen prefix:=''"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="$(arg prefix_manipulator)robot_state_publisher" ns="$(arg ns)" respawn="false" output="screen">
+    <remap from="joint_states" to="/$(arg prefix_manipulator)driver/out/joint_state"/>
+  </node>
+
+</launch>
