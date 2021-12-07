@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!-- Macros that add Gazebo plugins for Summit XL -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+</robot>

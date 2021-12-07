@@ -11,11 +11,11 @@
   <!-- Properties -->
   <!--            -->
   <!-- Finger origin for 3-finger hand -->
-  <xacro:property name="finger_1_of_3_origin_xyz" value="0.00279 0.03126 -0.11467"/>
-  <xacro:property name="finger_1_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${77.9*pi/180}"/>
-  <xacro:property name="finger_2_of_3_origin_xyz" value="0.02226 -0.02707 -0.11482"/>
+  <xacro:property name="finger_1_of_3_origin_xyz" value="0.002786 0.03126 -0.114668"/>
+  <xacro:property name="finger_1_of_3_origin_rpy" value="${-97.68677*pi/180} ${37.2*pi/180} ${95.85*pi/180}"/>
+  <xacro:property name="finger_2_of_3_origin_xyz" value="0.022256 -0.027073 -0.114668"/>
   <xacro:property name="finger_2_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-79.42*pi/180}"/>
-  <xacro:property name="finger_3_of_3_origin_xyz" value="-0.02226 -0.02707 -0.11482"/>
+  <xacro:property name="finger_3_of_3_origin_xyz" value="-0.022256 -0.027073 -0.114668"/>
   <xacro:property name="finger_3_of_3_origin_rpy" value="${-pi/2} ${37.2*pi/180} ${-100.58*pi/180}"/>
 
   <!-- Finger origin for 2-finger hand -->
@@ -30,8 +30,8 @@
   <xacro:property name="finger_proximal_upper_limit" value="1.51"/>
   <xacro:property name="finger_proximal_velocity_limit" value="1.0"/>
   <xacro:property name="finger_proximal_torque_limit" value="2.0"/>
-  <xacro:property name="finger_proximal_damping" value="0.5"/>
-  <xacro:property name="finger_proximal_friction" value="0.05"/>
+  <xacro:property name="finger_proximal_damping" value="0.15"/>
+  <xacro:property name="finger_proximal_friction" value="0.01"/>
   <xacro:property name="finger_link_proximal_mu" value="1.6"/>
 
   <xacro:property name="finger_distal_origin_xyz" value="0.044 -0.003 0"/>
@@ -42,8 +42,10 @@
   <xacro:property name="finger_distal_upper_limit" value="2.0"/>
   <xacro:property name="finger_distal_velocity_limit" value="1.0"/>
   <xacro:property name="finger_distal_torque_limit" value="2.0"/>
-  <xacro:property name="finger_distal_damping" value="0.5"/>
-  <xacro:property name="finger_distal_friction" value="0.05"/>
+  <xacro:property name="finger_distal_damping" value="0.01"/>
+  <xacro:property name="finger_distal_friction" value="0.0005"/>
+  <xacro:property name="finger_distal_spring_stiffness" value="0.5"/>
+  <xacro:property name="finger_distal_spring_reference" value="0.0"/>
   <xacro:property name="finger_link_distal_mu" value="1.6"/>
 
 
@@ -53,10 +55,13 @@
   <xacro:macro name="kinova_3fingers" params="
     link_hand
     prefix
+    collision:=true
+    mimic_joints:=false
+    gazebo_self_collide_fingers:=true
   ">
-    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_3_origin_xyz}" finger_origin_rpy="${finger_1_of_3_origin_rpy}"/>
-    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_3_origin_xyz}" finger_origin_rpy="${finger_2_of_3_origin_rpy}"/>
-    <xacro:kinova_finger prefix="${prefix}" finger_number="3" hand="${link_hand}" finger_origin_xyz="${finger_3_of_3_origin_xyz}" finger_origin_rpy="${finger_2_of_3_origin_rpy}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_3_origin_xyz}" finger_origin_rpy="${finger_1_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_3_origin_xyz}" finger_origin_rpy="${finger_2_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="3" hand="${link_hand}" finger_origin_xyz="${finger_3_of_3_origin_xyz}" finger_origin_rpy="${finger_3_of_3_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="false"/>
   </xacro:macro>
 
 
@@ -66,9 +71,12 @@
   <xacro:macro name="kinova_2fingers" params="
     link_hand
     prefix
+    mimic_joints:=false
+    collision:=true
+    gazebo_self_collide_fingers:=true
   ">
-    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_2_origin_xyz}" finger_origin_rpy="${finger_1_of_2_origin_rpy}"/>
-    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_2_origin_xyz}" finger_origin_rpy="${finger_2_of_2_origin_rpy}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="1" hand="${link_hand}" finger_origin_xyz="${finger_1_of_2_origin_xyz}" finger_origin_rpy="${finger_1_of_2_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
+    <xacro:kinova_finger prefix="${prefix}" finger_number="2" hand="${link_hand}" finger_origin_xyz="${finger_2_of_2_origin_xyz}" finger_origin_rpy="${finger_2_of_2_origin_rpy}" collision="${collision}" mimic_joints="${mimic_joints}" gazebo_self_collide_fingers="${gazebo_self_collide_fingers}"/>
   </xacro:macro>
 
 
@@ -81,8 +89,11 @@
     hand
     finger_origin_xyz
     finger_origin_rpy
+    mimic_joints
+    collision
+    gazebo_self_collide_fingers
   ">
-    <xacro:kinova_armlink link_name="${prefix}link_finger_${finger_number}" link_mesh="${finger_proximal_mesh}" mu="${finger_link_proximal_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_finger_${finger_number}" link_mesh="${finger_proximal_mesh}" collision="${collision}" mu="${finger_link_proximal_mu}"/>
     <joint name="${prefix}joint_finger_${finger_number}" type="revolute">
       <parent link="${hand}"/>
       <child link="${prefix}link_finger_${finger_number}"/>
@@ -90,6 +101,11 @@
       <origin xyz="${finger_origin_xyz}" rpy="${finger_origin_rpy}"/>
       <limit lower="${finger_proximal_lower_limit}" upper="${finger_proximal_upper_limit}" effort="${finger_proximal_torque_limit}" velocity="${finger_proximal_velocity_limit}"/>
       <dynamics damping="${finger_proximal_damping}" friction="${finger_proximal_friction}"/>
+       <xacro:if value="${mimic_joints}">
+        <xacro:unless value="${finger_number == 1}">
+          <mimic joint="${prefix}joint_finger_1"/>
+        </xacro:unless>
+      </xacro:if>
     </joint>
     <transmission name="${prefix}joint_finger_${finger_number}_trans">
       <type>transmission_interface/SimpleTransmission</type>
@@ -102,7 +118,7 @@
       </actuator>
     </transmission>
 
-    <xacro:kinova_armlink link_name="${prefix}link_finger_tip_${finger_number}" link_mesh="${finger_distal_mesh}" mu="${finger_link_distal_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_finger_tip_${finger_number}" link_mesh="${finger_distal_mesh}" collision="${collision}" mu="${finger_link_distal_mu}"/>
     <joint name="${prefix}joint_finger_tip_${finger_number}" type="revolute">
       <parent link="${prefix}link_finger_${finger_number}"/>
       <child link="${prefix}link_finger_tip_${finger_number}"/>
@@ -121,6 +137,15 @@
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
+    <gazebo reference="${prefix}joint_finger_tip_${finger_number}">
+      <springStiffness value="${finger_distal_spring_stiffness}"/>
+      <springReference value="${finger_distal_spring_reference}"/>
+    </gazebo>
+    <xacro:if value="${gazebo_self_collide_fingers}">
+      <gazebo reference="${prefix}link_finger_tip_${finger_number}">
+        <self_collide>true</self_collide>
+      </gazebo>
+    </xacro:if>
   </xacro:macro>
 
 </robot>

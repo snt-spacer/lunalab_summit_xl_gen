@@ -14,11 +14,14 @@
   <!-- link_mesh     - Name of the mesh to load (filename must be identical for visual and collision geometry, while located in their specific directories) -->
   <!-- use_ring_mesh - Flag to enable ring mesh (visual only) -->
   <!-- ring_mesh     - Selector of ring mesh type, which must correspond to mesh name, e.g. `ring_small` -->
+  <!-- collision     - Flag to enable collision geometry -->
+  <!-- mu            - Friction of the surface applied to both directions -->
   <xacro:macro name="kinova_armlink" params="
     link_name
     link_mesh
     use_ring_mesh:=false
     ring_mesh:=ring_big
+    collision:=true
     mu:=1.0
   ">
     <link name="${link_name}">
@@ -37,11 +40,13 @@
         </visual>
       </xacro:if>
 
-      <collision>
-        <geometry>
-          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/collision/${link_mesh}.stl"/>
-        </geometry>
-      </collision>
+      <xacro:if value="${collision}">
+        <collision>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/collision/${link_mesh}.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
 
       <xacro:kinova_inertial link_mesh="${link_mesh}"/>
     </link>
@@ -83,6 +88,7 @@
     safety_limits:=false
     safety_position_margin:=${10*pi/180}
     safety_k_position:=20.0
+    gazebo_preserve_fixed_joint:=false
     gazebo_ros_ft_sensor:=false
   ">
     <xacro:if value="${(type == 'fixed' and not fixed) or (type != 'fixed' and fixed)}">
@@ -120,6 +126,14 @@
         <safety_controller soft_lower_limit="${joint_lower_limit+safety_position_margin}" soft_upper_limit="${joint_upper_limit-safety_position_margin}" k_position="${safety_k_position}" k_velocity="0.0"/>
       </xacro:if>
     </joint>
+    <xacro:if value="${fixed}">
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <gazebo reference="${joint_name}">
+          <preserveFixedJoint>true</preserveFixedJoint>
+          <disableFixedJointLumping>true</disableFixedJointLumping>
+        </gazebo>
+      </xacro:if>
+    </xacro:if>
     <xacro:unless value="${fixed}">
       <transmission name="${joint_name}_trans">
         <type>transmission_interface/SimpleTransmission</type>
@@ -149,13 +163,27 @@
     child
     joint_origin_xyz
     joint_origin_rpy
+    gazebo_preserve_fixed_joint:=false
   ">
-    <link name="${child}"/>
+    <link name="${child}">
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <inertial>
+          <mass value="1e-5"/>
+          <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+      </xacro:if>
+    </link>
     <joint name="${joint_name}" type="fixed">
       <parent link="${parent}"/>
       <child link="${child}"/>
       <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}"/>
     </joint>
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${joint_name}">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
   </xacro:macro>
 
 </robot>

@@ -4,10 +4,18 @@
   <!--            -->
   <!-- Properties -->
   <!--            -->
-  <!-- Wheels -->
+  <!-- Link -->
   <xacro:property name="rubber_wheel_radius" value="0.11"/>
   <xacro:property name="rubber_wheel_width" value="0.15"/>
   <xacro:property name="rubber_wheel_mass" value="6.5"/>
+  <xacro:property name="rubber_wheel_mu1" value="1.9"/>
+  <xacro:property name="rubber_wheel_mu2" value="1.7"/>
+
+  <!-- Joint -->
+  <xacro:property name="rubber_wheel_effort_limit" value="100"/>
+  <xacro:property name="rubber_wheel_velocity_limit" value="100"/>
+  <xacro:property name="rubber_wheel_damping" value="0.035"/>
+  <xacro:property name="rubber_wheel_friction" value="0.0005"/>
 
 
   <!--       -->
@@ -42,6 +50,7 @@
     parent
     *origin
     left_wheel
+    collision:=true
     high_quality_mesh
   ">
     <joint name="${prefix}wheel_joint" type="continuous">
@@ -49,8 +58,8 @@
       <child link="${prefix}wheel"/>
       <xacro:insert_block name="origin"/>
       <axis xyz="0 1 0" rpy="0 0 0"/>
-      <limit effort="100" velocity="100"/>
-      <joint_properties damping="0.0" friction="0.0"/>
+      <limit effort="${rubber_wheel_effort_limit}" velocity="${rubber_wheel_velocity_limit}"/>
+      <dynamics damping="${rubber_wheel_damping}" friction="${rubber_wheel_friction}"/>
     </joint>
 
     <link name="${prefix}wheel">
@@ -66,12 +75,14 @@
           </xacro:unless>
         </geometry>
       </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
-        <geometry>
-          <cylinder length="${rubber_wheel_width}" radius="${rubber_wheel_radius}"/>
-        </geometry>
-      </collision>
+      <xacro:if value="${collision}">
+        <collision>
+          <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+          <geometry>
+            <cylinder length="${rubber_wheel_width}" radius="${rubber_wheel_radius}"/>
+          </geometry>
+        </collision>
+      </xacro:if>
       <inertial>
         <mass value="${rubber_wheel_mass}"/>
         <origin xyz="0 0 0"/>
@@ -84,15 +95,16 @@
       <joint name="${prefix}wheel_joint">
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
-      <actuator name="${prefix}wheel_joint_motor">
+      <actuator name="${prefix}wheel_joint_actuator">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
         <motorTorqueConstant>20</motorTorqueConstant>
       </actuator>
     </transmission>
 
     <gazebo reference="${prefix}wheel">
-      <mu1 value="1.9"/>
-      <mu2 value="1.7"/>
+      <mu1 value="${rubber_wheel_mu1}"/>
+      <mu2 value="${rubber_wheel_mu2}"/>
       <fdir1 value="1 0 0"/>
     </gazebo>
   </xacro:macro>

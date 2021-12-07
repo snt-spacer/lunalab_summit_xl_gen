@@ -17,6 +17,9 @@
   <!-- Miscellaneous -->
   <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_misc.xacro"/> -->
 
+  <!-- Gazebo plugins -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_gen.gazebo"/>
+
 
   <!--            -->
   <!-- Parameters -->
@@ -33,13 +36,33 @@
   <!-- Parametric k-position factor of all safety controllers -->
   <xacro:arg name="safety_k_position" default="20"/>
 
+  <!-- Flag to enable collision geometry for the chassis of Summit XL -->
+  <xacro:arg name="collision_chassis" default="true"/>
+  <!-- Flag to enable collision geometry for the wheels fo Summit XL -->
+  <xacro:arg name="collision_wheels" default="true"/>
+  <!-- Flag to enable collision geometry for manipulator's arm -->
+  <xacro:arg name="collision_arm" default="true"/>
+  <!-- Flag to enable collision geometry for manipulator's gripper (hand and fingers) -->
+  <xacro:arg name="collision_gripper" default="true"/>
+
   <!-- (unimplemented!) Flag to select the high or low quality model -->
   <xacro:arg name="high_quality_mesh" default="ignored"/>
 
+  <!-- Flag to mimic joints of the gripper -->
+  <xacro:arg name="mimic_gripper_joints" default="false"/>
+
+  <!-- Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo -->
+  <xacro:arg name="gazebo_preserve_fixed_joint" default="false"/>
+
+  <!-- Flag to enable self-collision of robot between fingers (finger tips) when generating SDF for Gazebo -->
+  <xacro:arg name="gazebo_self_collide_fingers" default="true"/>
+
   <!-- Flag to enable setup of Gazebo ros_planar_move plugin (mobile) -->
   <xacro:arg name="gazebo_ros_planar_move_plugin" default="false"/>
+
   <!-- Flag to enable setup of Gazebo ros_control plugin (manipulation) -->
   <xacro:arg name="gazebo_ros_control_plugin" default="false"/>
+
   <!-- Flag to enable setup of Gazebo ros_ft_sensor plugin (force torque sensor on manipulator joints) -->
   <xacro:arg name="gazebo_ros_ft_sensor" default="false"/>
 
@@ -47,36 +70,44 @@
   <!--            -->
   <!-- Properties -->
   <!--            -->
-  <!-- Manipulator offset (from base_link to the center of the manipulator's base) -->
-  <xacro:property name="manipulator_offset_x" value="0.204"/>
-  <xacro:property name="manipulator_offset_y" value="0.0"/>
-  <xacro:property name="manipulator_offset_z" value="0.11"/>
-  <xacro:property name="manipulator_offset_r" value="0.0"/>
-  <xacro:property name="manipulator_offset_p" value="0.0"/>
-  <xacro:property name="manipulator_offset_y" value="0.0"/>
+  <!-- Prefixes -->
+  <xacro:property name="prefix_summit_xl" value="$(arg prefix)summit_xl_"/>
+  <xacro:property name="prefix_manipulator" value="$(arg prefix)j2s7s300_"/>
 
+  <!-- Manipulator offset -->
+  <xacro:property name="manipulator_base_parent" value="${prefix_summit_xl}base_link"/>
+  <xacro:property name="manipulator_offset_xyz" value="0.204 0.0 0.11"/>
+  <xacro:property name="manipulator_offset_rpy" value="0.0 0.0 0.0"/>
 
   <!--       -->
   <!-- Robot -->
   <!--       -->
   <!-- Summit XL -->
   <xacro:summit_xl
-    prefix="$(arg prefix)summit_xl_"
+    prefix="${prefix_summit_xl}"
     add_base_footprint="true"
+    collision_chassis="$(arg collision_chassis)"
+    collision_wheels="$(arg collision_wheels)"
     high_quality_mesh="$(arg high_quality_mesh)"
+    gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint)"
     gazebo_ros_planar_move_plugin="$(arg gazebo_ros_planar_move_plugin)"
   />
 
   <!-- Kinova Gen2 (Jaco2, spherical wrist, 7DOF, 3-finger gripper) -->
   <xacro:j2s7s300
-    base_parent="$(arg prefix)summit_xl_base_link"
-    prefix="$(arg prefix)j2s7s300_"
-    joint_base_origin_xyz="${manipulator_offset_x} ${manipulator_offset_y} ${manipulator_offset_z}"
-    joint_base_origin_rpy="${manipulator_offset_r} ${manipulator_offset_p} ${manipulator_offset_y}"
+    base_parent="${manipulator_base_parent}"
+    prefix="${prefix_manipulator}"
+    joint_base_origin_xyz="${manipulator_offset_xyz}"
+    joint_base_origin_rpy="${manipulator_offset_rpy}"
     safety_limits="$(arg safety_limits)"
     safety_position_margin="$(arg safety_position_margin)"
     safety_k_position="$(arg safety_k_position)"
+    collision_arm="$(arg collision_arm)"
+    collision_gripper="$(arg collision_gripper)"
     high_quality_mesh="$(arg high_quality_mesh)"
+    mimic_gripper_joints="$(arg mimic_gripper_joints)"
+    gazebo_preserve_fixed_joint="$(arg gazebo_preserve_fixed_joint)"
+    gazebo_self_collide_fingers="$(arg gazebo_self_collide_fingers)"
     gazebo_ros_control_plugin="$(arg gazebo_ros_control_plugin)"
     gazebo_ros_ft_sensor="$(arg gazebo_ros_ft_sensor)"
   />

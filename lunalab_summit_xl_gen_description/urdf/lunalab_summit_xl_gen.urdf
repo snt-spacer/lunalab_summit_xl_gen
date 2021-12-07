@@ -9,7 +9,8 @@
   <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_sensors.xacro"/> -->
   <!-- Miscellaneous -->
   <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_misc.xacro"/> -->
-  <link name="robot_summit_xl_base_footprint"/>
+  <link name="robot_summit_xl_base_footprint">
+  </link>
   <joint name="robot_summit_xl_base_footprint_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0.11"/>
     <parent link="robot_summit_xl_base_footprint"/>
@@ -34,19 +35,20 @@
       </geometry>
     </collision>
   </link>
+  <link name="robot_summit_xl_base_docking_contact_link">
+  </link>
   <joint name="robot_summit_xl_base_docking_joint" type="fixed">
     <origin rpy="0 0 0 " xyz="0.284 0.012 0.068"/>
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_summit_xl_base_docking_contact_link"/>
   </joint>
-  <link name="robot_summit_xl_base_docking_contact_link"/>
   <joint name="robot_summit_xl_front_left_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_summit_xl_front_left_wheel"/>
     <origin rpy="0 0 0" xyz="0.229 0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_front_left_wheel">
     <visual>
@@ -72,7 +74,8 @@
     <joint name="robot_summit_xl_front_left_wheel_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="robot_summit_xl_front_left_wheel_joint_motor">
+    <actuator name="robot_summit_xl_front_left_wheel_joint_actuator">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -88,7 +91,7 @@
     <origin rpy="0 0 0" xyz="-0.229 0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_back_left_wheel">
     <visual>
@@ -114,7 +117,8 @@
     <joint name="robot_summit_xl_back_left_wheel_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="robot_summit_xl_back_left_wheel_joint_motor">
+    <actuator name="robot_summit_xl_back_left_wheel_joint_actuator">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -130,7 +134,7 @@
     <origin rpy="0 0 0" xyz="0.229 -0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_front_right_wheel">
     <visual>
@@ -156,7 +160,8 @@
     <joint name="robot_summit_xl_front_right_wheel_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="robot_summit_xl_front_right_wheel_joint_motor">
+    <actuator name="robot_summit_xl_front_right_wheel_joint_actuator">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -172,7 +177,7 @@
     <origin rpy="0 0 0" xyz="-0.229 -0.235 0.0"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
-    <joint_properties damping="0.0" friction="0.0"/>
+    <dynamics damping="0.035" friction="0.0005"/>
   </joint>
   <link name="robot_summit_xl_back_right_wheel">
     <visual>
@@ -198,7 +203,8 @@
     <joint name="robot_summit_xl_back_right_wheel_joint">
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
-    <actuator name="robot_summit_xl_back_right_wheel_joint_motor">
+    <actuator name="robot_summit_xl_back_right_wheel_joint_actuator">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -269,7 +275,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="40" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.6283185307179586"/>
     <origin rpy="0 3.141592653589793 0" xyz="0 0 0.15675"/>
-    <dynamics damping="16.0" friction="0.6"/>
+    <dynamics damping="14.0" friction="0.5"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_1_trans">
@@ -314,7 +320,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="80" lower="0.8203047484373349" upper="5.462880558742252" velocity="0.6283185307179586"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.0016 -0.11875"/>
-    <dynamics damping="8.5" friction="0.9"/>
+    <dynamics damping="12.0" friction="0.9"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="0.994837678437335" soft_upper_limit="5.288347628742252"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_2_trans">
@@ -359,7 +365,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="40" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.6283185307179586"/>
     <origin rpy="-1.5707963267948966 0 0" xyz="0 -0.205 0"/>
-    <dynamics damping="7.5" friction="0.75"/>
+    <dynamics damping="10.0" friction="0.8"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_3_trans">
@@ -404,7 +410,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="40" lower="0.5235987755982988" upper="5.759586531581287" velocity="0.6283185307179586"/>
     <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0 0 -0.205"/>
-    <dynamics damping="6.5" friction="0.95"/>
+    <dynamics damping="7.0" friction="0.55"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="0.6981317055982988" soft_upper_limit="5.585053601581287"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_4_trans">
@@ -449,7 +455,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="20" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.8377580409572781"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.2073 -0.0114"/>
-    <dynamics damping="4.5" friction="0.35"/>
+    <dynamics damping="5.5" friction="0.35"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_5_trans">
@@ -494,7 +500,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="20" lower="1.1344640137963142" upper="5.148721293383272" velocity="0.8377580409572781"/>
     <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0 0 -0.10375"/>
-    <dynamics damping="4.0" friction="0.3"/>
+    <dynamics damping="4.5" friction="0.25"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="1.3089969437963143" soft_upper_limit="4.974188363383272"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_6_trans">
@@ -539,7 +545,7 @@
     <axis xyz="0 0 1"/>
     <limit effort="20" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.8377580409572781"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.10375 0"/>
-    <dynamics damping="3.5" friction="0.2"/>
+    <dynamics damping="4.0" friction="0.2"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_7_trans">
@@ -552,7 +558,8 @@
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
-  <link name="robot_j2s7s300_end_effector"/>
+  <link name="robot_j2s7s300_end_effector">
+  </link>
   <joint name="robot_j2s7s300_joint_end_effector" type="fixed">
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_end_effector"/>
@@ -583,9 +590,9 @@
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_1"/>
     <axis xyz="0 0 1"/>
-    <origin rpy="-1.5707963267948966 0.6492624817418906 1.3596114873035827" xyz="0.00279 0.03126 -0.11467"/>
+    <origin rpy="-1.704955772138421 0.6492624817418906 1.6728980880365647" xyz="0.002786 0.03126 -0.114668"/>
     <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.15" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -624,7 +631,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.01" friction="0.0005"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -636,6 +643,13 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_1">
+    <springStiffness value="0.5"/>
+    <springReference value="0.0"/>
+  </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_tip_1">
+    <self_collide>true</self_collide>
+  </gazebo>
   <link name="robot_j2s7s300_link_finger_2">
     <visual>
       <geometry>
@@ -661,9 +675,9 @@
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_2"/>
     <axis xyz="0 0 1"/>
-    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.3861404919338964" xyz="0.02226 -0.02707 -0.11482"/>
+    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.3861404919338964" xyz="0.022256 -0.027073 -0.114668"/>
     <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.15" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -702,7 +716,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.01" friction="0.0005"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -714,6 +728,13 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_2">
+    <springStiffness value="0.5"/>
+    <springReference value="0.0"/>
+  </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_tip_2">
+    <self_collide>true</self_collide>
+  </gazebo>
   <link name="robot_j2s7s300_link_finger_3">
     <visual>
       <geometry>
@@ -739,9 +760,9 @@
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_3"/>
     <axis xyz="0 0 1"/>
-    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.3861404919338964" xyz="-0.02226 -0.02707 -0.11482"/>
+    <origin rpy="-1.5707963267948966 0.6492624817418906 -1.7554521616558967" xyz="-0.022256 -0.027073 -0.114668"/>
     <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.15" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -780,7 +801,7 @@
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.5" friction="0.05"/>
+    <dynamics damping="0.01" friction="0.0005"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -792,6 +813,10 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="robot_j2s7s300_joint_finger_tip_3">
+    <springStiffness value="0.5"/>
+    <springReference value="0.0"/>
+  </gazebo>
   <!-- Sensors -->
   <!-- <xacro:lunalab_summit_xl_sensors prefix="$(arg prefix)"/> -->
   <!-- Miscellaneous -->
