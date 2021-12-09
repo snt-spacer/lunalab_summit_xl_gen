@@ -63,3 +63,64 @@ This enables:
 - Execution of scripts and examples via `ros2 run lunalab_summit_xl_gen <executable>`
 - Launching of setup scripts via `ros2 launch lunalab_summit_xl_gen <launch_script>`
 - Discoverability of shared resources
+
+## Connecting to Real Robot
+
+Below are some general instructions oh how to connect to the real Summit XL-GEN.
+
+### On-board router (local network of Summit XL-GEN)
+
+- SSID: `SXL00-200505AA`
+- Password:
+
+### Internal compute unit
+
+- IPv4: `192.168.0.200`
+- hostname: `SXL00-200505AA`
+- user: `summit`
+- Password:
+
+### NVIDIA Jetson Xavier NX Developer Kit
+
+- IPv4: `192.168.0.150`
+- hostname: `NJX18`
+- user: `spacer`
+- Password:
+
+### Connecting over SSH
+
+Once connected Summit XL-GEN network, you connect to the internal compute unit of Summit over SSH.
+
+```bash
+# Internal compute unit
+ssh summit@192.168.0.200
+# Xavier
+ssh spacer@192.168.0.150
+```
+
+#### (Optional) Configuration of host and SSH alias
+
+If desired, you can register these devices as hosts and configure their aliases for SSH.
+
+```bash
+# Add alias for `summit` host
+echo -e "\n# Summit XL-GEN (LunaLab)\n192.168.0.200 SXL00-200505AA summit" | sudo tee -a /etc/hosts
+# Add alias for `xavier` host
+echo -e "\n# NVIDIA Jetson Xavier NX Developer Kit (LunaLab, mounted on Summit XL-GEN)\n192.168.0.150 NJX18 xavier" | sudo tee -a /etc/hosts
+```
+
+```bash
+# Add `lunalab_summit` to SSH config
+echo -e "\n# Summit XL-GEN (LunaLab)\nHost lunalab_summit\n\tHostname summit\n\tUser summit" | tee -a ${HOME}/.ssh/config
+# Add `lunalab_xavier` to SSH config
+echo -e "\n# NVIDIA Jetson Xavier NX Developer Kit (LunaLab, mounted on Summit XL-GEN)\nHost lunalab_xavier\n\tHostname xavier\n\tUser spacer" | tee -a ${HOME}/.ssh/config
+```
+
+Once enabled, you can SSH into the system using the `lunalab_summit` or `lunalab_xavier` alias.
+
+```bash
+# Internal compute unit
+ssh lunalab_summit
+# Xavier
+ssh lunalab_xavier
+```
