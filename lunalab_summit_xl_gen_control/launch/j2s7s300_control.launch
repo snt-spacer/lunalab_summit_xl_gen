@@ -23,13 +23,10 @@
   </node>
 
   <!-- Action server for Follow Joint Trajectory. All received goals are republished to the internal joint trajectory controller (initialised in kinova_arm_driver). -->
-  <node pkg="kinova_driver" type="joint_trajectory_action_server" name="$(arg prefix_manipulator)joint_trajectory_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)">
-    <param name="robot_type" value="$(arg robot_type)"/>
-  </node>
+  <rosparam param="/$(arg prefix_manipulator)driver/robot_type">$(arg robot_type)</rosparam>
+  <node pkg="kinova_driver" type="joint_trajectory_action_server" name="$(arg prefix_manipulator)joint_trajectory_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)"/>
   <!-- Action server for Gripper Command. All received goals are republished to the internal gripper controller (initialised in kinova_arm_driver). -->
-  <node pkg="kinova_driver" type="gripper_command_action_server" name="$(arg prefix_manipulator)gripper_command_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)">
-    <param name="robot_type" value="$(arg robot_type)"/>
-  </node>
+  <node pkg="kinova_driver" type="gripper_command_action_server" name="$(arg prefix_manipulator)gripper_command_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)"/>
 
   <!-- Robot state publisher -->
   <param name="robot_description" command="xacro '$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_gen.urdf.xacro' name:=lunalab_summit_xl_gen prefix:=''"/>
