@@ -4,7 +4,8 @@
   <!-- Arguments -->
   <arg name="robot_type" default="j2s7s300"/>
   <arg name="prefix" default="robot_"/>
-  <arg name="prefix_manipulator" default="$(arg prefix)$(arg robot_type)_"/>
+  <arg name="robot_name" default="$(arg prefix)$(arg robot_type)"/>
+  <arg name="prefix_manipulator" default="$(arg robot_name)_"/>
   <arg name="ns" default="$(arg robot_type)"/>
   <arg name="serial_number" default="not_set"/>
 
@@ -12,7 +13,7 @@
   <node pkg="kinova_driver" type="kinova_arm_driver" name="$(arg prefix_manipulator)driver" ns="$(arg ns)" respawn="false" output="screen" cwd="node" args="$(arg robot_type)">
     <rosparam file="$(find lunalab_summit_xl_gen_control)/config/$(arg robot_type)_parameters.yaml" command="load"/>
     <param name="serial_number" value="$(arg serial_number)"/>
-    <param name="robot_name" value="$(arg prefix_manipulator)"/>
+    <param name="robot_name" value="$(arg robot_name)"/>
     <param name="robot_type" value="$(arg robot_type)"/>
   </node>
   <node pkg="kinova_driver" type="kinova_tf_updater" name="$(arg prefix_manipulator)tf_updater" ns="$(arg ns)" respawn="false" output="screen" cwd="node" args="$(arg robot_type)">
