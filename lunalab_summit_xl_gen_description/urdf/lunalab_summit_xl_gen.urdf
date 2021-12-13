@@ -75,7 +75,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_front_left_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -118,7 +117,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_back_left_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -161,7 +159,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_front_right_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -204,7 +201,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_back_right_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -323,7 +319,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_1_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -368,7 +363,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_2_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -413,7 +407,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_3_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -458,7 +451,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_4_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -503,7 +495,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_5_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -548,7 +539,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_6_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -593,7 +583,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_7_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -922,12 +911,14 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_finger_2">
+      <param name="initial_position">0.2</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_finger_3">
+      <param name="initial_position">0.2</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>

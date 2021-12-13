@@ -96,7 +96,6 @@
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
       <actuator name="${prefix}wheel_joint_actuator">
-        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
         <motorTorqueConstant>20</motorTorqueConstant>
       </actuator>

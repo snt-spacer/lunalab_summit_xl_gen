@@ -5,7 +5,6 @@
   <!-- Imported elements -->
   <!--                   -->
   <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova_inertial.xacro"/>
-  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/manipulators/kinova/kinova.gazebo"/>
 
   <!--       -->
   <!-- Macro -->
@@ -140,7 +139,6 @@
           <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="${joint_name}_actuator">
-          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
           <mechanicalReduction>160</mechanicalReduction>
         </actuator>
       </transmission>
