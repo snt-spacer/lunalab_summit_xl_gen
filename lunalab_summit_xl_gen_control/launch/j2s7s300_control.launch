@@ -6,7 +6,7 @@
   <arg name="prefix" default="robot_"/>
   <arg name="robot_name" default="$(arg prefix)$(arg robot_type)"/>
   <arg name="prefix_manipulator" default="$(arg robot_name)_"/>
-  <arg name="ns" default="$(arg robot_type)"/>
+  <arg name="ns" default="/"/>
   <arg name="serial_number" default="not_set"/>
 
   <!-- Driver of the manipulator -->
@@ -23,15 +23,8 @@
   </node>
 
   <!-- Action server for Follow Joint Trajectory. All received goals are republished to the internal joint trajectory controller (initialised in kinova_arm_driver). -->
-  <rosparam param="/$(arg prefix_manipulator)driver/robot_type">$(arg robot_type)</rosparam>
-  <node pkg="kinova_driver" type="joint_trajectory_action_server" name="$(arg prefix_manipulator)joint_trajectory_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)"/>
+  <node pkg="kinova_driver" type="joint_trajectory_action_server" name="$(arg prefix_manipulator)joint_trajectory_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_name)"/>
   <!-- Action server for Gripper Command. All received goals are republished to the internal gripper controller (initialised in kinova_arm_driver). -->
-  <node pkg="kinova_driver" type="gripper_command_action_server" name="$(arg prefix_manipulator)gripper_command_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_type)"/>
-
-  <!-- Robot state publisher -->
-  <param name="robot_description" command="xacro '$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_gen.urdf.xacro' name:=lunalab_summit_xl_gen prefix:=''"/>
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="$(arg prefix_manipulator)robot_state_publisher" ns="$(arg ns)" respawn="false" output="screen">
-    <remap from="joint_states" to="/$(arg prefix_manipulator)driver/out/joint_state"/>
-  </node>
+  <node pkg="kinova_driver" type="gripper_command_action_server" name="$(arg prefix_manipulator)gripper_command_action_server" ns="$(arg ns)" respawn="false" output="screen" args="$(arg robot_name)"/>
 
 </launch>
