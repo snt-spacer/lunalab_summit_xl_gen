@@ -23,8 +23,7 @@ Below is an overview of the included packages, with a small description of their
 
 These are the primary dependencies required to use this project.
 
-- ROS 2 [Foxy](https://docs.ros.org/en/foxy/Installation.html) OR [Rolling (recommended)](https://docs.ros.org/en/rolling/Installation.html)
-  - Support for [Galactic](https://docs.ros.org/en/galactic/Installation.html) will be added once it is released and binary packages are available. It will then become the recommended distribution to use.
+- ROS 2 [Rolling](https://docs.ros.org/en/rolling/Installation.html)
 - Ignition [Fortress](https://ignitionrobotics.org/docs/fortress)
 - [ros_ign](https://github.com/ignitionrobotics/ros_ign/tree/ros2)
   - Install/build a version based on the selected combination of ROS 2 release and Ignition version
@@ -60,8 +59,8 @@ source lunalab_summit_xl_gen_ws/install/local_setup.bash
 
 This enables:
 
-- Execution of scripts and examples via `ros2 run lunalab_summit_xl_gen <executable>`
-- Launching of setup scripts via `ros2 launch lunalab_summit_xl_gen <launch_script>`
+- Execution of scripts and examples via `ros2 run lunalab_summit_xl_gen_* <executable>`
+- Launching of setup scripts via `ros2 launch lunalab_summit_xl_gen_* <launch_script>`
 - Discoverability of shared resources
 
 ## Connecting to Real Robot
