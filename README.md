@@ -123,3 +123,20 @@ ssh lunalab_summit
 # Xavier
 ssh lunalab_xavier
 ```
+
+### Firewall
+
+If you experience some communication issues even though all nodes and their topics/services/actions are visible, you might need to disable firewall. Instead of making it completely inactive, allow communication for specific IP adresses.
+
+Below is an example of how to achieve this for Uncomplicated Firewall (UFW).
+
+```bash
+# Restrict these rules to the specific network interface (e.g. wlp0s20f3)
+export NETWORK_INTERFACE=wlp*
+# Allow all communication with IP address of internal compute unit
+sudo ufw allow in on ${NETWORK_INTERFACE} from 192.168.0.200
+sudo ufw allow in on ${NETWORK_INTERFACE} to 192.168.0.200
+# Allow all communication with IP address of Xavier
+sudo ufw allow in on ${NETWORK_INTERFACE} from 192.168.0.150
+sudo ufw allow in on ${NETWORK_INTERFACE} to 192.168.0.150
+```
