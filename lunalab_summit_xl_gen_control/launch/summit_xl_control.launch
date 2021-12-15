@@ -9,7 +9,7 @@
   <arg name="move_base_prefix" default="$(arg move_base_name)_"/>
 
   <!-- Topic name for command velocity -->
-  <arg name="cmd_vel" default="$(arg move_base_name)/cmd_vel"/>
+  <arg name="cmd_vel" default="/robotnik_base_control/cmd_vel"/>
 
   <!-- Odometry frames -->
   <arg name="odom_frame" default="$(arg move_base_prefix)odom"/>
@@ -42,8 +42,8 @@
     <param name="gearbox_ratio" value="$(arg robot_gearbox)"/>
     <param name="motors_encoder" value="$(arg has_encoder)"/>
     <param name="k_battery_voltage_offset" value="$(arg battery_voltage_offset)"/>
-
     <param name="k_analog_inputs_multipliers" value="$(arg k_analog_inputs_multipliers)"/>
+    <!-- Remap here -->
   </node>
 
   <!-- Battery estimation -->
