@@ -2,15 +2,49 @@
 <launch>
 
   <!-- Arguments -->
-  <arg name="robot_type" default="summit_xl"/>
-  <arg name="prefix" default="robot_"/>
-  <arg name="robot_name" default="$(arg prefix)$(arg robot_type)"/>
-  <arg name="prefix_move_base" default="$(arg robot_name)_"/>
   <arg name="ns" default="/"/>
-  <arg name="cmd_vel" default="$(arg robot_name)/cmd_vel"/>
+  <arg name="prefix" default="robot_"/>
+  <arg name="move_base_type" default="summit_xl"/>
+  <arg name="move_base_name" default="$(arg prefix)$(arg move_base_type)"/>
+  <arg name="move_base_prefix" default="$(arg move_base_name)_"/>
+
+  <!-- Topic name for command velocity -->
+  <arg name="cmd_vel" default="$(arg move_base_name)/cmd_vel"/>
+
+  <!-- Odometry frames -->
+  <arg name="odom_frame" default="$(arg move_base_prefix)odom"/>
+  <arg name="base_frame" default="$(arg move_base_prefix)base_footprint"/>
+  <arg name="odom_broadcast_tf" default="true"/>
+
+  <!-- Move base kinematics -->
+  <arg name="kinematics" default="$(optenv ROBOT_KINEMATICS skid)"/>
+  <arg name="wheel_diameter" default="$(optenv ROBOT_WHEEL_DIAMETER 0.22)"/>
+  <arg name="track_width" default="$(optenv ROBOT_TRACK_WIDTH 0.439)"/>
+  <arg name="wheel_base" default="$(optenv ROBOT_WHEEL_BASE 0.430)"/>
+
+  <!-- Battery -->
+  <arg name="battery_voltage_offset" default="$(optenv ROBOT_BASE_HW_BATTERY_VOLTAGE_OFFSET 0.0)"/>
+  <arg name="battery_voltage" default="$(optenv ROBOT_BATTERY_VOLTAGE 24)"/>
+  <arg name="read_voltage_from_analog_input" default="$(optenv ROBOT_READ_VOLTAGE_FROM_ANALOG_INPUT true)"/>
+  <arg name="voltage_analog_input_number" default="$(optenv ROBOT_VOLTAGE_ANALOG_INPUT_NUMBER 1)" />
+  <arg name="current_analog_input_number" default="$(optenv ROBOT_CURRENT_ANALOG_INPUT_NUMBER 2)" />
+
+  <!-- Robotnik base HW -->
+  <include file="$(find summit_xl_bringup)/launch/robotnik_base_hw.launch">
+    <arg name="prefix" value="$(arg move_base_prefix)"/>
+    <arg name="battery_voltage_offset" value="$(arg battery_voltage_offset)"/>
+  </include>
+
+  <!-- Battery estimation -->
+  <include file="$(find battery_estimation)/launch/table_battery.launch">
+    <arg name="battery_voltage" value="$(arg battery_voltage)"/>
+    <arg name="read_voltage_from_analog_input" value="$(arg read_voltage_from_analog_input)"/>
+    <arg name="voltage_analog_input_number" value="$(arg voltage_analog_input_number)" />
+    <arg name="current_analog_input_number" value="$(arg current_analog_input_number)" />
+  </include>
 
   <!-- Controller -->
-  <rosparam file="$(find summit_xl_control)/config/summit_xl_parameters.yaml" command="load" subst_value="true"/>
+  <rosparam file="$(find lunalab_summit_xl_gen_control)/config/summit_xl_parameters.yaml" command="load" subst_value="true"/>
   <node pkg="controller_manager" type="spawner" name="controller_spawner" ns="$(arg ns)" respawn="false" output="screen" args="
     robotnik_base_control
     joint_read_state_controller
@@ -19,7 +53,7 @@
 
   <!-- Twist message muxer -->
   <node pkg="twist_mux" type="twist_mux" name="twist_mux" ns="$(arg ns)" respawn="false" output="screen">
-    <rosparam command="load" file="$(find summit_xl_control)/config/summit_xl_twist_mux.yaml" />
+    <rosparam command="load" file="$(find lunalab_summit_xl_gen_control)/config/summit_xl_twist_mux.yaml" />
     <remap from="cmd_vel_out" to="$(arg cmd_vel)" />
   </node>
 
