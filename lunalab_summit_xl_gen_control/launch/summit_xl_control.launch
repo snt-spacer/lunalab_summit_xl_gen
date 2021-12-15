@@ -35,6 +35,7 @@
   <arg name="current_analog_input_number" default="$(optenv ROBOT_CURRENT_ANALOG_INPUT_NUMBER 2)" />
 
   <!-- Robotnik base HW -->
+  <arg name="launch_prefix" default=""/>
   <rosparam file="$(find lunalab_summit_xl_gen_control)/config/robotnik_base_hw/summit_xl_robotnik_base_hw_limits.yaml" command="load"/>
   <rosparam file="$(find lunalab_summit_xl_gen_control)/config/robotnik_base_hw/summit_xl_robotnik_base_hw.yaml" command="load"/>
   <node name="robotnik_base_hw" pkg="robotnik_base_hw" type="robotnik_base_hw_node" output="screen" launch-prefix="$(arg launch_prefix)">
@@ -66,5 +67,8 @@
     <rosparam command="load" file="$(find lunalab_summit_xl_gen_control)/config/summit_xl_twist_mux.yaml" />
     <remap from="cmd_vel_out" to="$(arg cmd_vel)" />
   </node>
+
+    <!-- Robot description -->
+  <param name="robot_description" command="xacro '$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_gen.urdf.xacro' name:=lunalab_summit_xl_gen prefix:='$(arg prefix)'"/>
 
 </launch>

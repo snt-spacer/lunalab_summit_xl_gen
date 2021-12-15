@@ -12,7 +12,7 @@ robotnik_base_hw:
   motors_encoder: true
   motors_encoder_factor: 4000
 
-  joint_name: [summit_xl_front_left_wheel_joint,summit_xl_back_left_wheel_joint,summit_xl_front_right_wheel_joint,summit_xl_back_right_wheel_joint]
+  joint_name: [robot_summit_xl_front_left_wheel_joint,robot_summit_xl_back_left_wheel_joint,robot_summit_xl_front_right_wheel_joint,robot_summit_xl_back_right_wheel_joint]
   joint_can_id: [1,2,3,4]
   joint_type: [vel,vel,vel,vel]
   joint_home_offset: [0,0,0,0]
@@ -77,10 +77,10 @@ generic_hw_control_loop:
 # Settings for ros_control hardware interface
 hardware_interface:
   joints:
-     - summit_xl_front_right_wheel_joint
-     - summit_xl_front_left_wheel_joint
-     - summit_xl_back_right_wheel_joint
-     - summit_xl_back_left_wheel_joint
+     - robot_summit_xl_front_right_wheel_joint
+     - robot_summit_xl_front_left_wheel_joint
+     - robot_summit_xl_back_right_wheel_joint
+     - robot_summit_xl_back_left_wheel_joint
 
      #- left_wheel_joint
      #- right_wheel_joint
