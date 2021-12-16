@@ -13,6 +13,7 @@
   <!-- Driver of the manipulator -->
   <node pkg="kinova_driver" type="kinova_arm_driver" name="$(arg manipulator_prefix)driver" ns="$(arg ns)" respawn="false" output="screen" cwd="node" args="$(arg manipulator_type)">
     <rosparam file="$(find lunalab_summit_xl_gen_control)/config/$(arg manipulator_type)_parameters.yaml" command="load"/>
+    <remap from="/$(arg manipulator_prefix)driver/out/joint_state" to="/joint_states"/>
     <param name="serial_number" value="$(arg kinova_serial_number)"/>
     <param name="robot_name" value="$(arg manipulator_name)"/>
     <param name="robot_type" value="$(arg manipulator_type)"/>
