@@ -283,7 +283,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value=["/model/", LaunchConfiguration("robot_name"), "/cmd_vel"],
             description="Ignition topic for `cmd_vel`.",
         ),
-        # Bridge enablers
+        # ROS topic names
         DeclareLaunchArgument(
             "ros_clock", default_value="/clock", description="ROS 2 topic for `clock`."
         ),
