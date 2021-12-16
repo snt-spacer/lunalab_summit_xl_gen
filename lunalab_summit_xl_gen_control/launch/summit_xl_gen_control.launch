@@ -10,21 +10,19 @@
 
   <!-- Manipulator arguments -->
   <arg name="enable_manipulator" default="true"/>
-  <arg name="kinova_serial_number" default="not_set"/>
 
 
   <!-- Move base -->
   <group if="$(arg enable_move_base)">
-    <include file="$(find lunalab_summit_xl_gen)/launch/summit_xl_control.launch">
+    <include file="$(find lunalab_summit_xl_gen_control)/launch/summit_xl_control.launch">
       <arg name="ns" value="$(arg ns)"/>
       <arg name="prefix" value="$(arg prefix)"/>
-      <arg name="kinova_serial_number" value="$(arg kinova_serial_number)"/>
     </include>
   </group>
 
   <!-- Manipulator -->
   <group if="$(arg enable_manipulator)">
-    <include file="$(find lunalab_summit_xl_gen)/launch/j2s7s300_control.launch">
+    <include file="$(find lunalab_summit_xl_gen_control)/launch/j2s7s300_control.launch">
       <arg name="ns" value="$(arg ns)"/>
       <arg name="prefix" value="$(arg prefix)"/>
     </include>
