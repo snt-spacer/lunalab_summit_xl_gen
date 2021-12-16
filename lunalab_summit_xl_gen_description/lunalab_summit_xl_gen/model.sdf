@@ -142,8 +142,8 @@
         <xyz>0 0 1</xyz>
         <limit>
           <lower>0.8203047484373349</lower>
-          <upper>5.462880558742252</upper>
-          <effort>80</effort>
+          <upper>5.462880558742251</upper>
+          <effort>40</effort>
           <velocity>0.6283185307179586</velocity>
         </limit>
         <dynamics>

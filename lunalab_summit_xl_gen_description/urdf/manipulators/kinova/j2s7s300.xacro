@@ -54,10 +54,10 @@
   <xacro:property name="joint_2_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_2_origin_xyz" value="0 0.0016 -0.11875"/>
   <xacro:property name="joint_2_origin_rpy" value="-${pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_2_lower_limit" value="${47/180*pi}"/>
-  <xacro:property name="joint_2_upper_limit" value="${313/180*pi}"/>
+  <xacro:property name="joint_2_lower_limit" value="${47*pi/180}"/>
+  <xacro:property name="joint_2_upper_limit" value="${313*pi/180}"/>
   <xacro:property name="joint_2_velocity_limit" value="${36*pi/180}"/>
-  <xacro:property name="joint_2_torque_limit" value="80"/>
+  <xacro:property name="joint_2_torque_limit" value="40"/>
   <xacro:property name="joint_2_damping" value="12.0"/>
   <xacro:property name="joint_2_friction" value="0.9"/>
 
@@ -78,8 +78,8 @@
   <xacro:property name="joint_4_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_4_origin_xyz" value="0 0 -0.205"/>
   <xacro:property name="joint_4_origin_rpy" value="${pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_4_lower_limit" value="${30/180*pi}"/>
-  <xacro:property name="joint_4_upper_limit" value="${330/180*pi}"/>
+  <xacro:property name="joint_4_lower_limit" value="${30*pi/180}"/>
+  <xacro:property name="joint_4_upper_limit" value="${330*pi/180}"/>
   <xacro:property name="joint_4_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_4_torque_limit" value="40"/>
   <xacro:property name="joint_4_damping" value="7.0"/>
@@ -102,8 +102,8 @@
   <xacro:property name="joint_6_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_6_origin_xyz" value="0 0 -0.10375"/>
   <xacro:property name="joint_6_origin_rpy" value="${pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_6_lower_limit" value="${65/180*pi}"/>
-  <xacro:property name="joint_6_upper_limit" value="${295/180*pi}"/>
+  <xacro:property name="joint_6_lower_limit" value="${65*pi/180}"/>
+  <xacro:property name="joint_6_upper_limit" value="${295*pi/180}"/>
   <xacro:property name="joint_6_velocity_limit" value="${48*pi/180}"/>
   <xacro:property name="joint_6_torque_limit" value="20"/>
   <xacro:property name="joint_6_damping" value="4.5"/>
