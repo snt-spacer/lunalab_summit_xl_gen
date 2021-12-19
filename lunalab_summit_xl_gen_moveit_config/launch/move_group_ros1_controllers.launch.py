@@ -209,7 +209,7 @@ def generate_launch_description():
 
     # Trajectory execution
     trajectory_execution = {
-        "allow_trajectory_execution": execute_trajectories,
+        "allow_trajectory_execution": bool(execute_trajectories),
         "moveit_manage_controllers": False,
         "trajectory_execution.allowed_execution_duration_scaling": 1.2,
         "trajectory_execution.allowed_goal_duration_margin": 0.5,
