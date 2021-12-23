@@ -1,7 +1,14 @@
 #!/usr/bin/env -S ros2 launch
 """Configure and setup move group for planning with MoveIt 2"""
 
+from os import path
+from typing import List
+
+import yaml
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition, UnlessCondition
@@ -12,11 +19,6 @@ from launch.substitutions import (
     PathJoinSubstitution,
     PythonExpression,
 )
-from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
-from os import path
-from typing import List
-import yaml
 
 
 def generate_launch_description():
@@ -184,7 +186,8 @@ def generate_launch_description():
             "planning_plugin": "ompl_interface/OMPLPlanner",
             # TODO: Re-enable `default_planner_request_adapters/AddRuckigTrajectorySmoothing` once its issues are resolved
             "request_adapters": "default_planner_request_adapters/AddTimeOptimalParameterization default_planner_request_adapters/ResolveConstraintFrames default_planner_request_adapters/FixWorkspaceBounds default_planner_request_adapters/FixStartStateBounds default_planner_request_adapters/FixStartStateCollision default_planner_request_adapters/FixStartStatePathConstraints",
-            "start_state_max_bounds_error": 0.1,
+            # TODO: Reduce start_state_max_bounds_error once spawning with specific joint configuration is enabled
+            "start_state_max_bounds_error": 1.5707963,
         },
     }
     _ompl_yaml = load_yaml(

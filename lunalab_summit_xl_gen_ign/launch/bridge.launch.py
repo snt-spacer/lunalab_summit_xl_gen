@@ -1,12 +1,14 @@
 #!/usr/bin/env -S ros2 launch
 """Launch various bridges between Ignition Transport and ROS 2"""
 
+from typing import List
+
+from launch_ros.actions import Node
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, LogInfo
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, TextSubstitution
-from launch_ros.actions import Node
-from typing import List
 
 DIR_BOTH = "@"
 DIR_IGN_TO_ROS2 = "["
