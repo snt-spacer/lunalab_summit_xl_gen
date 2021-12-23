@@ -1,16 +1,15 @@
 #!/usr/bin/env -S ros2 launch
-"""Launch of example for controlling Summit XL-GEN (LunaLab variant) in Ignition Gazebo with MoveIt2"""
-"""To control the Summit XL mobile base, try `ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap /cmd_vel:=/lunalab_summit_xl_gen/cmd_vel`"""
+"""Launch default world with the default robot (configurable)"""
+
+from os import path
+from typing import List
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
-from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from os import path
-from typing import List
 
 
 def generate_launch_description() -> LaunchDescription:
@@ -19,26 +18,59 @@ def generate_launch_description() -> LaunchDescription:
     declared_arguments = generate_declared_arguments()
 
     # Get substitution for all arguments
-    world = LaunchConfiguration("world")
+    world_type = LaunchConfiguration("world_type")
     rviz_config = LaunchConfiguration("rviz_config")
     use_sim_time = LaunchConfiguration("use_sim_time")
     ign_verbosity = LaunchConfiguration("ign_verbosity")
     log_level = LaunchConfiguration("log_level")
 
+    # Determine what world/robot combination to launch
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "__world_launch_basename",
+            default_value=["world_", world_type, ".launch.py"],
+        ),
+    )
+
     # List of included launch descriptions
     launch_descriptions = [
-        # Launch Ignition Gazebo
+        # Launch Ignition Gazebo with the required ROS<->IGN bridges
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 PathJoinSubstitution(
                     [
-                        FindPackageShare("ros_ign_gazebo"),
+                        FindPackageShare("lunalab_summit_xl_gen_ign"),
                         "launch",
-                        "ign_gazebo.launch.py",
+                        "examples",
+                        "worlds",
+                        LaunchConfiguration("__world_launch_basename"),
                     ]
                 )
             ),
-            launch_arguments=[("ign_args", [world, " -v ", ign_verbosity])],
+            launch_arguments=[
+                ("use_sim_time", use_sim_time),
+                ("ign_verbosity", ign_verbosity),
+                ("log_level", log_level),
+            ],
+        ),
+        # Spawn robot
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution(
+                    [
+                        FindPackageShare("lunalab_summit_xl_gen_ign"),
+                        "launch",
+                        "examples",
+                        "robots",
+                        "robot_lunalab_summit_xl_gen.launch.py",
+                    ]
+                )
+            ),
+            launch_arguments=[
+                ("use_sim_time", use_sim_time),
+                ("ign_verbosity", ign_verbosity),
+                ("log_level", log_level),
+            ],
         ),
         # Launch move_group of MoveIt 2
         IncludeLaunchDescription(
@@ -52,69 +84,19 @@ def generate_launch_description() -> LaunchDescription:
                 )
             ),
             launch_arguments=[
+                ("ros2_control_plugin", "ignition"),
+                ("ros2_control_command_interface", "effort"),
+                # TODO: Re-enable colligion geometry for manipulator arm once spawning with specific joint configuration is enabled
+                ("collision_chassis", "false"),
+                ("collision_arm", "false"),
                 ("rviz_config", rviz_config),
                 ("use_sim_time", use_sim_time),
                 ("log_level", log_level),
             ],
         ),
-        # Launch move_group of MoveIt 2
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                PathJoinSubstitution(
-                    [
-                        FindPackageShare("lunalab_summit_xl_gen_ign"),
-                        "launch",
-                        "bridge.launch.py",
-                    ]
-                )
-            ),
-            launch_arguments=[
-                ("world_name", "moveit_follow_target_world"),
-                ("use_sim_time", use_sim_time),
-                ("log_level", log_level),
-            ],
-        ),
     ]
 
-    # List of nodes to be launched
-    nodes = [
-        # Bridge for position of the target
-        Node(
-            package="ros_ign_bridge",
-            executable="parameter_bridge",
-            output="log",
-            arguments=[
-                "/model/target/pose"
-                + "@"
-                + "geometry_msgs/msg/PoseStamped[ignition.msgs.Pose",
-                "--ros-args",
-                "--log-level",
-                log_level,
-            ],
-            parameters=[{"use_sim_time": use_sim_time}],
-            remappings=[("/model/target/pose", "/target_pose")],
-        ),
-        # Run the example script itself
-        Node(
-            package="lunalab_summit_xl_gen_ign",
-            executable="ex_moveit_follow_target.py",
-            output="log",
-            arguments=["--ros-args", "--log-level", log_level],
-            parameters=[{"use_sim_time": use_sim_time}],
-        ),
-        # # Run teleop twist keyboard for move base
-        # Node(
-        #     package="teleop_twist_keyboard",
-        #     executable="teleop_twist_keyboard",
-        #     output="screen",
-        #     emulate_tty=True,
-        #     arguments=["--ros-args", "--log-level", log_level],
-        #     parameters=[{"use_sim_time": use_sim_time}],
-        #     remappings=[("/cmd_vel", "/lunalab_summit_xl_gen/cmd_vel")],
-        # ),
-    ]
-
-    return LaunchDescription(declared_arguments + launch_descriptions + nodes)
+    return LaunchDescription(declared_arguments + launch_descriptions)
 
 
 def generate_declared_arguments() -> List[DeclareLaunchArgument]:
@@ -123,15 +105,11 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
     """
 
     return [
-        # World for Ignition Gazebo
+        # World selection
         DeclareLaunchArgument(
-            "world",
-            default_value=path.join(
-                get_package_share_directory("lunalab_summit_xl_gen_ign"),
-                "worlds",
-                "moveit_follow_target.sdf",
-            ),
-            description="Name or filepath of world to load.",
+            "world_type",
+            default_value="default",
+            description="Name of the world configuration to load.",
         ),
         # Miscellaneous
         DeclareLaunchArgument(
@@ -139,7 +117,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value=path.join(
                 get_package_share_directory("lunalab_summit_xl_gen_ign"),
                 "rviz",
-                "ign_moveit.rviz",
+                "ign_moveit2.rviz",
             ),
             description="Path to configuration for RViz2.",
         ),

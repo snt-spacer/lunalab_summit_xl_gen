@@ -1,5 +1,5 @@
 repositories:
-  ign_moveit2:
+  pymoveit2:
     type: git
-    url: https://github.com/AndrejOrsula/ign_moveit2.git
-    version: master
+    url: https://github.com/AndrejOrsula/pymoveit2.git
+    version: devel
