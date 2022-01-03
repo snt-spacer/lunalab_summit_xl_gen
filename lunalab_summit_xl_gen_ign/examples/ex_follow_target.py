@@ -7,7 +7,6 @@ from pymoveit2 import MoveIt2
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
-
 from robots import lunalab_summit_xl_gen
 
 
