@@ -151,7 +151,7 @@
     collision_gripper:=true
     mimic_gripper_joints:=false
     ros2_control:=true
-    ros2_control_plugin:=ignition
+    ros2_control_plugin:=ign
     ros2_control_command_interface:=effort
     gazebo_preserve_fixed_joint:=false
     gazebo_self_collide_fingers:=true

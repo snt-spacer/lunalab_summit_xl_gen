@@ -1250,7 +1250,7 @@
       <wheel_separation>0.47</wheel_separation>
       <wheel_radius>0.11</wheel_radius>
     </plugin>
-    <plugin name='ignition_ros2_control::IgnitionROS2ControlPlugin' filename='ignition_ros2_control-system'>
+    <plugin name='ign_ros2_control::IgnitionROS2ControlPlugin' filename='ign_ros2_control-system'>
       <parameters>/home/andrej/ws/code/repos/lunalab_summit_xl_gen/install/share/lunalab_summit_xl_gen_moveit_config/config/controllers_effort.yaml</parameters>
     </plugin>
     <static>false</static>
