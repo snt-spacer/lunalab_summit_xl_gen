@@ -212,7 +212,7 @@
   </gazebo>
   <ros2_control name="SummitXlSystem" type="system">
     <hardware>
-      <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <joint name="robot_summit_xl_front_left_wheel_joint">
       <param name="initial_position">0</param>
@@ -847,7 +847,7 @@
   </gazebo>
   <ros2_control name="KinovaArmSystem" type="system">
     <hardware>
-      <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <joint name="robot_j2s7s300_joint_1">
       <param name="initial_position">0.0</param>
@@ -901,7 +901,7 @@
   </ros2_control>
   <ros2_control name="KinovaGripperSystem" type="system">
     <hardware>
-      <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <joint name="robot_j2s7s300_joint_finger_1">
       <param name="initial_position">0.2</param>
@@ -948,7 +948,7 @@
   <!-- Miscellaneous -->
   <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
   <gazebo>
-    <plugin filename="ignition_ros2_control-system" name="ignition_ros2_control::IgnitionROS2ControlPlugin">
+    <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
       <parameters>/home/andrej/ws/code/repos/lunalab_summit_xl_gen/install/share/lunalab_summit_xl_gen_moveit_config/config/controllers_effort.yaml</parameters>
     </plugin>
   </gazebo>

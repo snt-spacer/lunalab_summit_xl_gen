@@ -435,8 +435,8 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "ros2_control_plugin",
-            default_value="ignition",
-            description="The ros2_control plugin that should be loaded for the manipulator ('fake', 'ignition', 'real' or custom).",
+            default_value="ign",
+            description="The ros2_control plugin that should be loaded for the manipulator ('fake', 'ign', 'real' or custom).",
         ),
         DeclareLaunchArgument(
             "ros2_control_command_interface",
@@ -468,12 +468,12 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         DeclareLaunchArgument(
             "gazebo_joint_trajectory_controller",
             default_value="false",
-            description="Flag to enable JointTrajectoryController Gazebo plugin for manipulator. This is not required if `ignition_ros2_control` is used.",
+            description="Flag to enable JointTrajectoryController Gazebo plugin for manipulator. This is not required if `ign_ros2_control` is used.",
         ),
         DeclareLaunchArgument(
             "gazebo_joint_state_publisher",
             default_value="false",
-            description="Flag to enable JointStatePublisher Gazebo plugin for all joints. This is not required if `ignition_ros2_control` is used.",
+            description="Flag to enable JointStatePublisher Gazebo plugin for all joints. This is not required if `ign_ros2_control` is used.",
         ),
         DeclareLaunchArgument(
             "gazebo_pose_publisher",
