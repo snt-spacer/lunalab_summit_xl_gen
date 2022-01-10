@@ -23,6 +23,7 @@ XACRO_ARGS=(
     ros2_control_plugin:=ign
     ros2_control_command_interface:=effort
     gazebo_preserve_fixed_joint:=false
+    gazebo_self_collide:=false
     gazebo_self_collide_fingers:=true
     gazebo_diff_drive:=true
     gazebo_joint_trajectory_controller:=false

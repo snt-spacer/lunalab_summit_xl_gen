@@ -3,14 +3,14 @@
     <link name='robot_summit_xl_base_footprint'>
       <inertial>
         <pose>0.003747446190960834 0 0.1143260959704474 0 0 0</pose>
-        <mass>25.46784</mass>
+        <mass>25.467839999999999</mass>
         <inertia>
           <ixx>1.417421164692676</ixx>
-          <ixy>0.004</ixy>
-          <ixz>-0.02206308944928192</ixz>
-          <iyy>6.898533140266576</iyy>
+          <ixy>0.0040000000000000001</ixy>
+          <ixz>-0.022063089449281922</ixz>
+          <iyy>6.8985331402665757</iyy>
           <iyz>0</iyz>
-          <izz>6.1444862475739</izz>
+          <izz>6.1444862475738997</izz>
         </inertia>
       </inertial>
       <collision name='robot_summit_xl_base_footprint_fixed_joint_lump__robot_summit_xl_base_link_collision'>
@@ -36,8 +36,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -68,10 +68,10 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-6.283185307179586</lower>
-          <upper>6.283185307179586</upper>
+          <lower>-6.2831853071795862</lower>
+          <upper>6.2831853071795862</upper>
           <effort>40</effort>
-          <velocity>0.6283185307179586</velocity>
+          <velocity>0.62831853071795862</velocity>
         </limit>
         <dynamics>
           <damping>14</damping>
@@ -85,14 +85,14 @@
       <pose relative_to='robot_j2s7s300_joint_1'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 -0.002 -0.0605 0 0 0</pose>
-        <mass>0.7477</mass>
+        <mass>0.74770000000000003</mass>
         <inertia>
           <ixx>0.001520323333333333</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
           <iyy>0.001520323333333333</iyy>
           <iyz>0</iyz>
-          <izz>0.00059816</izz>
+          <izz>0.00059816000000000003</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_1_collision'>
@@ -109,8 +109,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -141,14 +141,14 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>0.8203047484373349</lower>
-          <upper>5.462880558742251</upper>
+          <lower>0.82030474843733492</lower>
+          <upper>5.4628805587422509</upper>
           <effort>40</effort>
-          <velocity>0.6283185307179586</velocity>
+          <velocity>0.62831853071795862</velocity>
         </limit>
         <dynamics>
           <damping>12</damping>
-          <friction>0.9</friction>
+          <friction>0.90000000000000002</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -158,14 +158,14 @@
       <pose relative_to='robot_j2s7s300_joint_2'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 -0.103563213 0 0 0 0</pose>
-        <mass>0.8447</mass>
+        <mass>0.84470000000000001</mass>
         <inertia>
-          <ixx>0.0024707475</ixx>
+          <ixx>0.0024707474999999999</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.000380115</iyy>
+          <iyy>0.00038011499999999999</iyy>
           <iyz>0</iyz>
-          <izz>0.0024707475</izz>
+          <izz>0.0024707474999999999</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_2_collision'>
@@ -182,8 +182,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -214,14 +214,14 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-6.283185307179586</lower>
-          <upper>6.283185307179586</upper>
+          <lower>-6.2831853071795862</lower>
+          <upper>6.2831853071795862</upper>
           <effort>40</effort>
-          <velocity>0.6283185307179586</velocity>
+          <velocity>0.62831853071795862</velocity>
         </limit>
         <dynamics>
           <damping>10</damping>
-          <friction>0.8</friction>
+          <friction>0.80000000000000004</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -231,14 +231,14 @@
       <pose relative_to='robot_j2s7s300_joint_3'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 -0.1022447445 0 0 0</pose>
-        <mass>0.8447</mass>
+        <mass>0.84470000000000001</mass>
         <inertia>
-          <ixx>0.0024707475</ixx>
+          <ixx>0.0024707474999999999</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.0024707475</iyy>
+          <iyy>0.0024707474999999999</iyy>
           <iyz>0</iyz>
-          <izz>0.000380115</izz>
+          <izz>0.00038011499999999999</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_3_collision'>
@@ -255,8 +255,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -287,14 +287,14 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>0.5235987755982988</lower>
-          <upper>5.759586531581287</upper>
+          <lower>0.52359877559829882</lower>
+          <upper>5.7595865315812871</upper>
           <effort>40</effort>
-          <velocity>0.6283185307179586</velocity>
+          <velocity>0.62831853071795862</velocity>
         </limit>
         <dynamics>
           <damping>7</damping>
-          <friction>0.55</friction>
+          <friction>0.55000000000000004</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -304,12 +304,12 @@
       <pose relative_to='robot_j2s7s300_joint_4'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0.081 -0.0086 0 0 0</pose>
-        <mass>0.6763</mass>
+        <mass>0.67630000000000001</mass>
         <inertia>
           <ixx>0.00142023</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.000304335</iyy>
+          <iyy>0.00030433499999999998</iyy>
           <iyz>0</iyz>
           <izz>0.00142023</izz>
         </inertia>
@@ -328,8 +328,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -360,14 +360,14 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-6.283185307179586</lower>
-          <upper>6.283185307179586</upper>
+          <lower>-6.2831853071795862</lower>
+          <upper>6.2831853071795862</upper>
           <effort>20</effort>
-          <velocity>0.8377580409572781</velocity>
+          <velocity>0.83775804095727813</velocity>
         </limit>
         <dynamics>
           <damping>5.5</damping>
-          <friction>0.35</friction>
+          <friction>0.34999999999999998</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -377,14 +377,14 @@
       <pose relative_to='robot_j2s7s300_joint_5'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0.0028848942 -0.0541932613 0 0 0</pose>
-        <mass>0.463</mass>
+        <mass>0.46300000000000002</mass>
         <inertia>
-          <ixx>0.0004321333333333334</ixx>
+          <ixx>0.00043213333333333339</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.0004321333333333334</iyy>
+          <iyy>0.00043213333333333339</iyy>
           <iyz>0</iyz>
-          <izz>9.260000000000001e-05</izz>
+          <izz>9.2600000000000015e-05</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_5_collision'>
@@ -401,8 +401,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -434,9 +434,9 @@
         <xyz>0 0 1</xyz>
         <limit>
           <lower>1.134464013796314</lower>
-          <upper>5.148721293383272</upper>
+          <upper>5.1487212933832716</upper>
           <effort>20</effort>
-          <velocity>0.8377580409572781</velocity>
+          <velocity>0.83775804095727813</velocity>
         </limit>
         <dynamics>
           <damping>4.5</damping>
@@ -450,14 +450,14 @@
       <pose relative_to='robot_j2s7s300_joint_6'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0.0497208855 -0.0028562765 0 0 0</pose>
-        <mass>0.463</mass>
+        <mass>0.46300000000000002</mass>
         <inertia>
-          <ixx>0.0004321333333333334</ixx>
+          <ixx>0.00043213333333333339</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>9.260000000000001e-05</iyy>
+          <iyy>9.2600000000000015e-05</iyy>
           <iyz>0</iyz>
-          <izz>0.0004321333333333334</izz>
+          <izz>0.00043213333333333339</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_6_collision'>
@@ -474,8 +474,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -506,14 +506,14 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-6.283185307179586</lower>
-          <upper>6.283185307179586</upper>
+          <lower>-6.2831853071795862</lower>
+          <upper>6.2831853071795862</upper>
           <effort>20</effort>
-          <velocity>0.8377580409572781</velocity>
+          <velocity>0.83775804095727813</velocity>
         </limit>
         <dynamics>
           <damping>4</damping>
-          <friction>0.2</friction>
+          <friction>0.20000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -523,14 +523,14 @@
       <pose relative_to='robot_j2s7s300_joint_7'>0 0 0 0 0 0</pose>
       <inertial>
         <pose>0 0 -0.06 0 0 0</pose>
-        <mass>0.99</mass>
+        <mass>0.98999999999999999</mass>
         <inertia>
           <ixx>0.0003453249999999999</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
           <iyy>0.0003453249999999999</iyy>
           <iyz>0</iyz>
-          <izz>0.0005815999999999999</izz>
+          <izz>0.00058159999999999993</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_7_collision'>
@@ -547,8 +547,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
             </ode>
           </friction>
         </surface>
@@ -585,7 +585,7 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.15</damping>
+          <damping>0.14999999999999999</damping>
           <friction>0.01</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
@@ -598,12 +598,12 @@
         <pose>0.022 0 0 0 0 0</pose>
         <mass>0.01</mass>
         <inertia>
-          <ixx>7.9e-07</ixx>
+          <ixx>7.8999999999999995e-07</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>7.9e-07</iyy>
+          <iyy>7.8999999999999995e-07</iyy>
           <iyz>0</iyz>
-          <izz>8e-08</izz>
+          <izz>8.0000000000000002e-08</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_finger_1_collision'>
@@ -620,8 +620,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.6</mu>
-              <mu2>1.6</mu2>
+              <mu>1.6000000000000001</mu>
+              <mu2>1.6000000000000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -650,7 +650,7 @@
         </limit>
         <dynamics>
           <damping>0.01</damping>
-          <friction>0.0005</friction>
+          <friction>0.00050000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0.5</spring_stiffness>
         </dynamics>
@@ -658,8 +658,8 @@
       <physics>
         <ode>
           <limit>
-            <cfm>0.0</cfm>
-            <erp>0.2</erp>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
           </limit>
         </ode>
       </physics>
@@ -670,12 +670,12 @@
         <pose>0.022 0 0 0 0 0</pose>
         <mass>0.01</mass>
         <inertia>
-          <ixx>7.9e-07</ixx>
+          <ixx>7.8999999999999995e-07</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>7.9e-07</iyy>
+          <iyy>7.8999999999999995e-07</iyy>
           <iyz>0</iyz>
-          <izz>8e-08</izz>
+          <izz>8.0000000000000002e-08</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_finger_tip_1_collision'>
@@ -692,8 +692,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.6</mu>
-              <mu2>1.6</mu2>
+              <mu>1.6000000000000001</mu>
+              <mu2>1.6000000000000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -722,7 +722,7 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.15</damping>
+          <damping>0.14999999999999999</damping>
           <friction>0.01</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
@@ -735,12 +735,12 @@
         <pose>0.022 0 0 0 0 0</pose>
         <mass>0.01</mass>
         <inertia>
-          <ixx>7.9e-07</ixx>
+          <ixx>7.8999999999999995e-07</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>7.9e-07</iyy>
+          <iyy>7.8999999999999995e-07</iyy>
           <iyz>0</iyz>
-          <izz>8e-08</izz>
+          <izz>8.0000000000000002e-08</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_finger_2_collision'>
@@ -757,8 +757,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.6</mu>
-              <mu2>1.6</mu2>
+              <mu>1.6000000000000001</mu>
+              <mu2>1.6000000000000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -787,7 +787,7 @@
         </limit>
         <dynamics>
           <damping>0.01</damping>
-          <friction>0.0005</friction>
+          <friction>0.00050000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0.5</spring_stiffness>
         </dynamics>
@@ -795,8 +795,8 @@
       <physics>
         <ode>
           <limit>
-            <cfm>0.0</cfm>
-            <erp>0.2</erp>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
           </limit>
         </ode>
       </physics>
@@ -807,12 +807,12 @@
         <pose>0.022 0 0 0 0 0</pose>
         <mass>0.01</mass>
         <inertia>
-          <ixx>7.9e-07</ixx>
+          <ixx>7.8999999999999995e-07</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>7.9e-07</iyy>
+          <iyy>7.8999999999999995e-07</iyy>
           <iyz>0</iyz>
-          <izz>8e-08</izz>
+          <izz>8.0000000000000002e-08</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_finger_tip_2_collision'>
@@ -829,8 +829,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.6</mu>
-              <mu2>1.6</mu2>
+              <mu>1.6000000000000001</mu>
+              <mu2>1.6000000000000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -859,7 +859,7 @@
           <velocity>1</velocity>
         </limit>
         <dynamics>
-          <damping>0.15</damping>
+          <damping>0.14999999999999999</damping>
           <friction>0.01</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
@@ -872,12 +872,12 @@
         <pose>0.022 0 0 0 0 0</pose>
         <mass>0.01</mass>
         <inertia>
-          <ixx>7.9e-07</ixx>
+          <ixx>7.8999999999999995e-07</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>7.9e-07</iyy>
+          <iyy>7.8999999999999995e-07</iyy>
           <iyz>0</iyz>
-          <izz>8e-08</izz>
+          <izz>8.0000000000000002e-08</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_finger_3_collision'>
@@ -894,8 +894,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.6</mu>
-              <mu2>1.6</mu2>
+              <mu>1.6000000000000001</mu>
+              <mu2>1.6000000000000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -924,7 +924,7 @@
         </limit>
         <dynamics>
           <damping>0.01</damping>
-          <friction>0.0005</friction>
+          <friction>0.00050000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0.5</spring_stiffness>
         </dynamics>
@@ -932,8 +932,8 @@
       <physics>
         <ode>
           <limit>
-            <cfm>0.0</cfm>
-            <erp>0.2</erp>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
           </limit>
         </ode>
       </physics>
@@ -944,12 +944,12 @@
         <pose>0.022 0 0 0 0 0</pose>
         <mass>0.01</mass>
         <inertia>
-          <ixx>7.9e-07</ixx>
+          <ixx>7.8999999999999995e-07</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>7.9e-07</iyy>
+          <iyy>7.8999999999999995e-07</iyy>
           <iyz>0</iyz>
-          <izz>8e-08</izz>
+          <izz>8.0000000000000002e-08</izz>
         </inertia>
       </inertial>
       <collision name='robot_j2s7s300_link_finger_tip_3_collision'>
@@ -966,8 +966,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.6</mu>
-              <mu2>1.6</mu2>
+              <mu>1.6000000000000001</mu>
+              <mu2>1.6000000000000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -991,12 +991,12 @@
         <limit>
           <effort>100</effort>
           <velocity>100</velocity>
-          <lower>-1e16</lower>
-          <upper>1e16</upper>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
         </limit>
         <dynamics>
-          <damping>0.035</damping>
-          <friction>0.0005</friction>
+          <damping>0.035000000000000003</damping>
+          <friction>0.00050000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1008,19 +1008,19 @@
         <pose>0 0 0 0 0 0</pose>
         <mass>6.5</mass>
         <inertia>
-          <ixx>0.03185</ixx>
+          <ixx>0.031850000000000003</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.039325</iyy>
+          <iyy>0.039324999999999999</iyy>
           <iyz>0</iyz>
-          <izz>0.03185</izz>
+          <izz>0.031850000000000003</izz>
         </inertia>
       </inertial>
       <collision name='robot_summit_xl_back_left_wheel_collision'>
         <pose>0 0 0 1.570796326794896 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.15</length>
+            <length>0.14999999999999999</length>
             <radius>0.11</radius>
           </cylinder>
         </geometry>
@@ -1030,7 +1030,7 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.9</mu>
+              <mu>1.8999999999999999</mu>
               <mu2>1.7</mu2>
               <fdir1>1 0 0</fdir1>
             </ode>
@@ -1056,12 +1056,12 @@
         <limit>
           <effort>100</effort>
           <velocity>100</velocity>
-          <lower>-1e16</lower>
-          <upper>1e16</upper>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
         </limit>
         <dynamics>
-          <damping>0.035</damping>
-          <friction>0.0005</friction>
+          <damping>0.035000000000000003</damping>
+          <friction>0.00050000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1073,19 +1073,19 @@
         <pose>0 0 0 0 0 0</pose>
         <mass>6.5</mass>
         <inertia>
-          <ixx>0.03185</ixx>
+          <ixx>0.031850000000000003</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.039325</iyy>
+          <iyy>0.039324999999999999</iyy>
           <iyz>0</iyz>
-          <izz>0.03185</izz>
+          <izz>0.031850000000000003</izz>
         </inertia>
       </inertial>
       <collision name='robot_summit_xl_back_right_wheel_collision'>
         <pose>0 0 0 1.570796326794896 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.15</length>
+            <length>0.14999999999999999</length>
             <radius>0.11</radius>
           </cylinder>
         </geometry>
@@ -1095,7 +1095,7 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.9</mu>
+              <mu>1.8999999999999999</mu>
               <mu2>1.7</mu2>
               <fdir1>1 0 0</fdir1>
             </ode>
@@ -1121,12 +1121,12 @@
         <limit>
           <effort>100</effort>
           <velocity>100</velocity>
-          <lower>-1e16</lower>
-          <upper>1e16</upper>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
         </limit>
         <dynamics>
-          <damping>0.035</damping>
-          <friction>0.0005</friction>
+          <damping>0.035000000000000003</damping>
+          <friction>0.00050000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1138,19 +1138,19 @@
         <pose>0 0 0 0 0 0</pose>
         <mass>6.5</mass>
         <inertia>
-          <ixx>0.03185</ixx>
+          <ixx>0.031850000000000003</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.039325</iyy>
+          <iyy>0.039324999999999999</iyy>
           <iyz>0</iyz>
-          <izz>0.03185</izz>
+          <izz>0.031850000000000003</izz>
         </inertia>
       </inertial>
       <collision name='robot_summit_xl_front_left_wheel_collision'>
         <pose>0 0 0 1.570796326794896 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.15</length>
+            <length>0.14999999999999999</length>
             <radius>0.11</radius>
           </cylinder>
         </geometry>
@@ -1160,7 +1160,7 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.9</mu>
+              <mu>1.8999999999999999</mu>
               <mu2>1.7</mu2>
               <fdir1>1 0 0</fdir1>
             </ode>
@@ -1186,12 +1186,12 @@
         <limit>
           <effort>100</effort>
           <velocity>100</velocity>
-          <lower>-1e16</lower>
-          <upper>1e16</upper>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
         </limit>
         <dynamics>
-          <damping>0.035</damping>
-          <friction>0.0005</friction>
+          <damping>0.035000000000000003</damping>
+          <friction>0.00050000000000000001</friction>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
@@ -1203,19 +1203,19 @@
         <pose>0 0 0 0 0 0</pose>
         <mass>6.5</mass>
         <inertia>
-          <ixx>0.03185</ixx>
+          <ixx>0.031850000000000003</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.039325</iyy>
+          <iyy>0.039324999999999999</iyy>
           <iyz>0</iyz>
-          <izz>0.03185</izz>
+          <izz>0.031850000000000003</izz>
         </inertia>
       </inertial>
       <collision name='robot_summit_xl_front_right_wheel_collision'>
         <pose>0 0 0 1.570796326794896 0 0</pose>
         <geometry>
           <cylinder>
-            <length>0.15</length>
+            <length>0.14999999999999999</length>
             <radius>0.11</radius>
           </cylinder>
         </geometry>
@@ -1225,7 +1225,7 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.9</mu>
+              <mu>1.8999999999999999</mu>
               <mu2>1.7</mu2>
               <fdir1>1 0 0</fdir1>
             </ode>

@@ -66,6 +66,9 @@
   <!-- Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo -->
   <xacro:arg name="gazebo_preserve_fixed_joint" default="false"/>
 
+  <!-- Flag to enable self-collision of all robot links when generating SDF for Gazebo -->
+  <xacro:arg name="gazebo_self_collide" default="false"/>
+
   <!-- Flag to enable self-collision of robot between fingers (finger tips) when generating SDF for Gazebo -->
   <xacro:arg name="gazebo_self_collide_fingers" default="true"/>
 
@@ -137,6 +140,14 @@
 
   <!-- Miscellaneous -->
   <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
+
+
+  <!-- Gazebo - Self-collision -->
+  <xacro:if value="$(arg gazebo_self_collide)">
+    <gazebo>
+      <self_collide>true</self_collide>
+    </gazebo>
+  </xacro:if>
 
   <!-- Gazebo - ROS 2 control (Ignition) -->
   <xacro:if value="$(arg ros2_control)">
