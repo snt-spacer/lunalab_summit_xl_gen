@@ -1045,6 +1045,18 @@
             <uri>meshes/summit_xl/visual/rubber_wheel_left.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+              <normal_map>materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+              <roughness_map>materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+              <metalness_map>materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_summit_xl_back_right_wheel_joint' type='revolute'>
@@ -1110,6 +1122,18 @@
             <uri>meshes/summit_xl/visual/rubber_wheel_right.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+              <normal_map>materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+              <roughness_map>materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+              <metalness_map>materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_summit_xl_front_left_wheel_joint' type='revolute'>
@@ -1175,6 +1199,18 @@
             <uri>meshes/summit_xl/visual/rubber_wheel_left.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+              <normal_map>materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+              <roughness_map>materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+              <metalness_map>materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_summit_xl_front_right_wheel_joint' type='revolute'>
@@ -1240,6 +1276,18 @@
             <uri>meshes/summit_xl/visual/rubber_wheel_right.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+              <normal_map>materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+              <roughness_map>materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+              <metalness_map>materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <plugin name='ignition::gazebo::systems::DiffDrive' filename='ignition-gazebo-diff-drive-system'>

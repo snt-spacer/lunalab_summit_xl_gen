@@ -84,6 +84,22 @@
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
   </gazebo>
+  <gazebo reference="robot_summit_xl_front_left_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_summit_xl_back_left_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_summit_xl_back_left_wheel"/>
@@ -125,6 +141,22 @@
     <mu1 value="1.9"/>
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
+  </gazebo>
+  <gazebo reference="robot_summit_xl_back_left_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
   </gazebo>
   <joint name="robot_summit_xl_front_right_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
@@ -168,6 +200,22 @@
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
   </gazebo>
+  <gazebo reference="robot_summit_xl_front_right_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_summit_xl_back_right_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_summit_xl_back_right_wheel"/>
@@ -209,6 +257,22 @@
     <mu1 value="1.9"/>
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
+  </gazebo>
+  <gazebo reference="robot_summit_xl_back_right_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
   </gazebo>
   <ros2_control name="SummitXlSystem" type="system">
     <hardware>
