@@ -64,7 +64,6 @@
 
     <link name="${prefix}wheel">
       <visual>
-
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <xacro:if value="${left_wheel}">
@@ -105,6 +104,23 @@
       <mu1 value="${rubber_wheel_mu1}"/>
       <mu2 value="${rubber_wheel_mu2}"/>
       <fdir1 value="1 0 0"/>
+    </gazebo>
+
+    <gazebo reference="${prefix}wheel">
+      <visual>
+        <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+                <metal>
+                    <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+                    <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+                    <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+                    <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+                </metal>
+            </pbr>
+        </material>
+      </visual>
     </gazebo>
   </xacro:macro>
 
