@@ -160,7 +160,7 @@ def generate_launch_description():
     # Joint limits
     joint_limits = {
         "robot_description_planning": load_yaml(
-            moveit_config_package, path.join("config", "joint_limits_real.yaml")
+            moveit_config_package, path.join("config", "joint_limits_slow.yaml")
         )
     }
 
