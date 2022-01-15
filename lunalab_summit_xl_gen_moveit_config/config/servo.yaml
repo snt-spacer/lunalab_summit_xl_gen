@@ -7,7 +7,7 @@ scale:
   joint: 0.5 # Max joint angular/linear velocity. Rads or Meters per publish period. Only used for joint commands on joint_command_in_topic.
 
 ## Properties of outgoing commands
-publish_period: 0.2 # 1/Nominal publish rate [seconds]
+publish_period: 0.15 # 1/Nominal publish rate [seconds]
 low_latency_mode: false # Set this to true to publish as soon as an incoming Twist command is received (publish_period is ignored)
 
 # What type of topic does your robot driver expect?
@@ -32,7 +32,7 @@ ee_frame_name: robot_j2s7s300_end_effector # The name of the end effector link, 
 robot_link_command_frame: robot_j2s7s300_link_base # commands must be given in the frame of a robot link. Usually either the base or end effector
 
 ## Stopping behaviour
-incoming_command_timeout: 0.25 # Stop servoing if X seconds elapse without a new command
+incoming_command_timeout: 0.5 # Stop servoing if X seconds elapse without a new command
 # If 0, republish commands forever even if the robot is stationary. Otherwise, specify num. to publish.
 # Important because ROS may drop some messages and we need the robot to halt reliably.
 num_outgoing_halt_msgs_to_publish: 1
@@ -51,14 +51,14 @@ command_out_topic: /joint_trajectory_controller/joint_trajectory # Publish outgo
 
 ## Collision checking for the entire robot body
 check_collisions: true # Check collisions?
-collision_check_rate: 5.0 # [Hz] Collision-checking can easily bog down a CPU if done too often.
+collision_check_rate: 20.0 # [Hz] Collision-checking can easily bog down a CPU if done too often.
 # Two collision check algorithms are available:
 # "threshold_distance" begins slowing down when nearer than a specified distance. Good if you want to tune collision thresholds manually.
 # "stop_distance" stops if a collision is nearer than the worst-case stopping distance and the distance is decreasing. Requires joint acceleration limits
 collision_check_type: threshold_distance
 # Parameters for "threshold_distance"-type collision checking
-self_collision_proximity_threshold: 0.02 # Start decelerating when a self-collision is this far [m]
-scene_collision_proximity_threshold: 0.02 # Start decelerating when a scene collision is this far [m]
+self_collision_proximity_threshold: 0.075 # Start decelerating when a self-collision is this far [m]
+scene_collision_proximity_threshold: 0.075 # Start decelerating when a scene collision is this far [m]
 # Parameters for "stop_distance"-type collision checking
-collision_distance_safety_factor: 1.5 # Must be >= 1. A large safety factor is recommended to account for latency
+collision_distance_safety_factor: 150.0 # Must be >= 1. A large safety factor is recommended to account for latency
 min_allowable_collision_distance: 0.01 # Stop if a collision is closer than this [m]

@@ -157,4 +157,4 @@ arm:
     - SPARS
     - SPARStwo
     - TrajOpt
-  longest_valid_segment_fraction: 0.005
+  longest_valid_segment_fraction: 0.01
