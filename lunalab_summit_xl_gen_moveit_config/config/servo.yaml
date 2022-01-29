@@ -57,8 +57,8 @@ collision_check_rate: 20.0 # [Hz] Collision-checking can easily bog down a CPU i
 # "stop_distance" stops if a collision is nearer than the worst-case stopping distance and the distance is decreasing. Requires joint acceleration limits
 collision_check_type: threshold_distance
 # Parameters for "threshold_distance"-type collision checking
-self_collision_proximity_threshold: 0.075 # Start decelerating when a self-collision is this far [m]
-scene_collision_proximity_threshold: 0.075 # Start decelerating when a scene collision is this far [m]
+self_collision_proximity_threshold: 0.05 # Start decelerating when a self-collision is this far [m]
+scene_collision_proximity_threshold: 0.05 # Start decelerating when a scene collision is this far [m]
 # Parameters for "stop_distance"-type collision checking
 collision_distance_safety_factor: 150.0 # Must be >= 1. A large safety factor is recommended to account for latency
 min_allowable_collision_distance: 0.01 # Stop if a collision is closer than this [m]
