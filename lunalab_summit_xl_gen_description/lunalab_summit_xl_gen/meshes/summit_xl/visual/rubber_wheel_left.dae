@@ -11,7 +11,7 @@
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
-    <effect id="Material_001-effect">
+    <effect id="rubber_wheel_material-effect">
       <profile_COMMON>
         <newparam sid="rubber_wheel_albedo-surface">
           <surface type="2D">
@@ -45,8 +45,8 @@
     </image>
   </library_images>
   <library_materials>
-    <material id="Material_001-material" name="Material.001">
-      <instance_effect url="#Material_001-effect"/>
+    <material id="rubber_wheel_material-material" name="Material.001">
+      <instance_effect url="#rubber_wheel_material-effect"/>
     </material>
   </library_materials>
   <library_geometries>
@@ -84,7 +84,7 @@
         <vertices id="mesh_rubber_wheel-mesh-vertices">
           <input semantic="POSITION" source="#mesh_rubber_wheel-mesh-positions"/>
         </vertices>
-        <triangles material="Material_001-material" count="4864">
+        <triangles material="rubber_wheel_material-material" count="4864">
           <input semantic="VERTEX" source="#mesh_rubber_wheel-mesh-vertices" offset="0"/>
           <input semantic="NORMAL" source="#mesh_rubber_wheel-mesh-normals" offset="1"/>
           <input semantic="TEXCOORD" source="#mesh_rubber_wheel-mesh-map-0" offset="2" set="0"/>
@@ -100,7 +100,7 @@
         <instance_geometry url="#mesh_rubber_wheel-mesh" name="rubber_wheel">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Material_001-material" target="#Material_001-material">
+              <instance_material symbol="rubber_wheel_material-material" target="#rubber_wheel_material-material">
                 <bind_vertex_input semantic="mesh_rubber_wheel-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
