@@ -21,6 +21,14 @@
             <uri>meshes/summit_xl/collision/summit_xl_chassis.stl</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
       </collision>
       <collision name='robot_summit_xl_base_footprint_fixed_joint_lump__robot_j2s7s300_link_base_collision_1'>
         <pose>0.204 0 0.22 0 0 0</pose>
@@ -50,6 +58,17 @@
             <uri>meshes/summit_xl/visual/summit_xl_chassis.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/summit_xl/chassis_albedo.png</albedo_map>
+              <roughness_map>materials/textures/summit_xl/chassis_roughness.png</roughness_map>
+              <metalness_map>materials/textures/summit_xl/chassis_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
       <visual name='robot_summit_xl_base_footprint_fixed_joint_lump__robot_j2s7s300_link_base_visual_1'>
         <pose>0.204 0 0.22 0 0 0</pose>
@@ -59,6 +78,17 @@
             <uri>meshes/kinova/visual/base.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_1' type='revolute'>
@@ -123,15 +153,17 @@
             <uri>meshes/kinova/visual/shoulder.dae</uri>
           </mesh>
         </geometry>
-      </visual>
-      <visual name='robot_j2s7s300_link_1_visual_1'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/kinova/visual/ring_big.dae</uri>
-          </mesh>
-        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_2' type='revolute'>
@@ -196,15 +228,17 @@
             <uri>meshes/kinova/visual/arm_half_1.dae</uri>
           </mesh>
         </geometry>
-      </visual>
-      <visual name='robot_j2s7s300_link_2_visual_1'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/kinova/visual/ring_big.dae</uri>
-          </mesh>
-        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_3' type='revolute'>
@@ -269,15 +303,17 @@
             <uri>meshes/kinova/visual/arm_half_2.dae</uri>
           </mesh>
         </geometry>
-      </visual>
-      <visual name='robot_j2s7s300_link_3_visual_1'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/kinova/visual/ring_big.dae</uri>
-          </mesh>
-        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_4' type='revolute'>
@@ -342,15 +378,17 @@
             <uri>meshes/kinova/visual/forearm.dae</uri>
           </mesh>
         </geometry>
-      </visual>
-      <visual name='robot_j2s7s300_link_4_visual_1'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/kinova/visual/ring_big.dae</uri>
-          </mesh>
-        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_5' type='revolute'>
@@ -415,15 +453,17 @@
             <uri>meshes/kinova/visual/wrist_spherical_1.dae</uri>
           </mesh>
         </geometry>
-      </visual>
-      <visual name='robot_j2s7s300_link_5_visual_1'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/kinova/visual/ring_small.dae</uri>
-          </mesh>
-        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_6' type='revolute'>
@@ -488,15 +528,17 @@
             <uri>meshes/kinova/visual/wrist_spherical_2.dae</uri>
           </mesh>
         </geometry>
-      </visual>
-      <visual name='robot_j2s7s300_link_6_visual_1'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/kinova/visual/ring_small.dae</uri>
-          </mesh>
-        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_7' type='revolute'>
@@ -561,15 +603,17 @@
             <uri>meshes/kinova/visual/hand_3finger.dae</uri>
           </mesh>
         </geometry>
-      </visual>
-      <visual name='robot_j2s7s300_link_7_visual_1'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/kinova/visual/ring_small.dae</uri>
-          </mesh>
-        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_finger_1' type='revolute'>
@@ -634,6 +678,17 @@
             <uri>meshes/kinova/visual/finger_proximal.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_finger_tip_1' type='revolute'>
@@ -706,6 +761,17 @@
             <uri>meshes/kinova/visual/finger_distal.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
       <self_collide>true</self_collide>
     </link>
@@ -771,6 +837,17 @@
             <uri>meshes/kinova/visual/finger_proximal.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_finger_tip_2' type='revolute'>
@@ -843,6 +920,17 @@
             <uri>meshes/kinova/visual/finger_distal.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
       <self_collide>true</self_collide>
     </link>
@@ -908,6 +996,17 @@
             <uri>meshes/kinova/visual/finger_proximal.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_j2s7s300_joint_finger_tip_3' type='revolute'>
@@ -980,6 +1079,17 @@
             <uri>meshes/kinova/visual/finger_distal.dae</uri>
           </mesh>
         </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+              <roughness_map>materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+              <metalness_map>materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
     </link>
     <joint name='robot_summit_xl_back_left_wheel_joint' type='revolute'>

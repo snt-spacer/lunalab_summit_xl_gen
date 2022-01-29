@@ -11,15 +11,11 @@
   <!--       -->
   <!-- link_name     - Name of the link to create -->
   <!-- link_mesh     - Name of the mesh to load (filename must be identical for visual and collision geometry, while located in their specific directories) -->
-  <!-- use_ring_mesh - Flag to enable ring mesh (visual only) -->
-  <!-- ring_mesh     - Selector of ring mesh type, which must correspond to mesh name, e.g. `ring_small` -->
   <!-- collision     - Flag to enable collision geometry -->
   <!-- mu            - Friction of the surface applied to both directions -->
   <xacro:macro name="kinova_armlink" params="
     link_name
     link_mesh
-    use_ring_mesh:=false
-    ring_mesh:=ring_big
     collision:=true
     mu:=1.0
   ">
@@ -29,15 +25,6 @@
           <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/${link_mesh}.dae"/>
         </geometry>
       </visual>
-
-      <!-- Add ring to the link, if enabled -->
-      <xacro:if value="${use_ring_mesh}">
-        <visual>
-          <geometry>
-            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/${ring_mesh}.dae"/>
-          </geometry>
-        </visual>
-      </xacro:if>
 
       <xacro:if value="${collision}">
         <collision>
@@ -53,6 +40,22 @@
     <gazebo reference="${link_name}">
       <mu1 value="${mu}"/>
       <mu2 value="${mu}"/>
+    </gazebo>
+
+    <gazebo reference="${link_name}">
+      <visual>
+        <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+            <pbr>
+              <metal>
+                  <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+                  <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+                  <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+              </metal>
+            </pbr>
+        </material>
+      </visual>
     </gazebo>
   </xacro:macro>
 
@@ -100,7 +103,7 @@
         <xacro:ERROR_joint_upper_limit_needs_to_be_set_for_a_revolute_joint/>
       </xacro:if>
     </xacro:if>
-    <xacro:unless value="${type =='fixed'}">
+    <xacro:unless value="${type == 'fixed'}">
       <xacro:if value="${joint_velocity_limit == dummy_default_value}">
         <xacro:ERROR_joint_velocity_limit_needs_to_be_set_for_a_non_fixed_joint/>
       </xacro:if>
