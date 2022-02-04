@@ -35,13 +35,19 @@
       </geometry>
     </collision>
   </link>
-  <link name="robot_summit_xl_base_docking_contact_link">
-  </link>
-  <joint name="robot_summit_xl_base_docking_joint" type="fixed">
-    <origin rpy="0 0 0 " xyz="0.284 0.012 0.068"/>
-    <parent link="robot_summit_xl_base_link"/>
-    <child link="robot_summit_xl_base_docking_contact_link"/>
-  </joint>
+  <!-- <link name="${prefix}base_docking_contact_link">
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <inertial>
+          <mass value="1e-5"/>
+          <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+      </xacro:if>
+    </link>
+    <joint name="${prefix}base_docking_joint" type="fixed">
+      <origin xyz="0.284 0.012 0.068" rpy="0 0 0 "/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base_docking_contact_link"/>
+    </joint> -->
   <gazebo reference="robot_summit_xl_base_link">
     <visual>
       <material>

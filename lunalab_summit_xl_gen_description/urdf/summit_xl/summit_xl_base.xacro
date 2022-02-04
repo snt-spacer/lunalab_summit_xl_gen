@@ -55,7 +55,7 @@
       </xacro:if>
     </link>
 
-    <link name="${prefix}base_docking_contact_link">
+    <!-- <link name="${prefix}base_docking_contact_link">
       <xacro:if value="${gazebo_preserve_fixed_joint}">
         <inertial>
           <mass value="1e-5"/>
@@ -67,7 +67,7 @@
       <origin xyz="0.284 0.012 0.068" rpy="0 0 0 "/>
       <parent link="${prefix}base_link"/>
       <child link="${prefix}base_docking_contact_link"/>
-    </joint>
+    </joint> -->
 
     <xacro:if value="${gazebo_preserve_fixed_joint}">
       <gazebo reference="${prefix}base_docking_joint">
@@ -79,15 +79,15 @@
     <gazebo reference="${prefix}base_link">
       <visual>
         <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>1 1 1 1</specular>
-            <pbr>
-              <metal>
-                  <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_albedo.png</albedo_map>
-                  <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_roughness.png</roughness_map>
-                  <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_metalness.png</metalness_map>
-              </metal>
-            </pbr>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_albedo.png</albedo_map>
+              <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_roughness.png</roughness_map>
+              <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_metalness.png</metalness_map>
+            </metal>
+          </pbr>
         </material>
       </visual>
     </gazebo>
