@@ -2,15 +2,15 @@
   <model name='lunalab_summit_xl_gen'>
     <link name='robot_summit_xl_base_footprint'>
       <inertial>
-        <pose>0.003747446190960834 0 0.1143260959704474 0 0 0</pose>
-        <mass>25.467839999999999</mass>
+        <pose>-0.02248740267069087 -1.300333043775997e-05 0.2679397160647256 0 0 0</pose>
+        <mass>50.467840000000002</mass>
         <inertia>
-          <ixx>1.417421164692676</ixx>
-          <ixy>0.0040000000000000001</ixy>
-          <ixz>-0.022063089449281922</ixz>
-          <iyy>6.8985331402665757</iyy>
-          <iyz>0</iyz>
-          <izz>6.1444862475738997</izz>
+          <ixx>0.88115438114759082</ixx>
+          <ixy>-0.00019287219030404251</ixy>
+          <ixz>0.091004230445435486</ixz>
+          <iyy>1.767171998090457</iyy>
+          <iyz>2.9151916568713389e-05</iyz>
+          <izz>1.926810537170516</izz>
         </inertia>
       </inertial>
       <collision name='robot_summit_xl_base_footprint_fixed_joint_lump__robot_summit_xl_base_link_collision'>
