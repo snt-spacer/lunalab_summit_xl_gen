@@ -9,6 +9,11 @@ SRDF_PATH="$(dirname "${SCRIPT_DIR}")/srdf/lunalab_summit_xl_gen.srdf"
 XACRO_ARGS=(
     name:=lunalab_summit_xl_gen
     prefix:=robot_
+    external_devices:=false
+    realsense_d435:=false
+    realsense_d455:=false
+    realsense_l515:=false
+    lidar:=false
 )
 
 # Remove old SRDF file

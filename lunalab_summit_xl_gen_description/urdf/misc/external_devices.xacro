@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- Macro that includes various external devices -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!--            -->
+  <!-- Properties -->
+  <!--            -->
+  <xacro:property name="default_external_devices_joint_origin_xyz" value="0.0 0.0 0.0"/>
+  <xacro:property name="default_external_devices_joint_origin_rpy" value="0.0 0.0 0.0"/>
+
+
+  <!-- TODO: external_devices - fix inertia, geometry -->
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="external_devices" params="
+   base_parent
+   prefix:=external_devices_
+   joint_origin_xyz:=${default_external_devices_joint_origin_xyz}
+   joint_origin_rpy:=${default_external_devices_joint_origin_rpy}
+   collision:=true
+   high_quality_mesh:=false
+   gazebo_preserve_fixed_joint:=false
+  ">
+    <link name="${prefix}link">
+      <visual>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/misc/visual/external_devices.dae"/>
+        </geometry>
+      </visual>
+      <xacro:if value="${collision}">
+        <collision>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/misc/collision/external_devices.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
+      <inertial>
+        <mass value="1e-5"/>
+        <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}joint" type="fixed">
+      <parent link="${base_parent}"/>
+      <child link="${prefix}link"/>
+      <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}"/>
+    </joint>
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${prefix}joint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>
