@@ -123,12 +123,12 @@
   <disable_collisions link1="robot_j2s7s300_link_finger_1" link2="robot_j2s7s300_link_finger_3" reason="Never"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_1" link2="robot_j2s7s300_link_finger_tip_1" reason="Adjacent"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_1" link2="robot_j2s7s300_link_finger_tip_2" reason="User"/>
-  <disable_collisions link1="robot_j2s7s300_link_finger_1" link2="robot_j2s7s300_link_finger_tip_3" reason="Never"/>
+  <disable_collisions link1="robot_j2s7s300_link_finger_1" link2="robot_j2s7s300_link_finger_tip_3" reason="User"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_2" link2="robot_j2s7s300_link_finger_3" reason="Never"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_2" link2="robot_j2s7s300_link_finger_tip_1" reason="User"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_2" link2="robot_j2s7s300_link_finger_tip_2" reason="Adjacent"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_2" link2="robot_j2s7s300_link_finger_tip_3" reason="Never"/>
-  <disable_collisions link1="robot_j2s7s300_link_finger_3" link2="robot_j2s7s300_link_finger_tip_1" reason="User"/>
+  <disable_collisions link1="robot_j2s7s300_link_finger_3" link2="robot_j2s7s300_link_finger_tip_1" reason="Never"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_3" link2="robot_j2s7s300_link_finger_tip_2" reason="Never"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_3" link2="robot_j2s7s300_link_finger_tip_3" reason="Adjacent"/>
   <disable_collisions link1="robot_j2s7s300_link_finger_tip_1" link2="robot_j2s7s300_link_finger_tip_2" reason="User"/>

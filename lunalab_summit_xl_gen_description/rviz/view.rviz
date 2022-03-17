@@ -49,6 +49,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        robot_external_devices_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         robot_j2s7s300_end_effector:
           Alpha: 1
           Show Axes: false
@@ -119,6 +124,31 @@ Visualization Manager:
           Show Trail: false
           Value: true
         robot_j2s7s300_link_finger_tip_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        robot_lidar_support_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        robot_realsense_d435_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        robot_realsense_d435_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        robot_realsense_l515_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        robot_realsense_l515_mount:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -210,25 +240,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2
+      Distance: 1.078315258026123
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0.75
+        X: 0.22336164116859436
+        Y: -0.04661945998668671
+        Z: 0.31321197748184204
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7853981852531433
+      Pitch: -0.04460185766220093
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.7853981852531433
+      Yaw: 6.078577995300293
     Saved: ~
 Window Geometry:
   Displays:
