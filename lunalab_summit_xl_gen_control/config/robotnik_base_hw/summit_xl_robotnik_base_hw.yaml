@@ -1,10 +1,10 @@
 robotnik_base_hw:
   port: /dev/pcan_base
-  
+
   # Auto-recovery behaviour when motors are in EMERGENCY and cannot recover by themselves
   auto_recovery: true
 
-  # Summit rubber wheels: 0.22, Summit omni wheels: 0.25, RB1: 0.1524 
+  # Summit rubber wheels: 0.22, Summit omni wheels: 0.25, RB1: 0.1524
   diameter_wheel: 0.22
   # 24V motors: 12.52, 48V motors: 9.56, RB1 Accelerated: 7.5
   gearbox_ratio: 12.52
@@ -42,11 +42,11 @@ robotnik_base_hw:
 #
 #  joint_type: [vel,vel,vel,vel,pos,pos,pos,pos]
 #
-#  joint_home_offset: [0,0,0,0,-441807,-437669,-435603,-433906]  
+#  joint_home_offset: [0,0,0,0,-441807,-437669,-435603,-433906]
 
 
 # Control loop params - don't change unless you know what you are doing
- 
+
 # 20A driver parameter
   # current_kp: 0.25390625
   # current_ki: 0.09375
@@ -70,7 +70,7 @@ robotnik_base_hw:
   # velocity_kd: 0.000000022
 
 generic_hw_control_loop:
-  loop_hz: 300 
+  loop_hz: 300
   cycle_time_error_threshold: 0.01
 
 
@@ -84,5 +84,3 @@ hardware_interface:
 
      #- left_wheel_joint
      #- right_wheel_joint
-   
-     

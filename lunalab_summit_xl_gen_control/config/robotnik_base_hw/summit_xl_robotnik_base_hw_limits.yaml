@@ -7,7 +7,7 @@ joint_limits:
     max_acceleration: 27.27
     has_jerk_limits: false
     has_effort_limits: false
-  
+
   robot_summit_xl_front_right_wheel_joint:
     has_position_limits: false
     has_velocity_limits: true
@@ -16,7 +16,7 @@ joint_limits:
     max_acceleration: 27.27
     has_jerk_limits: false
     has_effort_limits: false
-  
+
   robot_summit_xl_back_left_wheel_joint:
     has_position_limits: false
     has_velocity_limits: true
@@ -25,7 +25,7 @@ joint_limits:
     max_acceleration: 27.27
     has_jerk_limits: false
     has_effort_limits: false
-  
+
   robot_summit_xl_back_right_wheel_joint:
     has_position_limits: false
     has_velocity_limits: true
@@ -34,5 +34,3 @@ joint_limits:
     max_acceleration: 27.27
     has_jerk_limits: false
     has_effort_limits: false
-
-  
