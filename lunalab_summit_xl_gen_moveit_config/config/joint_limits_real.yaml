@@ -1,0 +1,52 @@
+# These joint limits are based on the original values in `kinova-ros` repository
+joint_limits:
+  robot_j2s7s300_joint_1:
+    has_velocity_limits: true
+    max_velocity: 0.3927
+    has_acceleration_limits: true
+    max_acceleration: 1.9635
+  robot_j2s7s300_joint_2:
+    has_velocity_limits: true
+    max_velocity: 0.3927
+    has_acceleration_limits: true
+    max_acceleration: 1.9635
+  robot_j2s7s300_joint_3:
+    has_velocity_limits: true
+    max_velocity: 0.3927
+    has_acceleration_limits: true
+    max_acceleration: 1.9635
+  robot_j2s7s300_joint_4:
+    has_velocity_limits: true
+    max_velocity: 0.3927
+    has_acceleration_limits: true
+    max_acceleration: 1.9635
+  robot_j2s7s300_joint_5:
+    has_velocity_limits: true
+    max_velocity: 0.3927
+    has_acceleration_limits: true
+    max_acceleration: 1.9635
+  robot_j2s7s300_joint_6:
+    has_velocity_limits: true
+    max_velocity: 0.3927
+    has_acceleration_limits: true
+    max_acceleration: 1.9635
+  robot_j2s7s300_joint_7:
+    has_velocity_limits: true
+    max_velocity: 0.3927
+    has_acceleration_limits: true
+    max_acceleration: 1.9635
+  robot_j2s7s300_joint_finger_1:
+    has_velocity_limits: true
+    max_velocity: 4.7124
+    has_acceleration_limits: true
+    max_acceleration: 18.8496
+  robot_j2s7s300_joint_finger_2:
+    has_velocity_limits: true
+    max_velocity: 4.7124
+    has_acceleration_limits: true
+    max_acceleration: 18.8496
+  robot_j2s7s300_joint_finger_3:
+    has_velocity_limits: true
+    max_velocity: 4.7124
+    has_acceleration_limits: true
+    max_acceleration: 18.8496

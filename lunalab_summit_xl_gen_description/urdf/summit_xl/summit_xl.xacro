@@ -32,7 +32,7 @@
     collision_wheels:=true
     high_quality_mesh:=true
     ros2_control:=true
-    ros2_control_plugin:=ignition
+    ros2_control_plugin:=ign
     ros2_control_command_interface:=none
     gazebo_preserve_fixed_joint:=false
     gazebo_diff_drive:=true

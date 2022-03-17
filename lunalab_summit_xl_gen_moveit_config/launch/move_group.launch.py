@@ -1,6 +1,10 @@
 #!/usr/bin/env -S ros2 launch
 """Configure and setup move group for planning with MoveIt 2"""
 
+from os import path
+from typing import List
+
+import yaml
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -14,9 +18,6 @@ from launch.substitutions import (
 )
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from os import path
-from typing import List
-import yaml
 
 
 def generate_launch_description():
@@ -48,6 +49,7 @@ def generate_launch_description():
     )
     servo = LaunchConfiguration("servo")
     gazebo_preserve_fixed_joint = LaunchConfiguration("gazebo_preserve_fixed_joint")
+    gazebo_self_collide = LaunchConfiguration("gazebo_self_collide")
     gazebo_self_collide_fingers = LaunchConfiguration("gazebo_self_collide_fingers")
     gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
     gazebo_joint_trajectory_controller = LaunchConfiguration(
@@ -113,6 +115,9 @@ def generate_launch_description():
             " ",
             "gazebo_preserve_fixed_joint:=",
             gazebo_preserve_fixed_joint,
+            " ",
+            "gazebo_self_collide:=",
+            gazebo_self_collide,
             " ",
             "gazebo_self_collide_fingers:=",
             gazebo_self_collide_fingers,
@@ -184,7 +189,8 @@ def generate_launch_description():
             "planning_plugin": "ompl_interface/OMPLPlanner",
             # TODO: Re-enable `default_planner_request_adapters/AddRuckigTrajectorySmoothing` once its issues are resolved
             "request_adapters": "default_planner_request_adapters/AddTimeOptimalParameterization default_planner_request_adapters/ResolveConstraintFrames default_planner_request_adapters/FixWorkspaceBounds default_planner_request_adapters/FixStartStateBounds default_planner_request_adapters/FixStartStateCollision default_planner_request_adapters/FixStartStatePathConstraints",
-            "start_state_max_bounds_error": 0.1,
+            # TODO: Reduce start_state_max_bounds_error once spawning with specific joint configuration is enabled
+            "start_state_max_bounds_error": 1.5707963,
         },
     }
     _ompl_yaml = load_yaml(
@@ -215,7 +221,7 @@ def generate_launch_description():
         "moveit_manage_controllers": False,
         "trajectory_execution.allowed_execution_duration_scaling": 1.2,
         "trajectory_execution.allowed_goal_duration_margin": 0.5,
-        "trajectory_execution.allowed_start_tolerance": 0.01,
+        "trajectory_execution.allowed_start_tolerance": 0.1,
     }
 
     # Controller parameters
@@ -498,8 +504,8 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "ros2_control_plugin",
-            default_value="ignition",
-            description="The ros2_control plugin that should be loaded for the manipulator ('fake', 'ignition', 'real' or custom).",
+            default_value="ign",
+            description="The ros2_control plugin that should be loaded for the manipulator ('fake', 'ign', 'real' or custom).",
         ),
         DeclareLaunchArgument(
             "ros2_control_command_interface",
@@ -519,6 +525,11 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             description="Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo.",
         ),
         DeclareLaunchArgument(
+            "gazebo_self_collide",
+            default_value="false",
+            description="Flag to enable self-collision of all robot links when generating SDF for Gazebo.",
+        ),
+        DeclareLaunchArgument(
             "gazebo_self_collide_fingers",
             default_value="true",
             description="Flag to enable self-collision of robot between fingers (finger tips) when generating SDF for Gazebo.",
@@ -531,12 +542,12 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         DeclareLaunchArgument(
             "gazebo_joint_trajectory_controller",
             default_value="false",
-            description="Flag to enable JointTrajectoryController Gazebo plugin for manipulator. This is not required if `ignition_ros2_control` is used.",
+            description="Flag to enable JointTrajectoryController Gazebo plugin for manipulator. This is not required if `ign_ros2_control` is used.",
         ),
         DeclareLaunchArgument(
             "gazebo_joint_state_publisher",
             default_value="false",
-            description="Flag to enable JointStatePublisher Gazebo plugin for all joints. This is not required if `ignition_ros2_control` is used.",
+            description="Flag to enable JointStatePublisher Gazebo plugin for all joints. This is not required if `ign_ros2_control` is used.",
         ),
         DeclareLaunchArgument(
             "gazebo_pose_publisher",

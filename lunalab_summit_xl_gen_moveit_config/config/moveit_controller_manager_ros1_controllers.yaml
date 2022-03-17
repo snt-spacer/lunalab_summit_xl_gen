@@ -1,0 +1,25 @@
+controller_names:
+  - robot_j2s7s300
+  - robot_j2s7s300_gripper
+
+robot_j2s7s300:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - robot_j2s7s300_joint_1
+    - robot_j2s7s300_joint_2
+    - robot_j2s7s300_joint_3
+    - robot_j2s7s300_joint_4
+    - robot_j2s7s300_joint_5
+    - robot_j2s7s300_joint_6
+    - robot_j2s7s300_joint_7
+
+robot_j2s7s300_gripper:
+  action_ns: gripper_command
+  type: GripperCommand
+  default: true
+  joints:
+    - robot_j2s7s300_joint_finger_1
+    - robot_j2s7s300_joint_finger_2
+    - robot_j2s7s300_joint_finger_3

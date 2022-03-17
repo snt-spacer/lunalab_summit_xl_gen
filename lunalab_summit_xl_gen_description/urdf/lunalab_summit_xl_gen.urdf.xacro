@@ -54,8 +54,8 @@
   <!-- Flag to enable ros2 controllers for manipulator -->
   <xacro:arg name="ros2_control" default="true"/>
 
-  <!-- The ros2_control plugin that should be loaded for the manipulator ('fake', 'ignition', 'real' or custom) -->
-  <xacro:arg name="ros2_control_plugin" default="ignition"/>
+  <!-- The ros2_control plugin that should be loaded for the manipulator ('fake', 'ign', 'real' or custom) -->
+  <xacro:arg name="ros2_control_plugin" default="ign"/>
 
   <!-- The output control command interface provided by ros2_control ('position', 'velocity' or 'effort') -->
   <xacro:arg name="ros2_control_command_interface" default="effort"/>
@@ -65,6 +65,9 @@
 
   <!-- Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo -->
   <xacro:arg name="gazebo_preserve_fixed_joint" default="false"/>
+
+  <!-- Flag to enable self-collision of all robot links when generating SDF for Gazebo -->
+  <xacro:arg name="gazebo_self_collide" default="false"/>
 
   <!-- Flag to enable self-collision of robot between fingers (finger tips) when generating SDF for Gazebo -->
   <xacro:arg name="gazebo_self_collide_fingers" default="true"/>
@@ -138,10 +141,18 @@
   <!-- Miscellaneous -->
   <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
 
+
+  <!-- Gazebo - Self-collision -->
+  <xacro:if value="$(arg gazebo_self_collide)">
+    <gazebo>
+      <self_collide>true</self_collide>
+    </gazebo>
+  </xacro:if>
+
   <!-- Gazebo - ROS 2 control (Ignition) -->
   <xacro:if value="$(arg ros2_control)">
-    <xacro:if value="${'ignition' in '$(arg ros2_control_plugin)'}">
-      <xacro:ignition_ros2_control controller_parameters="$(arg ros2_controller_parameters)"/>
+    <xacro:if value="${'ign' in '$(arg ros2_control_plugin)'}">
+      <xacro:ign_ros2_control controller_parameters="$(arg ros2_controller_parameters)"/>
     </xacro:if>
   </xacro:if>
 

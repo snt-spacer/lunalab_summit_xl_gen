@@ -1,52 +1,52 @@
-# These are more conservative joint limits that result in a slower motion
+# These are very conservative joint limits that result in a slow motion
 joint_limits:
   robot_j2s7s300_joint_1:
     has_velocity_limits: true
-    max_velocity: 0.3927
+    max_velocity: 0.05
     has_acceleration_limits: true
-    max_acceleration: 1.9635
+    max_acceleration: 0.1
   robot_j2s7s300_joint_2:
     has_velocity_limits: true
-    max_velocity: 0.3927
+    max_velocity: 0.05
     has_acceleration_limits: true
-    max_acceleration: 1.9635
+    max_acceleration: 0.1
   robot_j2s7s300_joint_3:
     has_velocity_limits: true
-    max_velocity: 0.3927
+    max_velocity: 0.05
     has_acceleration_limits: true
-    max_acceleration: 1.9635
+    max_acceleration: 0.1
   robot_j2s7s300_joint_4:
     has_velocity_limits: true
-    max_velocity: 0.3927
+    max_velocity: 0.05
     has_acceleration_limits: true
-    max_acceleration: 1.9635
+    max_acceleration: 0.1
   robot_j2s7s300_joint_5:
     has_velocity_limits: true
-    max_velocity: 0.3927
+    max_velocity: 0.05
     has_acceleration_limits: true
-    max_acceleration: 1.9635
+    max_acceleration: 0.1
   robot_j2s7s300_joint_6:
     has_velocity_limits: true
-    max_velocity: 0.3927
+    max_velocity: 0.05
     has_acceleration_limits: true
-    max_acceleration: 1.9635
+    max_acceleration: 0.1
   robot_j2s7s300_joint_7:
     has_velocity_limits: true
-    max_velocity: 0.3927
+    max_velocity: 0.05
     has_acceleration_limits: true
-    max_acceleration: 1.9635
+    max_acceleration: 0.1
   robot_j2s7s300_joint_finger_1:
     has_velocity_limits: true
-    max_velocity: 4.7124
+    max_velocity: 0.5
     has_acceleration_limits: true
-    max_acceleration: 18.8496
+    max_acceleration: 0.1
   robot_j2s7s300_joint_finger_2:
     has_velocity_limits: true
-    max_velocity: 4.7124
+    max_velocity: 0.5
     has_acceleration_limits: true
-    max_acceleration: 18.8496
+    max_acceleration: 0.1
   robot_j2s7s300_joint_finger_3:
     has_velocity_limits: true
-    max_velocity: 4.7124
+    max_velocity: 0.5
     has_acceleration_limits: true
-    max_acceleration: 18.8496
+    max_acceleration: 0.1

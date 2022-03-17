@@ -18,9 +18,9 @@
   </joint>
   <link name="robot_summit_xl_base_link">
     <inertial>
-      <mass value="25.0"/>
-      <origin xyz="0 0 0"/>
-      <inertia ixx="1.391" ixy="0.004" ixz="0.0" iyy="6.853" iyz="0.0" izz="6.125"/>
+      <mass value="50.0"/>
+      <origin xyz="-0.0246066 -1.3125e-05 0.157214"/>
+      <inertia ixx="0.8773624360089227" ixy="-0.0001914814670566834" ixz="0.09929940455155015" iyy="1.739156928222513" iyz="2.9628167736189533e-05" izz="1.9022131402815483"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -35,13 +35,34 @@
       </geometry>
     </collision>
   </link>
-  <link name="robot_summit_xl_base_docking_contact_link">
-  </link>
-  <joint name="robot_summit_xl_base_docking_joint" type="fixed">
-    <origin rpy="0 0 0 " xyz="0.284 0.012 0.068"/>
-    <parent link="robot_summit_xl_base_link"/>
-    <child link="robot_summit_xl_base_docking_contact_link"/>
-  </joint>
+  <!-- <link name="${prefix}base_docking_contact_link">
+      <xacro:if value="${gazebo_preserve_fixed_joint}">
+        <inertial>
+          <mass value="1e-5"/>
+          <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+      </xacro:if>
+    </link>
+    <joint name="${prefix}base_docking_joint" type="fixed">
+      <origin xyz="0.284 0.012 0.068" rpy="0 0 0 "/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base_docking_contact_link"/>
+    </joint> -->
+  <gazebo reference="robot_summit_xl_base_link">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_summit_xl_front_left_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_summit_xl_front_left_wheel"/>
@@ -75,7 +96,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_front_left_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -84,6 +104,22 @@
     <mu1 value="1.9"/>
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
+  </gazebo>
+  <gazebo reference="robot_summit_xl_front_left_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
   </gazebo>
   <joint name="robot_summit_xl_back_left_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
@@ -118,7 +154,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_back_left_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -127,6 +162,22 @@
     <mu1 value="1.9"/>
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
+  </gazebo>
+  <gazebo reference="robot_summit_xl_back_left_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
   </gazebo>
   <joint name="robot_summit_xl_front_right_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
@@ -161,7 +212,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_front_right_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -170,6 +220,22 @@
     <mu1 value="1.9"/>
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
+  </gazebo>
+  <gazebo reference="robot_summit_xl_front_right_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
   </gazebo>
   <joint name="robot_summit_xl_back_right_wheel_joint" type="continuous">
     <parent link="robot_summit_xl_base_link"/>
@@ -204,7 +270,6 @@
       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_summit_xl_back_right_wheel_joint_actuator">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
       <motorTorqueConstant>20</motorTorqueConstant>
     </actuator>
@@ -214,9 +279,25 @@
     <mu2 value="1.7"/>
     <fdir1 value="1 0 0"/>
   </gazebo>
+  <gazebo reference="robot_summit_xl_back_right_wheel">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_albedo.png</albedo_map>
+            <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_normal.png</normal_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/rubber_wheel_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <ros2_control name="SummitXlSystem" type="system">
     <hardware>
-      <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <joint name="robot_summit_xl_front_left_wheel_joint">
       <param name="initial_position">0</param>
@@ -274,6 +355,21 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_base">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_base" type="fixed">
     <parent link="robot_summit_xl_base_link"/>
     <child link="robot_j2s7s300_link_base"/>
@@ -286,11 +382,6 @@
     <visual>
       <geometry>
         <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/shoulder.dae"/>
-      </geometry>
-    </visual>
-    <visual>
-      <geometry>
-        <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/ring_big.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -308,14 +399,29 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_1">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_1" type="revolute">
     <parent link="robot_j2s7s300_link_base"/>
     <child link="robot_j2s7s300_link_1"/>
     <axis xyz="0 0 1"/>
-    <limit effort="40" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.6283185307179586"/>
+    <limit effort="40" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.6283185307179586"/>
     <origin rpy="0 3.141592653589793 0" xyz="0 0 0.15675"/>
-    <dynamics damping="14.0" friction="0.5"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
+    <dynamics damping="15.0" friction="0.5"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -323,7 +429,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_1_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -331,11 +436,6 @@
     <visual>
       <geometry>
         <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/arm_half_1.dae"/>
-      </geometry>
-    </visual>
-    <visual>
-      <geometry>
-        <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/ring_big.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -353,14 +453,29 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_2">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_2" type="revolute">
     <parent link="robot_j2s7s300_link_1"/>
     <child link="robot_j2s7s300_link_2"/>
     <axis xyz="0 0 1"/>
-    <limit effort="80" lower="0.8203047484373349" upper="5.462880558742252" velocity="0.6283185307179586"/>
+    <limit effort="40" lower="0.8203047484373349" upper="5.462880558742251" velocity="0.6283185307179586"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.0016 -0.11875"/>
-    <dynamics damping="12.0" friction="0.9"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="0.994837678437335" soft_upper_limit="5.288347628742252"/>
+    <dynamics damping="16.0" friction="0.9"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="0.994837678437335" soft_upper_limit="5.288347628742251"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -368,7 +483,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_2_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -376,11 +490,6 @@
     <visual>
       <geometry>
         <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/arm_half_2.dae"/>
-      </geometry>
-    </visual>
-    <visual>
-      <geometry>
-        <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/ring_big.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -398,14 +507,29 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_3">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_3" type="revolute">
     <parent link="robot_j2s7s300_link_2"/>
     <child link="robot_j2s7s300_link_3"/>
     <axis xyz="0 0 1"/>
-    <limit effort="40" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.6283185307179586"/>
+    <limit effort="40" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.6283185307179586"/>
     <origin rpy="-1.5707963267948966 0 0" xyz="0 -0.205 0"/>
-    <dynamics damping="10.0" friction="0.8"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
+    <dynamics damping="12.0" friction="0.8"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -413,7 +537,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_3_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -421,11 +544,6 @@
     <visual>
       <geometry>
         <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/forearm.dae"/>
-      </geometry>
-    </visual>
-    <visual>
-      <geometry>
-        <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/ring_big.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -443,13 +561,28 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_4">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_4" type="revolute">
     <parent link="robot_j2s7s300_link_3"/>
     <child link="robot_j2s7s300_link_4"/>
     <axis xyz="0 0 1"/>
     <limit effort="40" lower="0.5235987755982988" upper="5.759586531581287" velocity="0.6283185307179586"/>
     <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0 0 -0.205"/>
-    <dynamics damping="7.0" friction="0.55"/>
+    <dynamics damping="8.0" friction="0.55"/>
     <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="0.6981317055982988" soft_upper_limit="5.585053601581287"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_4_trans">
@@ -458,7 +591,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_4_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -466,11 +598,6 @@
     <visual>
       <geometry>
         <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/wrist_spherical_1.dae"/>
-      </geometry>
-    </visual>
-    <visual>
-      <geometry>
-        <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/ring_small.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -488,14 +615,29 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_5">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_5" type="revolute">
     <parent link="robot_j2s7s300_link_4"/>
     <child link="robot_j2s7s300_link_5"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.8377580409572781"/>
+    <limit effort="20" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.8377580409572781"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.2073 -0.0114"/>
-    <dynamics damping="5.5" friction="0.35"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
+    <dynamics damping="6.5" friction="0.35"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_5_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -503,7 +645,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_5_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -511,11 +652,6 @@
     <visual>
       <geometry>
         <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/wrist_spherical_2.dae"/>
-      </geometry>
-    </visual>
-    <visual>
-      <geometry>
-        <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/ring_small.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -533,14 +669,29 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_6">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_6" type="revolute">
     <parent link="robot_j2s7s300_link_5"/>
     <child link="robot_j2s7s300_link_6"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="1.1344640137963142" upper="5.148721293383272" velocity="0.8377580409572781"/>
+    <limit effort="20" lower="1.1344640137963142" upper="5.1487212933832724" velocity="0.8377580409572781"/>
     <origin rpy="1.5707963267948966 0 3.141592653589793" xyz="0 0 -0.10375"/>
-    <dynamics damping="4.5" friction="0.25"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="1.3089969437963143" soft_upper_limit="4.974188363383272"/>
+    <dynamics damping="5.5" friction="0.25"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="1.3089969437963143" soft_upper_limit="4.974188363383273"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_6_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -548,7 +699,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_6_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -556,11 +706,6 @@
     <visual>
       <geometry>
         <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/hand_3finger.dae"/>
-      </geometry>
-    </visual>
-    <visual>
-      <geometry>
-        <mesh filename="package://lunalab_summit_xl_gen_description/meshes/kinova/visual/ring_small.dae"/>
       </geometry>
     </visual>
     <collision>
@@ -578,14 +723,29 @@
     <mu1 value="0.9"/>
     <mu2 value="0.9"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_7">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_7" type="revolute">
     <parent link="robot_j2s7s300_link_6"/>
     <child link="robot_j2s7s300_link_7"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.8377580409572781"/>
+    <limit effort="20" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.8377580409572781"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.10375 0"/>
-    <dynamics damping="4.0" friction="0.2"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
+    <dynamics damping="4.5" friction="0.2"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_7_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -593,7 +753,6 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="robot_j2s7s300_joint_7_actuator">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -625,13 +784,28 @@
     <mu1 value="1.6"/>
     <mu2 value="1.6"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_1">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_finger_1" type="revolute">
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_1"/>
     <axis xyz="0 0 1"/>
     <origin rpy="-1.704955772138421 0.6492624817418906 1.6728980880365647" xyz="0.002786 0.03126 -0.114668"/>
-    <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
-    <dynamics damping="0.15" friction="0.01"/>
+    <limit effort="5.0" lower="0.0" upper="1.51" velocity="1.0"/>
+    <dynamics damping="0.3" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -664,13 +838,28 @@
     <mu1 value="1.6"/>
     <mu2 value="1.6"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_tip_1">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_finger_tip_1" type="revolute">
     <parent link="robot_j2s7s300_link_finger_1"/>
     <child link="robot_j2s7s300_link_finger_tip_1"/>
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.01" friction="0.0005"/>
+    <dynamics damping="0.005" friction="0.00025"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -683,7 +872,7 @@
     </actuator>
   </transmission>
   <gazebo reference="robot_j2s7s300_joint_finger_tip_1">
-    <springStiffness value="0.5"/>
+    <springStiffness value="1.25"/>
     <springReference value="0.0"/>
   </gazebo>
   <gazebo reference="robot_j2s7s300_link_finger_tip_1">
@@ -710,13 +899,28 @@
     <mu1 value="1.6"/>
     <mu2 value="1.6"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_2">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_finger_2" type="revolute">
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_2"/>
     <axis xyz="0 0 1"/>
     <origin rpy="-1.5707963267948966 0.6492624817418906 -1.3861404919338964" xyz="0.022256 -0.027073 -0.114668"/>
-    <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
-    <dynamics damping="0.15" friction="0.01"/>
+    <limit effort="5.0" lower="0.0" upper="1.51" velocity="1.0"/>
+    <dynamics damping="0.3" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -749,13 +953,28 @@
     <mu1 value="1.6"/>
     <mu2 value="1.6"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_tip_2">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_finger_tip_2" type="revolute">
     <parent link="robot_j2s7s300_link_finger_2"/>
     <child link="robot_j2s7s300_link_finger_tip_2"/>
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.01" friction="0.0005"/>
+    <dynamics damping="0.005" friction="0.00025"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -768,7 +987,7 @@
     </actuator>
   </transmission>
   <gazebo reference="robot_j2s7s300_joint_finger_tip_2">
-    <springStiffness value="0.5"/>
+    <springStiffness value="1.25"/>
     <springReference value="0.0"/>
   </gazebo>
   <gazebo reference="robot_j2s7s300_link_finger_tip_2">
@@ -795,13 +1014,28 @@
     <mu1 value="1.6"/>
     <mu2 value="1.6"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_3">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_finger_3" type="revolute">
     <parent link="robot_j2s7s300_link_7"/>
     <child link="robot_j2s7s300_link_finger_3"/>
     <axis xyz="0 0 1"/>
     <origin rpy="-1.5707963267948966 0.6492624817418906 -1.7554521616558967" xyz="-0.022256 -0.027073 -0.114668"/>
-    <limit effort="2.0" lower="0.0" upper="1.51" velocity="1.0"/>
-    <dynamics damping="0.15" friction="0.01"/>
+    <limit effort="5.0" lower="0.0" upper="1.51" velocity="1.0"/>
+    <dynamics damping="0.3" friction="0.01"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -834,13 +1068,28 @@
     <mu1 value="1.6"/>
     <mu2 value="1.6"/>
   </gazebo>
+  <gazebo reference="robot_j2s7s300_link_finger_tip_3">
+    <visual>
+      <material>
+        <diffuse>1 1 1 1</diffuse>
+        <specular>1 1 1 1</specular>
+        <pbr>
+          <metal>
+            <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_albedo.png</albedo_map>
+            <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_roughness.png</roughness_map>
+            <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/kinova/kinova_gen2_metalness.png</metalness_map>
+          </metal>
+        </pbr>
+      </material>
+    </visual>
+  </gazebo>
   <joint name="robot_j2s7s300_joint_finger_tip_3" type="revolute">
     <parent link="robot_j2s7s300_link_finger_3"/>
     <child link="robot_j2s7s300_link_finger_tip_3"/>
     <axis xyz="0 0 1"/>
     <origin rpy="0 0 0" xyz="0.044 -0.003 0"/>
     <limit effort="2.0" lower="0.0" upper="2.0" velocity="1.0"/>
-    <dynamics damping="0.01" friction="0.0005"/>
+    <dynamics damping="0.005" friction="0.00025"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_finger_tip_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -853,12 +1102,12 @@
     </actuator>
   </transmission>
   <gazebo reference="robot_j2s7s300_joint_finger_tip_3">
-    <springStiffness value="0.5"/>
+    <springStiffness value="1.25"/>
     <springReference value="0.0"/>
   </gazebo>
   <ros2_control name="KinovaArmSystem" type="system">
     <hardware>
-      <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <joint name="robot_j2s7s300_joint_1">
       <param name="initial_position">0.0</param>
@@ -912,7 +1161,7 @@
   </ros2_control>
   <ros2_control name="KinovaGripperSystem" type="system">
     <hardware>
-      <plugin>ignition_ros2_control/IgnitionSystem</plugin>
+      <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
     <joint name="robot_j2s7s300_joint_finger_1">
       <param name="initial_position">0.2</param>
@@ -922,12 +1171,14 @@
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_finger_2">
+      <param name="initial_position">0.2</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
       <state_interface name="effort"/>
     </joint>
     <joint name="robot_j2s7s300_joint_finger_3">
+      <param name="initial_position">0.2</param>
       <command_interface name="effort"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
@@ -957,7 +1208,7 @@
   <!-- Miscellaneous -->
   <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
   <gazebo>
-    <plugin filename="ignition_ros2_control-system" name="ignition_ros2_control::IgnitionROS2ControlPlugin">
+    <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
       <parameters>/home/andrej/ws/code/repos/lunalab_summit_xl_gen/install/share/lunalab_summit_xl_gen_moveit_config/config/controllers_effort.yaml</parameters>
     </plugin>
   </gazebo>
