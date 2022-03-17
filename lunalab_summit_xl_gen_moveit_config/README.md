@@ -16,7 +16,7 @@ To see all arguments, please use `ros2 launch --show-args lunalab_summit_xl_gen_
 
 ### SRDF
 
-For SRDF, [lunalab_summit_xl_gen.srdf.xacro](./srdf/lunalab_summit_xl_gen.srdf.xacro) is the primary descriptor that includes all other xacros and creates a configuration based on the passed arguments. To generate SRDF out of xacro, you can use the included [xacro2urdf.bash](./scripts/xacro2urdf.bash) script and modify its arguments as needed. Once executed, [lunalab_summit_xl_gen.srdf](./srdf/lunalab_summit_xl_gen.srdf) will automatically be replaced. Alternatively, `xacro lunalab_summit_xl_gen.srdf.xacro name:="lunalab_summit_xl_gen" <arg_i>:=<val_i> ...` can be executed directly, e.g. this is preferred within any launch script.
+For SRDF, [lunalab_summit_xl_gen.srdf.xacro](./srdf/lunalab_summit_xl_gen.srdf.xacro) is the primary descriptor that includes all other xacros and creates a configuration based on the passed arguments. To generate SRDF out of xacro, you can use the included [xacro2srdf.bash](./scripts/xacro2srdf.bash) script and modify its arguments as needed. Once executed, [lunalab_summit_xl_gen.srdf](./srdf/lunalab_summit_xl_gen.srdf) will automatically be replaced. Alternatively, `xacro lunalab_summit_xl_gen.srdf.xacro name:="lunalab_summit_xl_gen" <arg_i>:=<val_i> ...` can be executed directly, e.g. this is preferred within any launch script.
 
 ## Examples
 
