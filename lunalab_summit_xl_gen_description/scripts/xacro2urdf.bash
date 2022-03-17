@@ -2,8 +2,9 @@
 # This script converts xacro (URDF variant) into URDF for `lunalab_summit_xl_gen_description` package
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-XACRO_PATH="$(dirname ${SCRIPT_DIR})/urdf/lunalab_summit_xl_gen.urdf.xacro"
-URDF_PATH="$(dirname ${SCRIPT_DIR})/urdf/lunalab_summit_xl_gen.urdf"
+XACRO_PATH="$(dirname "${SCRIPT_DIR}")/urdf/lunalab_summit_xl_gen.urdf.xacro"
+URDF_PATH="$(dirname "${SCRIPT_DIR}")/urdf/lunalab_summit_xl_gen.urdf"
+
 
 # Arguments for xacro
 XACRO_ARGS="
@@ -26,11 +27,11 @@ gazebo_ros_ft_sensor:=false
 "
 
 # Remove old URDF file
-rm ${URDF_PATH} 2>/dev/null
+rm "${URDF_PATH}" 2>/dev/null
 
 # Process xacro into URDF
-xacro ${XACRO_PATH} ${XACRO_ARGS} -o ${URDF_PATH} &&
-    echo "Created new '${URDF_PATH}'"
+xacro "${XACRO_PATH}" "${XACRO_ARGS[@]}" -o "${URDF_PATH}" &&
+echo "Created new ${URDF_PATH}"
 
 # Add to stating area
-git add ${URDF_PATH}
+git add "${URDF_PATH}"

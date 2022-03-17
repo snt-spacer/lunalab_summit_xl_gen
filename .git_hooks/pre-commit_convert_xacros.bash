@@ -5,6 +5,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 REPO_DIR="$(dirname "${SCRIPT_DIR}")"
 
 # Convert xacros to URDF, SDF and SRDF
-${REPO_DIR}/lunalab_summit_xl_gen_description/scripts/xacro2urdf.bash
-${REPO_DIR}/lunalab_summit_xl_gen_description/scripts/xacro2sdf.bash
-${REPO_DIR}/lunalab_summit_xl_gen_moveit_config/scripts/xacro2srdf.bash
+"${REPO_DIR}/lunalab_summit_xl_gen_description/scripts/xacro2urdf.bash"
+"${REPO_DIR}/lunalab_summit_xl_gen_description/scripts/xacro2sdf.bash"
+"${REPO_DIR}/lunalab_summit_xl_gen_moveit_config/scripts/xacro2srdf.bash"

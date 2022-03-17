@@ -76,17 +76,17 @@ gripper_trajectory_controller:
       - velocity
     gains:
       robot_j2s7s300_joint_finger_1:
-        p: 85.0
+        p: 115.0
         d: 0.0005
         i: 0.2
         i_clamp: 2.0
       robot_j2s7s300_joint_finger_2:
-        p: 85.0
+        p: 115.0
         d: 0.0005
         i: 0.2
         i_clamp: 2.0
       robot_j2s7s300_joint_finger_3:
-        p: 85.0
+        p: 115.0
         d: 0.0005
         i: 0.2
         i_clamp: 2.0

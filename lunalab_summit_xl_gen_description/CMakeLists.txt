@@ -5,7 +5,7 @@ project(lunalab_summit_xl_gen_description)
 find_package(catkin REQUIRED)
 
 # Install directories
-install(DIRECTORY config lunalab_summit_xl_gen/meshes rviz urdf DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY config lunalab_summit_xl_gen/materials lunalab_summit_xl_gen/meshes rviz urdf DESTINATION share/${PROJECT_NAME})
 
 # Setup the project
 catkin_package()
