@@ -1,6 +1,9 @@
 #!/usr/bin/env -S ros2 launch
 """Visualisation of URDF model for lunalab_summit_xl_gen in RViz2"""
 
+from os import path
+from typing import List
+
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -12,8 +15,6 @@ from launch.substitutions import (
 )
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from os import path
-from typing import List
 
 
 def generate_launch_description() -> LaunchDescription:
@@ -41,6 +42,7 @@ def generate_launch_description() -> LaunchDescription:
         "ros2_control_command_interface"
     )
     gazebo_preserve_fixed_joint = LaunchConfiguration("gazebo_preserve_fixed_joint")
+    gazebo_self_collide = LaunchConfiguration("gazebo_self_collide")
     gazebo_self_collide_fingers = LaunchConfiguration("gazebo_self_collide_fingers")
     gazebo_diff_drive = LaunchConfiguration("gazebo_diff_drive")
     gazebo_joint_trajectory_controller = LaunchConfiguration(
@@ -105,6 +107,9 @@ def generate_launch_description() -> LaunchDescription:
             " ",
             "gazebo_preserve_fixed_joint:=",
             gazebo_preserve_fixed_joint,
+            " ",
+            "gazebo_self_collide:=",
+            gazebo_self_collide,
             " ",
             "gazebo_self_collide_fingers:=",
             gazebo_self_collide_fingers,
@@ -246,8 +251,8 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         ),
         DeclareLaunchArgument(
             "ros2_control_plugin",
-            default_value="ignition",
-            description="The ros2_control plugin that should be loaded for the manipulator ('fake', 'ignition', 'real' or custom).",
+            default_value="ign",
+            description="The ros2_control plugin that should be loaded for the manipulator ('fake', 'ign', 'real' or custom).",
         ),
         DeclareLaunchArgument(
             "ros2_control_command_interface",
@@ -259,6 +264,11 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "gazebo_preserve_fixed_joint",
             default_value="false",
             description="Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo.",
+        ),
+        DeclareLaunchArgument(
+            "gazebo_self_collide",
+            default_value="false",
+            description="Flag to enable self-collision of all robot links when generating SDF for Gazebo.",
         ),
         DeclareLaunchArgument(
             "gazebo_self_collide_fingers",

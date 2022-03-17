@@ -42,11 +42,11 @@
   <xacro:property name="joint_1_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_1_origin_xyz" value="0 0 0.15675"/>
   <xacro:property name="joint_1_origin_rpy" value="0 ${pi} 0"/>
-  <xacro:property name="joint_1_lower_limit" value="${-2*pi}"/>
-  <xacro:property name="joint_1_upper_limit" value="${2*pi}"/>
+  <xacro:property name="joint_1_lower_limit" value="${-55.4*pi}"/>
+  <xacro:property name="joint_1_upper_limit" value="${55.4*pi}"/>
   <xacro:property name="joint_1_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_1_torque_limit" value="40"/>
-  <xacro:property name="joint_1_damping" value="14.0"/>
+  <xacro:property name="joint_1_damping" value="15.0"/>
   <xacro:property name="joint_1_friction" value="0.5"/>
 
   <xacro:property name="joint_2" value="joint_2"/>
@@ -54,11 +54,11 @@
   <xacro:property name="joint_2_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_2_origin_xyz" value="0 0.0016 -0.11875"/>
   <xacro:property name="joint_2_origin_rpy" value="-${pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_2_lower_limit" value="${47/180*pi}"/>
-  <xacro:property name="joint_2_upper_limit" value="${313/180*pi}"/>
+  <xacro:property name="joint_2_lower_limit" value="${47*pi/180}"/>
+  <xacro:property name="joint_2_upper_limit" value="${313*pi/180}"/>
   <xacro:property name="joint_2_velocity_limit" value="${36*pi/180}"/>
-  <xacro:property name="joint_2_torque_limit" value="80"/>
-  <xacro:property name="joint_2_damping" value="12.0"/>
+  <xacro:property name="joint_2_torque_limit" value="40"/>
+  <xacro:property name="joint_2_damping" value="16.0"/>
   <xacro:property name="joint_2_friction" value="0.9"/>
 
   <xacro:property name="joint_3" value="joint_3"/>
@@ -66,11 +66,11 @@
   <xacro:property name="joint_3_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_3_origin_xyz" value="0 -0.205 0"/>
   <xacro:property name="joint_3_origin_rpy" value="-${pi/2} 0 0"/>
-  <xacro:property name="joint_3_lower_limit" value="${-2*pi}"/>
-  <xacro:property name="joint_3_upper_limit" value="${2*pi}"/>
+  <xacro:property name="joint_3_lower_limit" value="${-55.4*pi}"/>
+  <xacro:property name="joint_3_upper_limit" value="${55.4*pi}"/>
   <xacro:property name="joint_3_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_3_torque_limit" value="40"/>
-  <xacro:property name="joint_3_damping" value="10.0"/>
+  <xacro:property name="joint_3_damping" value="12.0"/>
   <xacro:property name="joint_3_friction" value="0.8"/>
 
   <xacro:property name="joint_4" value="joint_4"/>
@@ -78,11 +78,11 @@
   <xacro:property name="joint_4_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_4_origin_xyz" value="0 0 -0.205"/>
   <xacro:property name="joint_4_origin_rpy" value="${pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_4_lower_limit" value="${30/180*pi}"/>
-  <xacro:property name="joint_4_upper_limit" value="${330/180*pi}"/>
+  <xacro:property name="joint_4_lower_limit" value="${30*pi/180}"/>
+  <xacro:property name="joint_4_upper_limit" value="${330*pi/180}"/>
   <xacro:property name="joint_4_velocity_limit" value="${36*pi/180}"/>
   <xacro:property name="joint_4_torque_limit" value="40"/>
-  <xacro:property name="joint_4_damping" value="7.0"/>
+  <xacro:property name="joint_4_damping" value="8.0"/>
   <xacro:property name="joint_4_friction" value="0.55"/>
 
   <xacro:property name="joint_5" value="joint_5"/>
@@ -90,11 +90,11 @@
   <xacro:property name="joint_5_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_5_origin_xyz" value="0 0.2073 -0.0114"/>
   <xacro:property name="joint_5_origin_rpy" value="${-pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_5_lower_limit" value="${-2*pi}"/>
-  <xacro:property name="joint_5_upper_limit" value="${2*pi}"/>
+  <xacro:property name="joint_5_lower_limit" value="${-55.4*pi}"/>
+  <xacro:property name="joint_5_upper_limit" value="${55.4*pi}"/>
   <xacro:property name="joint_5_velocity_limit" value="${48*pi/180}"/>
   <xacro:property name="joint_5_torque_limit" value="20"/>
-  <xacro:property name="joint_5_damping" value="5.5"/>
+  <xacro:property name="joint_5_damping" value="6.5"/>
   <xacro:property name="joint_5_friction" value="0.35"/>
 
   <xacro:property name="joint_6" value="joint_6"/>
@@ -102,11 +102,11 @@
   <xacro:property name="joint_6_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_6_origin_xyz" value="0 0 -0.10375"/>
   <xacro:property name="joint_6_origin_rpy" value="${pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_6_lower_limit" value="${65/180*pi}"/>
-  <xacro:property name="joint_6_upper_limit" value="${295/180*pi}"/>
+  <xacro:property name="joint_6_lower_limit" value="${65*pi/180}"/>
+  <xacro:property name="joint_6_upper_limit" value="${295*pi/180}"/>
   <xacro:property name="joint_6_velocity_limit" value="${48*pi/180}"/>
   <xacro:property name="joint_6_torque_limit" value="20"/>
-  <xacro:property name="joint_6_damping" value="4.5"/>
+  <xacro:property name="joint_6_damping" value="5.5"/>
   <xacro:property name="joint_6_friction" value="0.25"/>
 
   <xacro:property name="joint_7" value="joint_7"/>
@@ -114,11 +114,11 @@
   <xacro:property name="joint_7_axis_xyz" value="0 0 1"/>
   <xacro:property name="joint_7_origin_xyz" value="0 0.10375 0"/>
   <xacro:property name="joint_7_origin_rpy" value="${-pi/2} 0 ${pi}"/>
-  <xacro:property name="joint_7_lower_limit" value="${-2*pi}"/>
-  <xacro:property name="joint_7_upper_limit" value="${2*pi}"/>
+  <xacro:property name="joint_7_lower_limit" value="${-55.4*pi}"/>
+  <xacro:property name="joint_7_upper_limit" value="${55.4*pi}"/>
   <xacro:property name="joint_7_velocity_limit" value="${48*pi/180}"/>
   <xacro:property name="joint_7_torque_limit" value="20"/>
-  <xacro:property name="joint_7_damping" value="4.0"/>
+  <xacro:property name="joint_7_damping" value="4.5"/>
   <xacro:property name="joint_7_friction" value="0.2"/>
 
   <xacro:property name="joint_end_effector" value="end_effector_offset"/>
@@ -151,7 +151,7 @@
     collision_gripper:=true
     mimic_gripper_joints:=false
     ros2_control:=true
-    ros2_control_plugin:=ignition
+    ros2_control_plugin:=ign
     ros2_control_command_interface:=effort
     gazebo_preserve_fixed_joint:=false
     gazebo_self_collide_fingers:=true
@@ -160,25 +160,25 @@
     <xacro:kinova_armlink link_name="${prefix}link_base" link_mesh="${link_base_mesh}" collision="${collision_arm}" mu="${link_base_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_base" type="${joint_base_type}" parent="${base_parent}" child="${prefix}link_base" joint_axis_xyz="${joint_base_axis_xyz}" joint_origin_xyz="${joint_base_origin_xyz}" joint_origin_rpy="${joint_base_origin_rpy}" joint_lower_limit="0" joint_upper_limit="0" joint_velocity_limit="0" joint_torque_limit="0" fixed="true" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_armlink link_name="${prefix}link_1" link_mesh="${link_1_mesh}" use_ring_mesh="true" collision="${collision_arm}" mu="${link_1_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_1" link_mesh="${link_1_mesh}" collision="${collision_arm}" mu="${link_1_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_1" type="${joint_1_type}" parent="${prefix}link_base" child="${prefix}link_1" joint_axis_xyz="${joint_1_axis_xyz}" joint_origin_xyz="${joint_1_origin_xyz}" joint_origin_rpy="${joint_1_origin_rpy}" joint_damping="${joint_1_damping}" joint_friction="${joint_1_friction}" joint_lower_limit="${joint_1_lower_limit}" joint_upper_limit="${joint_1_upper_limit}" joint_velocity_limit="${joint_1_velocity_limit}" joint_torque_limit="${joint_1_torque_limit}" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_armlink link_name="${prefix}link_2" link_mesh="${link_2_mesh}" use_ring_mesh="true" collision="${collision_arm}" mu="${link_2_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_2" link_mesh="${link_2_mesh}" collision="${collision_arm}" mu="${link_2_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_2" type="${joint_2_type}" parent="${prefix}link_1" child="${prefix}link_2" joint_axis_xyz="${joint_2_axis_xyz}" joint_origin_xyz="${joint_2_origin_xyz}" joint_origin_rpy="${joint_2_origin_rpy}" joint_damping="${joint_2_damping}" joint_friction="${joint_2_friction}" joint_lower_limit="${joint_2_lower_limit}" joint_upper_limit="${joint_2_upper_limit}" joint_velocity_limit="${joint_2_velocity_limit}" joint_torque_limit="${joint_2_torque_limit}" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_armlink link_name="${prefix}link_3" link_mesh="${link_3_mesh}" use_ring_mesh="true" collision="${collision_arm}" mu="${link_3_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_3" link_mesh="${link_3_mesh}" collision="${collision_arm}" mu="${link_3_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_3" type="${joint_3_type}" parent="${prefix}link_2" child="${prefix}link_3" joint_axis_xyz="${joint_3_axis_xyz}" joint_origin_xyz="${joint_3_origin_xyz}" joint_origin_rpy="${joint_3_origin_rpy}" joint_damping="${joint_3_damping}" joint_friction="${joint_3_friction}" joint_lower_limit="${joint_3_lower_limit}" joint_upper_limit="${joint_3_upper_limit}" joint_velocity_limit="${joint_3_velocity_limit}" joint_torque_limit="${joint_3_torque_limit}" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_armlink link_name="${prefix}link_4" link_mesh="${link_4_mesh}" use_ring_mesh="true" collision="${collision_arm}" mu="${link_4_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_4" link_mesh="${link_4_mesh}" collision="${collision_arm}" mu="${link_4_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_4" type="${joint_4_type}" parent="${prefix}link_3" child="${prefix}link_4" joint_axis_xyz="${joint_4_axis_xyz}" joint_origin_xyz="${joint_4_origin_xyz}" joint_origin_rpy="${joint_4_origin_rpy}" joint_damping="${joint_4_damping}" joint_friction="${joint_4_friction}" joint_lower_limit="${joint_4_lower_limit}" joint_upper_limit="${joint_4_upper_limit}" joint_velocity_limit="${joint_4_velocity_limit}" joint_torque_limit="${joint_4_torque_limit}" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_armlink link_name="${prefix}link_5" link_mesh="${link_5_mesh}" use_ring_mesh="true" ring_mesh="ring_small" collision="${collision_arm}" mu="${link_5_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_5" link_mesh="${link_5_mesh}" collision="${collision_arm}" mu="${link_5_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_5" type="${joint_5_type}" parent="${prefix}link_4" child="${prefix}link_5" joint_axis_xyz="${joint_5_axis_xyz}" joint_origin_xyz="${joint_5_origin_xyz}" joint_origin_rpy="${joint_5_origin_rpy}" joint_damping="${joint_5_damping}" joint_friction="${joint_5_friction}" joint_lower_limit="${joint_5_lower_limit}" joint_upper_limit="${joint_5_upper_limit}" joint_velocity_limit="${joint_5_velocity_limit}" joint_torque_limit="${joint_5_torque_limit}" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_armlink link_name="${prefix}link_6" link_mesh="${link_6_mesh}" use_ring_mesh="true" ring_mesh="ring_small" collision="${collision_arm}" mu="${link_6_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_6" link_mesh="${link_6_mesh}" collision="${collision_arm}" mu="${link_6_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_6" type="${joint_6_type}" parent="${prefix}link_5" child="${prefix}link_6" joint_axis_xyz="${joint_6_axis_xyz}" joint_origin_xyz="${joint_6_origin_xyz}" joint_origin_rpy="${joint_6_origin_rpy}" joint_damping="${joint_6_damping}" joint_friction="${joint_6_friction}" joint_lower_limit="${joint_6_lower_limit}" joint_upper_limit="${joint_6_upper_limit}" joint_velocity_limit="${joint_6_velocity_limit}" joint_torque_limit="${joint_6_torque_limit}" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
-    <xacro:kinova_armlink link_name="${prefix}link_7" link_mesh="${link_7_mesh}" use_ring_mesh="true" ring_mesh="ring_small" collision="${collision_gripper}" mu="${link_7_mu}"/>
+    <xacro:kinova_armlink link_name="${prefix}link_7" link_mesh="${link_7_mesh}" collision="${collision_gripper}" mu="${link_7_mu}"/>
     <xacro:kinova_armjoint joint_name="${prefix}joint_7" type="${joint_7_type}" parent="${prefix}link_6" child="${prefix}link_7" joint_axis_xyz="${joint_7_axis_xyz}" joint_origin_xyz="${joint_7_origin_xyz}" joint_origin_rpy="${joint_7_origin_rpy}" joint_damping="${joint_7_damping}" joint_friction="${joint_7_friction}" joint_lower_limit="${joint_7_lower_limit}" joint_upper_limit="${joint_7_upper_limit}" joint_velocity_limit="${joint_7_velocity_limit}" joint_torque_limit="${joint_7_torque_limit}" safety_limits="${safety_limits}" safety_position_margin="${safety_position_margin}" safety_k_position="${safety_k_position}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>
 
     <xacro:kinova_virtual_fixed_link joint_name="${prefix}joint_end_effector" parent="${prefix}link_7" child="${prefix}end_effector" joint_origin_xyz="${joint_end_effector_origin_xyz}" joint_origin_rpy="${joint_end_effector_origin_rpy}" gazebo_preserve_fixed_joint="${gazebo_preserve_fixed_joint}"/>

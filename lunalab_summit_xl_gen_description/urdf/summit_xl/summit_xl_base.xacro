@@ -35,9 +35,9 @@
 
     <link name="${prefix}base_link">
       <inertial>
-        <mass value="25.0"/>
-        <origin xyz="0 0 0"/>
-        <inertia ixx="1.391" ixy="0.004" ixz="0.0" iyy="6.853" iyz="0.0" izz="6.125"/>
+        <mass value="50.0"/>
+        <origin xyz="-0.0246066 -1.3125e-05 0.157214"/>
+        <inertia ixx="0.8773624360089227" ixy="-0.0001914814670566834" ixz="0.09929940455155015" iyy="1.739156928222513" iyz="2.9628167736189533e-05" izz="1.9022131402815483"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -55,7 +55,7 @@
       </xacro:if>
     </link>
 
-    <link name="${prefix}base_docking_contact_link">
+    <!-- <link name="${prefix}base_docking_contact_link">
       <xacro:if value="${gazebo_preserve_fixed_joint}">
         <inertial>
           <mass value="1e-5"/>
@@ -67,7 +67,7 @@
       <origin xyz="0.284 0.012 0.068" rpy="0 0 0 "/>
       <parent link="${prefix}base_link"/>
       <child link="${prefix}base_docking_contact_link"/>
-    </joint>
+    </joint> -->
 
     <xacro:if value="${gazebo_preserve_fixed_joint}">
       <gazebo reference="${prefix}base_docking_joint">
@@ -75,6 +75,22 @@
         <disableFixedJointLumping>true</disableFixedJointLumping>
       </gazebo>
     </xacro:if>
+
+    <gazebo reference="${prefix}base_link">
+      <visual>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_albedo.png</albedo_map>
+              <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_roughness.png</roughness_map>
+              <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/summit_xl/chassis_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+    </gazebo>
   </xacro:macro>
 
 </robot>

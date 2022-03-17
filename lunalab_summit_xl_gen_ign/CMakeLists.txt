@@ -12,7 +12,7 @@ install(DIRECTORY launch rviz worlds DESTINATION share/${PROJECT_NAME})
 # Install python examples
 set(EXAMPLES_DIR examples)
 install(PROGRAMS
-    ${EXAMPLES_DIR}/ex_moveit_follow_target.py
+    ${EXAMPLES_DIR}/ex_follow_target.py
     DESTINATION lib/${PROJECT_NAME}
 )
 
