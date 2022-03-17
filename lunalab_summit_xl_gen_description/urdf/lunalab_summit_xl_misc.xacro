@@ -2,4 +2,10 @@
 <!-- Macro that includes additional (miscellaneous) resources such as compute units and lights -->
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <!-- External devices -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/misc/external_devices.xacro"/>
+
 </robot>

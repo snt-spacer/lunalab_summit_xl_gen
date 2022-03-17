@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- Macro that includes a LiDAR -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!--            -->
+  <!-- Properties -->
+  <!--            -->
+  <!-- This sensor supports mounting on the chassis -->
+  <xacro:property name="lidar_mount_type" value="chassis"/>
+  <xacro:property name="lidar_mount_offset_xyz" value="0.3 0.0 0.282"/>
+  <xacro:property name="lidar_mount_offset_rpy" value="0.0 0.0 0.0"/>
+
+
+  <!-- TODO: lidar - add sensor (mesh + gazebo), fix inertia, geometry -->
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="lidar" params="
+   base_parent
+   prefix:=lidar_
+   joint_origin_xyz
+   joint_origin_rpy
+   collision:=true
+   high_quality_mesh:=false
+   gazebo_preserve_fixed_joint:=false
+ ">
+    <joint name="${prefix}joint_mount" type="fixed">
+      <parent link="${base_parent}"/>
+      <child link="${prefix}mount"/>
+      <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}"/>
+    </joint>
+
+    <link name="${prefix}mount">
+      <visual>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/lidar/visual/chassis_mount.dae"/>
+        </geometry>
+      </visual>
+      <xacro:if value="${collision}">
+        <collision>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/lidar/collision/chassis_mount.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
+      <inertial>
+        <mass value="1e-5"/>
+        <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+      </inertial>
+    </link>
+
+    <!-- <xacro:sensor_rslidar_mems prefix="$(arg prefix)lidar" parent="${prefix}mount">
+      <origin xyz="${lidar_mount_offset_xyz}" rpy="${lidar_mount_offset_rpy}"/>
+    </xacro:sensor_rslidar_mems> -->
+
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${prefix}joint_mount">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

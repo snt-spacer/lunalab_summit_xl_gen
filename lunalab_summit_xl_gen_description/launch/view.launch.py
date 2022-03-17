@@ -30,10 +30,20 @@ def generate_launch_description() -> LaunchDescription:
     safety_limits = LaunchConfiguration("safety_limits")
     safety_position_margin = LaunchConfiguration("safety_position_margin")
     safety_k_position = LaunchConfiguration("safety_k_position")
+    external_devices = LaunchConfiguration("external_devices")
+    realsense_d435 = LaunchConfiguration("realsense_d435")
+    realsense_d455 = LaunchConfiguration("realsense_d455")
+    realsense_l515 = LaunchConfiguration("realsense_l515")
+    lidar = LaunchConfiguration("lidar")
     collision_chassis = LaunchConfiguration("collision_chassis")
     collision_wheels = LaunchConfiguration("collision_wheels")
     collision_arm = LaunchConfiguration("collision_arm")
     collision_gripper = LaunchConfiguration("collision_gripper")
+    collision_external_devices = LaunchConfiguration("collision_external_devices")
+    collision_realsense_d435 = LaunchConfiguration("collision_realsense_d435")
+    collision_realsense_d455 = LaunchConfiguration("collision_realsense_d455")
+    collision_realsense_l515 = LaunchConfiguration("collision_realsense_l515")
+    collision_lidar = LaunchConfiguration("collision_lidar")
     high_quality_mesh = LaunchConfiguration("high_quality_mesh")
     mimic_gripper_joints = LaunchConfiguration("mimic_gripper_joints")
     ros2_control = LaunchConfiguration("ros2_control")
@@ -78,6 +88,21 @@ def generate_launch_description() -> LaunchDescription:
             "safety_k_position:=",
             safety_k_position,
             " ",
+            "external_devices:=",
+            external_devices,
+            " ",
+            "realsense_d435:=",
+            realsense_d435,
+            " ",
+            "realsense_d455:=",
+            realsense_d455,
+            " ",
+            "realsense_l515:=",
+            realsense_l515,
+            " ",
+            "lidar:=",
+            lidar,
+            " ",
             "collision_chassis:=",
             collision_chassis,
             " ",
@@ -89,6 +114,21 @@ def generate_launch_description() -> LaunchDescription:
             " ",
             "collision_gripper:=",
             collision_gripper,
+            " ",
+            "collision_external_devices:=",
+            collision_external_devices,
+            " ",
+            "collision_realsense_d435:=",
+            collision_realsense_d435,
+            " ",
+            "collision_realsense_d455:=",
+            collision_realsense_d455,
+            " ",
+            "collision_realsense_l515:=",
+            collision_realsense_l515,
+            " ",
+            "collision_lidar:=",
+            collision_lidar,
             " ",
             "high_quality_mesh:=",
             high_quality_mesh,
@@ -210,6 +250,32 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             default_value="20",
             description="Parametric k-position factor of all safety controllers.",
         ),
+        # Enables of sensors and miscellaneous parts
+        DeclareLaunchArgument(
+            "external_devices",
+            default_value="false",
+            description="Flag to enable external devices (mesh).",
+        ),
+        DeclareLaunchArgument(
+            "realsense_d435",
+            default_value="false",
+            description="Flag to enable RealSense D435.",
+        ),
+        DeclareLaunchArgument(
+            "realsense_d455",
+            default_value="false",
+            description="Flag to enable RealSense D455.",
+        ),
+        DeclareLaunchArgument(
+            "realsense_l515",
+            default_value="false",
+            description="Flag to enable RealSense L515.",
+        ),
+        DeclareLaunchArgument(
+            "lidar",
+            default_value="false",
+            description="Flag to enable LiDAR.",
+        ),
         # Collision geometry
         DeclareLaunchArgument(
             "collision_chassis",
@@ -230,6 +296,31 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
             "collision_gripper",
             default_value="true",
             description="Flag to enable collision geometry for manipulator's gripper (hand and fingers).",
+        ),
+        DeclareLaunchArgument(
+            "collision_external_devices",
+            default_value="true",
+            description="Flag to enable collision geometry for external devices.",
+        ),
+        DeclareLaunchArgument(
+            "collision_realsense_d435",
+            default_value="true",
+            description="Flag to enable collision geometry for RealSense D435.",
+        ),
+        DeclareLaunchArgument(
+            "collision_realsense_d455",
+            default_value="true",
+            description="Flag to enable collision geometry for RealSense D455.",
+        ),
+        DeclareLaunchArgument(
+            "collision_realsense_l515",
+            default_value="true",
+            description="Flag to enable collision geometry for RealSense L515.",
+        ),
+        DeclareLaunchArgument(
+            "collision_lidar",
+            default_value="true",
+            description="Flag to enable collision geometry for LiDAR.",
         ),
         # Geometry
         DeclareLaunchArgument(
