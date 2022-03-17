@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!-- Macro that includes a RealSense D435 camera -->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!--            -->
+  <!-- Properties -->
+  <!--            -->
+  <!-- This camera supports mounting on chassis -->
+  <xacro:property name="realsense_d435_mount_type" value="chassis"/>
+  <xacro:property name="realsense_d435_mount_offset_xyz" value="0.0 0.0 0.0"/>
+  <xacro:property name="realsense_d435_mount_offset_rpy" value="0.0 ${15*pi/180} 0.0"/>
+  <xacro:property name="realsense_d435_sensor_offset_xyz" value="0.02 0.0 0.0"/>
+  <xacro:property name="realsense_d435_sensor_offset_rpy" value="0.0 0.0 0.0"/>
+
+  <!-- TODO: realsense_d435 - add sensor (gazebo), fix inertia, geometry -->
+  <!--       -->
+  <!-- Macro -->
+  <!--       -->
+  <xacro:macro name="realsense_d435" params="
+   base_parent prefix:=realsense_d435_
+   joint_origin_xyz
+   joint_origin_rpy
+   collision:=true
+   high_quality_mesh:=false
+   gazebo_preserve_fixed_joint:=false
+   gazebo_camera_enable:=true
+   gazebo_camera_update_rate:=15.0
+   gazebo_camera_width:=424
+   gazebo_camera_height:=240
+   gazebo_camera_horizontal_fov:=${87*pi/180}
+   gazebo_camera_vertical_fov:=${58*pi/180}
+   gazebo_camera_color_clip_near:=0.001
+   gazebo_camera_color_clip_far:=1000.0
+   gazebo_camera_depth_clip_near:=0.01
+   gazebo_camera_depth_clip_far:=20.0
+   gazebo_camera_noise_mean:=0.0
+   gazebo_camera_noise_stddev:=0.001
+   gazebo_camera_visibility_mask:=0
+  ">
+    <joint name="${prefix}joint_mount" type="fixed">
+      <parent link="${base_parent}"/>
+      <child link="${prefix}mount1"/>
+      <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}"/>
+    </joint>
+
+    <link name="${prefix}mount1">
+      <visual>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/realsense_d435/visual/realsense_d435_mount1.dae"/>
+        </geometry>
+      </visual>
+      <xacro:if value="${collision}">
+        <collision>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/realsense_d435/collision/realsense_d435_mount1.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
+      <inertial>
+        <mass value="1e-5"/>
+        <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}joint" type="fixed">
+      <parent link="${prefix}mount1"/>
+      <child link="${prefix}mount2"/>
+      <origin xyz="${realsense_d435_mount_offset_xyz}" rpy="${realsense_d435_mount_offset_rpy}"/>
+    </joint>
+
+    <link name="${prefix}mount2">
+      <visual>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/realsense_d435/visual/realsense_d435_mount2.dae"/>
+        </geometry>
+      </visual>
+      <xacro:if value="${collision}">
+        <collision>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/realsense_d435/collision/realsense_d435_mount2.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
+      <inertial>
+        <mass value="1e-5"/>
+        <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}joint_sensor" type="fixed">
+      <parent link="${prefix}mount2"/>
+      <child link="${prefix}sensor"/>
+      <origin xyz="${realsense_d435_sensor_offset_xyz}" rpy="${realsense_d435_sensor_offset_rpy}"/>
+    </joint>
+
+    <link name="${prefix}sensor">
+      <visual>
+        <geometry>
+          <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/realsense_d435/visual/realsense_d435.dae"/>
+        </geometry>
+      </visual>
+      <xacro:if value="${collision}">
+        <collision>
+          <geometry>
+            <mesh filename="package://lunalab_summit_xl_gen_description/meshes/sensors/realsense_d435/collision/realsense_d435.stl"/>
+          </geometry>
+        </collision>
+      </xacro:if>
+      <inertial>
+        <mass value="1e-5"/>
+        <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0"/>
+      </inertial>
+    </link>
+
+
+    <xacro:if value="${gazebo_camera_enable}">
+      <gazebo reference="${prefix}sensor">
+        <sensor name="${prefix}sensor" type="rgbd_camera">
+          <topic>${prefix}</topic>
+          <always_on>1</always_on>
+          <update_rate>${gazebo_camera_update_rate}</update_rate>
+          <camera name="${prefix}camera">
+            <image>
+              <format>R8G8B8</format>
+              <width>${gazebo_camera_width}</width>
+              <height>${gazebo_camera_height}</height>
+            </image>
+            <horizontal_fov>${gazebo_camera_horizontal_fov}</horizontal_fov>
+            <vertical_fov>${gazebo_camera_vertical_fov}</vertical_fov>
+            <clip>
+              <near>${gazebo_camera_color_clip_near}</near>
+              <far>${gazebo_camera_color_clip_far}</far>
+            </clip>
+            <depth_camera>
+              <output>depths</output>
+              <clip>
+                <near>${gazebo_camera_depth_clip_near}</near>
+                <far>${gazebo_camera_depth_clip_far}</far>
+              </clip>
+            </depth_camera>
+            <noise>
+              <type>gaussian</type>
+              <mean>${gazebo_camera_noise_mean}</mean>
+              <stddev>${gazebo_camera_noise_stddev}</stddev>
+            </noise>
+            <visibility_mask>${gazebo_camera_visibility_mask}</visibility_mask>
+            <visualize>true</visualize>
+          </camera>
+          <visualize>true</visualize>
+        </sensor>
+      </gazebo>
+    </xacro:if>
+
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${prefix}joint_mount">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${prefix}joint">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
+    <xacro:if value="${gazebo_preserve_fixed_joint}">
+      <gazebo reference="${prefix}joint_sensor">
+        <preserveFixedJoint>true</preserveFixedJoint>
+        <disableFixedJointLumping>true</disableFixedJointLumping>
+      </gazebo>
+    </xacro:if>
+
+    <gazebo reference="${prefix}sensor">
+      <visual>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>1 1 1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>package://lunalab_summit_xl_gen_description/materials/textures/sensors/realsense_d435/realsense_d435_albedo.png</albedo_map>
+              <normal_map>package://lunalab_summit_xl_gen_description/materials/textures/sensors/realsense_d435/realsense_d435_normal.png</normal_map>
+              <roughness_map>package://lunalab_summit_xl_gen_description/materials/textures/sensors/realsense_d435/realsense_d435_roughness.png</roughness_map>
+              <metalness_map>package://lunalab_summit_xl_gen_description/materials/textures/sensors/realsense_d435/realsense_d435_metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

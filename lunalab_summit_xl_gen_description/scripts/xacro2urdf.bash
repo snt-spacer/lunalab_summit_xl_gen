@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 XACRO_PATH="$(dirname "${SCRIPT_DIR}")/urdf/lunalab_summit_xl_gen.urdf.xacro"
 URDF_PATH="$(dirname "${SCRIPT_DIR}")/urdf/lunalab_summit_xl_gen.urdf"
 
+
 # Arguments for xacro
 XACRO_ARGS=(
     name:=lunalab_summit_xl_gen
@@ -12,10 +13,20 @@ XACRO_ARGS=(
     safety_limits:=true
     safety_soft_limit_margin:=0.17453293
     safety_k_position:=20
+    external_devices:=false
+    realsense_d435:=false
+    realsense_d455:=false
+    realsense_l515:=false
+    lidar:=false
     collision_chassis:=true
     collision_wheels:=true
     collision_arm:=true
     collision_gripper:=true
+    collision_external_devices:=true
+    collision_realsense_d435:=true
+    collision_realsense_d455:=true
+    collision_realsense_l515:=true
+    collision_lidar:=true
     high_quality_mesh:=true
     mimic_gripper_joints:=false
     ros2_control:=true

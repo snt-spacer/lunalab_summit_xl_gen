@@ -2,4 +2,16 @@
 <!-- Macro that includes all required sensors -->
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
+  <!--                   -->
+  <!-- Imported elements -->
+  <!--                   -->
+  <!-- RealSense D435 -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/sensors/realsense_d435.xacro"/>
+  <!-- RealSense D455 -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/sensors/realsense_d455.xacro"/>
+  <!-- RealSense L515 -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/sensors/realsense_l515.xacro"/>
+  <!-- LiDAR -->
+  <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/sensors/lidar.xacro"/>
+
 </robot>

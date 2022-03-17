@@ -28,6 +28,10 @@
     <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands">
     </plugin>
 
+    <!-- Sensors -->
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+    </plugin>
+
 
     <!--              -->
     <!-- Illumination -->

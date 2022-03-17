@@ -5,10 +5,6 @@
 <!-- =================================================================================== -->
 <!-- URDF for Summit XL-GEN (LunaLab variant) -->
 <robot name="lunalab_summit_xl_gen">
-  <!-- Sensors -->
-  <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_sensors.xacro"/> -->
-  <!-- Miscellaneous -->
-  <!-- <xacro:include filename="$(find lunalab_summit_xl_gen_description)/urdf/lunalab_summit_xl_misc.xacro"/> -->
   <link name="robot_summit_xl_base_footprint">
   </link>
   <joint name="robot_summit_xl_base_footprint_joint" type="fixed">
@@ -1203,10 +1199,6 @@
       <state_interface name="effort"/>
     </joint>
   </ros2_control>
-  <!-- Sensors -->
-  <!-- <xacro:lunalab_summit_xl_sensors prefix="$(arg prefix)"/> -->
-  <!-- Miscellaneous -->
-  <!-- <xacro:lunalab_summit_xl_misc prefix="$(arg prefix)"/> -->
   <gazebo>
     <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
       <parameters>/home/andrej/ws/code/repos/lunalab_summit_xl_gen/install/share/lunalab_summit_xl_gen_moveit_config/config/controllers_effort.yaml</parameters>
