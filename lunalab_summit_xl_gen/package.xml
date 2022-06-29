@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>lunalab_summit_xl_gen</name>
+  <version>1.0.0</version>
+  <description>Metapackage for Summit XL-GEN (LunaLab variant)</description>
+  <maintainer email="andrejorsula@uni.lu">Andrej Orsula</maintainer>
+  <author>Andrej Orsula</author>
+  <license>BSD</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <build_depend>lunalab_summit_xl_gen_description</build_depend>
+  <build_depend>lunalab_summit_xl_gen_moveit_config</build_depend>
+  <build_depend>xacro</build_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -8,6 +8,9 @@ This branch targets packages that are built around ROS 2. Furthermore, Ignition 
 
 Below is an overview of the included packages, with a small description of their purpose. For more information, please see README.md of each individual package.
 
+Below is an overview of the included packages, with a short description of their purpose. For more information, please see README.md of each individual package.
+
+- [**lunalab_summit_xl_gen**](./lunalab_summit_xl_gen) – Metapackage
 - [**lunalab_summit_xl_gen_description**](./lunalab_summit_xl_gen_description) – URDF and SDF description of the robot
 - [**lunalab_summit_xl_gen_ign**](./lunalab_summit_xl_gen_ign) – Additional Ignition Gazebo-specific configuration of the robot
 - [**lunalab_summit_xl_gen_moveit_config**](./lunalab_summit_xl_gen_moveit_config) – MoveIt 2 configuration for the robotic manipulator

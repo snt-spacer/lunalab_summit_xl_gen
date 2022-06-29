@@ -51,6 +51,3 @@ echo "Created new ${SDF_PATH}"
 
 # Remove temporary URDF file
 rm "${TMP_URDF_PATH}" 2>/dev/null
-
-# Add to stating area
-git add "${SDF_PATH}"
