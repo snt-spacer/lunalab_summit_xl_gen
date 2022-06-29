@@ -3,9 +3,9 @@
   <name>lunalab_summit_xl_gen_ign</name>
   <version>1.0.0</version>
   <description>Ignition Gazebo-specific configuration of Summit XL-GEN (LunaLab variant)</description>
-  <maintainer email="TODO@uni.lu">TODO</maintainer>
-  <author>TODO</author>
-  <license>Apache License 2.0</license>
+  <maintainer email="andrejorsula@uni.lu">Andrej Orsula</maintainer>
+  <author>Andrej Orsula</author>
+  <license>BSD</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
