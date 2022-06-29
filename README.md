@@ -17,38 +17,27 @@ Below is an overview of the included packages, with a short description of their
 
 ## Instructions
 
-### Requirements
-
-- **OS:** Ubuntu 20.04 (Focal)
-  - Other distributions might work, but they were not tested.
-
 ### Dependencies
 
 These are the primary dependencies required to use this project.
 
-- ROS 2 [Rolling](https://docs.ros.org/en/rolling/Installation.html)
-- Ignition [Fortress](https://ignitionrobotics.org/docs/fortress)
-- [ros_ign](https://github.com/ignitionrobotics/ros_ign/tree/ros2)
-  - Install/build a version based on the selected combination of ROS 2 release and Ignition version
-- [MoveIt 2](https://moveit.ros.org/install-moveit2/binary)
-  - Install/build a version based on the selected ROS 2 release
+- ROS 2 [Galactic](https://docs.ros.org/en/galactic/Installation.html)
+- Gazebo [Fortress](https://gazebosim.org/docs/fortress)
 
-Additional dependencies are pulled from git and built together with this repository, see [lunalab_summit_xl_gen.repos](lunalab_summit_xl_gen.repos) for more details.
+All additional dependencies are either pulled via [vcstool](https://wiki.ros.org/vcstool) ([lunalab_summit_xl_gen.repos](./lunalab_summit_xl_gen.repos)) or installed via [rosdep](https://wiki.ros.org/rosdep) during the building process below.
 
 ### Building
 
-Clone this repository and import VCS dependencies. Then install dependencies and build with [colcon](https://colcon.readthedocs.io).
+Clone this repository, import dependencies, install dependencies and build with [colcon](https://colcon.readthedocs.io).
 
 ```bash
-# Create workspace for the project (can be skippid)
-mkdir -p lunalab_summit_xl_gen_ws/src && cd lunalab_summit_xl_gen_ws/src
-# Clone this repository
-git clone ssh://git@gitlab.uni.lu:8022/spacer/phd/AndrejOrsula/lunalab_summit_xl_gen.git
-# Import additional git dependencies
-vcs import < lunalab_summit_xl_gen_ws/lunalab_summit_xl_gen.repos && cd ..
-# Install external dependencies via rosdep
-rosdep install -r --from-paths src --ignore-src --rosdistro ${ROS_DISTRO}
-# Build with colcon
+# Clone this repository into your favourite ROS 2 workspace
+git clone https://github.com/snt-spacer/lunalab_summit_xl_gen.git
+# Import dependencies
+vcs import < lunalab_summit_xl_gen/lunalab_summit_xl_gen.repos
+# Install dependencies
+IGNITION_VERSION=fortress rosdep install -y -r -i --rosdistro ${ROS_DISTRO} --from-paths .
+# Build
 colcon build --merge-install --symlink-install --cmake-args "-DCMAKE_BUILD_TYPE=Release"
 ```
 
