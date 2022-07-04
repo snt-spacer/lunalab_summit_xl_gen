@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script converts xacro (URDF variant) into SDF for `lunalab_summit_xl_gen_description` package
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" &>/dev/null && pwd)"
 XACRO_PATH="$(dirname "${SCRIPT_DIR}")/urdf/lunalab_summit_xl_gen.urdf.xacro"
 SDF_PATH="$(dirname "${SCRIPT_DIR}")/lunalab_summit_xl_gen/model.sdf"
 TMP_URDF_PATH="/tmp/lunalab_summit_xl_gen_tmp.urdf"
