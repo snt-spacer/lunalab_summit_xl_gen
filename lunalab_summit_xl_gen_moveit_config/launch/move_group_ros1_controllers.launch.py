@@ -472,7 +472,7 @@ def generate_declared_arguments() -> List[DeclareLaunchArgument]:
         DeclareLaunchArgument(
             "collision_wheels",
             default_value="true",
-            description="Flag to enable collision geometry for the wheels fo Summit XL.",
+            description="Flag to enable collision geometry for the wheels of Summit XL.",
         ),
         DeclareLaunchArgument(
             "collision_arm",

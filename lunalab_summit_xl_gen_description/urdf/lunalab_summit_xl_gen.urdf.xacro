@@ -49,7 +49,7 @@
 
   <!-- Flag to enable collision geometry for the chassis of Summit XL -->
   <xacro:arg name="collision_chassis" default="true"/>
-  <!-- Flag to enable collision geometry for the wheels fo Summit XL -->
+  <!-- Flag to enable collision geometry for the wheels of Summit XL -->
   <xacro:arg name="collision_wheels" default="true"/>
   <!-- Flag to enable collision geometry for manipulator's arm -->
   <xacro:arg name="collision_arm" default="true"/>
