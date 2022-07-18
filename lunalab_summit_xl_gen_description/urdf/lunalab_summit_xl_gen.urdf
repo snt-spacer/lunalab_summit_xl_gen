@@ -414,10 +414,10 @@
     <parent link="robot_j2s7s300_link_base"/>
     <child link="robot_j2s7s300_link_1"/>
     <axis xyz="0 0 1"/>
-    <limit effort="40" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.6283185307179586"/>
+    <limit effort="40" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.6283185307179586"/>
     <origin rpy="0 3.141592653589793 0" xyz="0 0 0.15675"/>
     <dynamics damping="15.0" friction="0.5"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -522,10 +522,10 @@
     <parent link="robot_j2s7s300_link_2"/>
     <child link="robot_j2s7s300_link_3"/>
     <axis xyz="0 0 1"/>
-    <limit effort="40" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.6283185307179586"/>
+    <limit effort="40" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.6283185307179586"/>
     <origin rpy="-1.5707963267948966 0 0" xyz="0 -0.205 0"/>
     <dynamics damping="12.0" friction="0.8"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -630,10 +630,10 @@
     <parent link="robot_j2s7s300_link_4"/>
     <child link="robot_j2s7s300_link_5"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.8377580409572781"/>
+    <limit effort="20" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.8377580409572781"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.2073 -0.0114"/>
     <dynamics damping="6.5" friction="0.35"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_5_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -738,10 +738,10 @@
     <parent link="robot_j2s7s300_link_6"/>
     <child link="robot_j2s7s300_link_7"/>
     <axis xyz="0 0 1"/>
-    <limit effort="20" lower="-174.04423300887453" upper="174.04423300887453" velocity="0.8377580409572781"/>
+    <limit effort="20" lower="-6.283185307179586" upper="6.283185307179586" velocity="0.8377580409572781"/>
     <origin rpy="-1.5707963267948966 0 3.141592653589793" xyz="0 0.10375 0"/>
     <dynamics damping="4.5" friction="0.2"/>
-    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-173.86970007887453" soft_upper_limit="173.86970007887453"/>
+    <safety_controller k_position="20" k_velocity="0.0" soft_lower_limit="-6.108652377179586" soft_upper_limit="6.108652377179586"/>
   </joint>
   <transmission name="robot_j2s7s300_joint_7_trans">
     <type>transmission_interface/SimpleTransmission</type>
