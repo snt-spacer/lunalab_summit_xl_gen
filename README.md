@@ -2,7 +2,7 @@
 
 Software packages for Summit XL-GEN with Kinova Gen2 arm. This repository enables researchers to conduct experiments in simulations and on a real robot inside the LunaLab facility at the University of Luxembourg.
 
-<p align="center" float="middle">
+<p align="left" float="middle">
   <img width="50.0%" src="https://user-images.githubusercontent.com/22929099/176204798-80665afb-50ba-463d-bcf4-2c2f06441e09.png" alt="Visualisation of lunalab_summit_xl_gen in a simulated lunar environment"/>
 </p>
 
