@@ -3,7 +3,7 @@
   <name>lunalab_summit_xl_gen</name>
   <version>1.0.0</version>
   <description>Metapackage for Summit XL-GEN (LunaLab variant)</description>
-  <maintainer email="andrejorsula@uni.lu">Andrej Orsula</maintainer>
+  <maintainer email="andrej.orsula@uni.lu">Andrej Orsula</maintainer>
   <author>Andrej Orsula</author>
   <license>BSD</license>
 
