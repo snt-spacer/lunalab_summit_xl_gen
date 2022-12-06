@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TAG="spacer/lunalab_summit_xl_gen"
+TAG="andrejorsula/lunalab_summit_xl_gen"
 
 ## Forward custom volumes and environment variables
 CUSTOM_VOLUMES=()
